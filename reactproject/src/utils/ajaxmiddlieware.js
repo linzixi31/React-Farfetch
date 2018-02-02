@@ -10,7 +10,7 @@ export function ajaxMiddleware(api){
                 return dispatch(action)
             }
 
-            let defaultConstants = [ajaxContants.AJAX_REQUESTING, ajaxContants.AJAX_REQUESTED, AJAX_REQUESTERROR]
+            let defaultConstants = [ajaxConstants.AJAX_REQUESTING, ajaxConstants.AJAX_REQUESTED, ajaxConstants.AJAX_REQUESTERROR]
             let [requesting, requested, requesterror] = types ? types : defaultConstants;
             
             api.dispatch({type: ajaxConstants.AJAX_REQUESTING});
