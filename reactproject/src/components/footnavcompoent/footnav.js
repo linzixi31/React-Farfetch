@@ -14,7 +14,7 @@ constructor(props) {
   
    render() {
     return (
-      <div style={this.state.fullScreen ? {height: '1.333333rem' } : { height: 400 }}>
+      <div>
         <TabBar
           unselectedTintColor="#AAAAAA"
           tintColor="#222"
