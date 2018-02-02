@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { NavBar, Icon } from 'antd-mobile';
-
+import './back.scss'
 export default class Back extends Component{
 
     render(){
@@ -16,14 +16,6 @@ export default class Back extends Component{
                   ]}
                 >NavBar</NavBar>
 
-                <NavBar
-                  mode="dark"
-                  leftContent="Back"
-                  rightContent={[
-                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                    <Icon key="1" type="ellipsis" />,
-                  ]}
-                >NavBar</NavBar>
             </div>
             )
     }
