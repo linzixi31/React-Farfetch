@@ -5,7 +5,7 @@ var  db = mysql.createPool({
     host: "10.3.136.15",
     user: 'root',
     password: '',
-    database: 'db_hotel',
+    database: 'db_farfetch',
     multipleStatements: true
 });
 
