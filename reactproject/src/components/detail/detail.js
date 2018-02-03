@@ -8,11 +8,6 @@ import DetailAccordion from './detailAccordion.js';
 
 export default class Detail extends React.Component{
 	componentWillMount(){
-//		http.get('/register',{telephone:document.getElementById("firstname").value,password:document.getElementById("password").value}).then(res=>{
-//          console.log(res)
-//      }).catch(error=>{
-//          console.log(error)
-//      })
 	}
 	state = {
 		qty:1
