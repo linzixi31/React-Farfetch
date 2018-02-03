@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { NavBar, Icon } from 'antd-mobile';
-import './back.scss'
+//import backScss from './back.scss'
 export default class Back extends Component{
 
     render(){

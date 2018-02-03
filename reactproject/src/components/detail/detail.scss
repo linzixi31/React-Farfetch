@@ -1,0 +1,80 @@
+html,body{
+    width:100%;height:100%;background: #fff;
+}
+
+#app{
+    height:100%;width:100%;
+    #detail{
+        display: flex;flex-direction:column;height:100%;overflow:auto;
+        .am-navbar{
+            height:1.06rem;width:100%;position: fixed;z-index:1000;
+            .am-icon{
+                height: 0.51rem;width:0.51rem;fill:#333333;
+            }
+        }
+        #main{
+            flex:1;overflow:auto;
+                .mainImg{
+                    height:12.53rem;background:yellow;
+                }
+                .mainTitle{
+                    height:2.8rem;background:dodgerblue;
+                    h3{
+                        color:#1B1B1B;height:0.93rem;line-height:0.93rem;background:red;font-size:0.66rem;padding:0px;margin:0px;
+                    }
+                    h4{
+                        color:#252525;font-size:0.53rem;height:0.66rem;line-height:0.66rem;background:pink;padding:0;margin:0;
+                    }
+                    p{
+                        color:#BDBDBD;height:0.8rem;line-height:0.8rem;font-size:0.34rem;background:gold;padding:0;margin:0;
+                    }
+                }
+                .mainSize{
+                    height:2.26rem;background:#fff;
+                }
+                .mainMessage{
+                    padding: 0.26rem;
+                    .am-accordion-header{
+                        height:2rem;padding:0 0.64rem;line-height:2rem;font-size:0.45rem;color:#1A1A1A;font-weight: bold;
+                    }
+                    .arrow{
+                        top:45%;display: block;height:0.4rem;width:0.4rem;
+                    }
+                }
+                .mainConnection{
+                    height:7.06rem;font-size:0.4rem;color:#252525;font-weight: bold;padding-top:0.5rem;box-sizing: border-box;
+                    .connectTop{
+                        height:1.73rem;line-height:1.46rem;text-align: center;
+                    }
+                    .connectionCenter{
+                        height:2.21rem;line-height: 2.21rem;display: flex;border-top:0.01rem #F8F8F8 solid;
+                        border-bottom: 0.01rem #F8F8F8 solid;
+                        i{
+                            border:0.01rem #F8F8F8 solid;
+                        }
+                        div{
+                            flex:1;text-align: center;
+                        }
+                    }
+                    .connectionFoot{
+                        height:2.24rem;line-height:2.24rem;color:#ACACAC;text-align: center;
+                    }
+                }
+                .mainRecommend{
+                    height:1.78rem;text-align:center;
+                    h3{
+                        font-size:0.48rem;font-weight: bold;color:#202020;
+                    }
+                }
+        }
+        #footer{
+            height:1.81rem;line-height: 1.81rem;padding:0.3rem 0.62rem;box-sizing: border-box;
+            .addToCart{
+                background:#222222;height:1.2rem;line-height:1.2rem;color:#FFFFFF;font-size:0.4rem
+            }
+        }
+    }
+}
+
+    
+
