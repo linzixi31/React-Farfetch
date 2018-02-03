@@ -22,7 +22,7 @@ class Logincompoent extends Component{
      submit(e){
         e.preventDefault()
         this.props.spinner()
-        console.log(this.props)
+        //console.log(this.props)
         var params = {telephone:document.getElementById("firstname").value,password:document.getElementById("password").value}
         this.props.loginajax(params).then(res=>{
           console.log(res)
@@ -31,7 +31,7 @@ class Logincompoent extends Component{
     }
     render(){
         if(this.props.state==0 ){
-          console.log(this.props.state)
+          //console.log(this.props.state)
           var c = <Spinnercomponent/>
         }else{
           var c = null

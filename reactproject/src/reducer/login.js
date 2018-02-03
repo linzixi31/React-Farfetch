@@ -30,7 +30,7 @@ export default function login(state={ count:0,loading:false},action){
       
 
     }
-    console.log(state,action)
+    //console.log(state,action)
 
     return newstate;
 }

@@ -20,12 +20,12 @@ const HttpClient = {
             .get(getUrl(path))
             .query(query)
             .end((err, res) => {
-
+                console.log(res)
                 if (err) {
                     reject(err);
 
                 } else {              
-                    resolve(res.body||JSON.parse(res.text));
+                    resolve(res);
                 }
             });
     }),

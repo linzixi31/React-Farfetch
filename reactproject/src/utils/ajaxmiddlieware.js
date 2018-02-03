@@ -17,9 +17,11 @@ export function ajaxMiddleware(api){
             if(url){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
+                        console.log(res)
                         api.dispatch({
                             type: requested,
-                            result: res.body.data
+                            result:res.body.data
+                            
                         })
                         resolve(res.body.data)
                     }).catch(error => {
