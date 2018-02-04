@@ -10,7 +10,6 @@ class Logincompoent extends Component{
        count:0
      }
      add(){
-      console.log(this.props)
        this.props.add()
        this.setState({count:this.props.count})
      }

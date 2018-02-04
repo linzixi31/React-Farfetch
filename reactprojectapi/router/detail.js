@@ -8,9 +8,14 @@ module.exports = {
 				res.send(result);
 			})
 		});
-		_app.get('/getHotelRoom',function(req,res){
+		_app.get('/getHotGood',function(req,res){
+			db.getHotGood(function(result){
+				res.send(result);
+			})
+		})
+		_app.get('/getGood',function(req,res){
 			// 获取当前酒店信息的路由
-			db.getHotelRoom(req.query,function(result){
+			db.getGood(req.query,function(result){
 				res.send(result);
 			})
 		});

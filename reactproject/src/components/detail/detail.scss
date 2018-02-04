@@ -1,41 +1,84 @@
 html,body{
     width:100%;height:100%;background: #fff;
 }
+*{
+    margin: 0;padding:0;
+}
+.sizeList{
+    padding-bottom: 1.2rem;
+    .detail-am-list-item{
+        height:1.2rem;line-height: 1.2rem;font-size:0.6rem;font-size:0.32rem;
+    }
+    .sizeTop{
+        font-size:0.4rem;height:1.2rem;line-height: 1.2rem;
+    }
+}
+
+
 
 #app{
     height:100%;width:100%;
     #detail{
-        display: flex;flex-direction:column;height:100%;overflow:auto;
-        .am-navbar{
-            height:1.06rem;width:100%;position: fixed;z-index:1000;
-            .am-icon{
-                height: 0.51rem;width:0.51rem;fill:#333333;
+        display: flex;flex-direction:column;height:100%;width:100%;
+        #header{
+            .am-navbar{
+                height:1.06rem;width:100%;position:fixed;background: none;z-index: 1000;
+                .am-icon{
+                    height: 0.51rem;width:0.51rem;fill:#333333;
+                }
             }
         }
         #main{
-            flex:1;overflow:auto;
-                .mainImg{
-                    height:12.53rem;background:yellow;
+            overflow-x:hidden;width:100%;flex:1;
+                .mainImgWrap{
+                    position:relative;overflow:hidden;height:12.53rem;line-height:2.53rem;text-align: center;box-sizing: border-box;padding-top: 0.4rem;
+                    i{
+                        position:absolute;right:0.4rem;top:1.33rem;height: 0.6rem;line-height: 0.6rem;font-size:0.6rem;
+                    }
+                    .mainImg{
+                        height:10.8rem;
+                    }
                 }
                 .mainTitle{
-                    height:2.8rem;background:dodgerblue;
+                    height:2.8rem;text-align:center;
                     h3{
-                        color:#1B1B1B;height:0.93rem;line-height:0.93rem;background:red;font-size:0.66rem;padding:0px;margin:0px;
+                        color:#1B1B1B;height:0.93rem;line-height:0.93rem;font-size:0.45rem;font-weight:bold;padding:0px;margin:0px;
                     }
                     h4{
-                        color:#252525;font-size:0.53rem;height:0.66rem;line-height:0.66rem;background:pink;padding:0;margin:0;
+                        color:#252525;font-size:0.37rem;font-weight:bold;height:0.66rem;line-height:0.66rem;padding:0;margin:0;
                     }
                     p{
-                        color:#BDBDBD;height:0.8rem;line-height:0.8rem;font-size:0.34rem;background:gold;padding:0;margin:0;
+                        color:#BDBDBD;height:0.8rem;line-height:0.8rem;font-size:0.34rem;padding:0;margin:0;
+                        .currentPrice{
+                            color:#E65A67;font-size:0.37rem;
+                        }
                     }
                 }
                 .mainSize{
-                    height:2.26rem;background:#fff;
+                    background:#fff;padding: 0.65rem;
+                    .SizeBtn{
+                        border:0.02rem solid #ccc;height:1.2rem;line-height:1.2rem;width:3.57rem;margin:0 auto;border-radius:0.13rem;color:#B5B5B5;font-size:0.37rem;
+                        text-align: center;font-weight: bold;
+                    }
+                    
                 }
+                
                 .mainMessage{
-                    padding: 0.26rem;
+                    padding: 0.65rem;
                     .am-accordion-header{
-                        height:2rem;padding:0 0.64rem;line-height:2rem;font-size:0.45rem;color:#1A1A1A;font-weight: bold;
+                        height:2rem;padding:0 0.6rem;line-height:2rem;font-size:0.45rem;color:#1A1A1A;font-weight: bold;
+                    }
+                    p{
+                        text-align:left;font-size:0.4rem;color:#222222;font-weight:bold;padding:0 0.8rem;overflow: visible;white-space: normal;text-overflow:normal;
+                    }
+                    p:nth-child(1){
+                        height:2rem;padding-top:0.5rem;
+                    }
+                    p:nth-child(2){
+                        height:0.8rem;
+                        span{
+                            font-weight: normal;
+                        }
                     }
                     .arrow{
                         top:45%;display: block;height:0.4rem;width:0.4rem;
@@ -47,10 +90,10 @@ html,body{
                         height:1.73rem;line-height:1.46rem;text-align: center;
                     }
                     .connectionCenter{
-                        height:2.21rem;line-height: 2.21rem;display: flex;border-top:0.01rem #F8F8F8 solid;
-                        border-bottom: 0.01rem #F8F8F8 solid;
+                        height:2.21rem;line-height: 2.21rem;display: flex;border-top:0.03rem #F8F8F8 solid;
+                        border-bottom: 0.03rem #F8F8F8 solid;
                         i{
-                            border:0.01rem #F8F8F8 solid;
+                            border:0.03rem #F8F8F8 solid;
                         }
                         div{
                             flex:1;text-align: center;
@@ -61,14 +104,32 @@ html,body{
                     }
                 }
                 .mainRecommend{
-                    height:1.78rem;text-align:center;
+                    text-align:center;
                     h3{
                         font-size:0.48rem;font-weight: bold;color:#202020;
+                    }
+                    .hotGoods{
+                        display: flex;flex-wrap: wrap;
+                        li{
+                            width:50%;color:#222222;
+                            p:nth-child(2){
+                                font-size: 0.34rem;font-weight: bold;padding:0 0.26rem;
+                            }
+                            p:nth-child(3){
+                                font-size:0.37rem;
+                            }
+                        }
+                    }
+                    .selectAllWrap{
+                        height:3.06rem;padding-top:0.93rem;
+                        .selectAll{
+                            height:1.2rem;width:4.93rem;margin:0 auto;border:0.02rem solid #EAEAEA;line-height:1.2rem;font-size:0.4rem;font-weight: bold;color:#222222;
+                        }
                     }
                 }
         }
         #footer{
-            height:1.81rem;line-height: 1.81rem;padding:0.3rem 0.62rem;box-sizing: border-box;
+            height:1.81rem;width:100%;line-height: 1.81rem;padding:0.3rem 0.62rem;box-sizing: border-box;
             .addToCart{
                 background:#222222;height:1.2rem;line-height:1.2rem;color:#FFFFFF;font-size:0.4rem
             }
@@ -78,3 +139,30 @@ html,body{
 
     
 
+@font-face {font-family: "iconfont";
+  src: url('./font/iconfont.eot?t=1517722859215'); /* IE9*/
+  src: url('./font/iconfont.eot?t=1517722859215#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,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') format('woff'),
+  url('./font/iconfont.ttf?t=1517722859215') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./font/iconfont.svg?t=1517722859215#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-baobao:before { content: "\3464"; }
+
+.icon-icon1:before { content: "\e63c"; }
+
+.icon-shoucang:before { content: "\e707"; }
+
+.icon-share:before { content: "\e621"; }
+
+.icon-star__easyico:before { content: "\e52b"; }
+
+.icon-web-icon-:before { content: "\e6f4"; }
