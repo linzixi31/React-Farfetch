@@ -10,7 +10,6 @@ class Logincompoent extends Component{
        count:0
      }
      add(){
-      console.log(this.props)
        this.props.add()
        this.setState({count:this.props.count})
      }
@@ -26,6 +25,8 @@ class Logincompoent extends Component{
         var params = {telephone:document.getElementById("firstname").value,password:document.getElementById("password").value}
         this.props.loginajax(params).then(res=>{
           console.log(res)
+        }).catch(res=>{
+        	console.log(res)
         })
         
     }

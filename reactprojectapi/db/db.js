@@ -38,6 +38,38 @@ module.exports = {
                 }
         })
     },
+    getHotGood:function(_cb){
+    	console.log('有请求数据库')
+    	var sql = `
+    				SELECT id,
+    				mainImg,
+    				currentPrice,
+    				brand
+    				FROM goods
+    				where hot = '1'
+    				limit 0,4
+    				`
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                            console.log(results);
+                         _cb({status:true,data:{results}});
+                }
+        })
+    },
+    getCart:function(_data,_cb){
+    	//获取当前用户的购物车数量
+    	var userId = _data.userId;
+    	var sql = `SELECT qty FROM buycart where userId = ${userId}`
+    	db.query(sql,function(err,results,fields){
+    		if(err){
+                _cb({status:false,error:err});
+            }else{
+             	_cb({status:true,data:{results}});
+            }
+    	})
+    },
     getHotel:function(_data,_cb){
             //获取当前id的酒店房间信息
             var id = _data.hotelId;
@@ -67,12 +99,12 @@ module.exports = {
                     }
             })
     },
-    getHotelRoom:function(_data,_cb){
+    getGood:function(_data,_cb){
             console.log(_data);
-            //获取当前id的酒店信息
-            var id = _data.hotelId;
-            var cancel = _data.cancelAllow;
-            var sql = `SELECT id,type,znePrice,availablePerson,cancelAllow,bedScale FROM room where room.hotelId = ${id} and room.cancelAllow = ${cancel}`;
+            //获取当前id的商品信息
+            var id = _data.id;
+//          var cancel = _data.cancelAllow;
+            var sql = `SELECT id,title,currentPrice,mainImg,size,sku,category,brand,descriptions FROM goods where goods.id = ${id}`;
             
             db.query(sql,function(err,results,fields){
                 if(err){
