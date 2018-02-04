@@ -1,50 +1,74 @@
 import React,{Component} from 'react';
 import Title from '../titleComponent/titleComponent';
 import Footnav from '../footnavcompoent/footnav.js'
-import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
+import { Tabs, WhiteSpace, List } from 'antd-mobile';
 import './category.scss'
-
-
+import {connect} from 'react-redux'
+import * as action from './categoryAction.js'
+import {hashHistory} from 'react-router'
+const Item = List.Item;
+const Brief = Item.Brief;
 const tabs= [
-{ title: <span>女士</span>, sub: '1' },
-{ title: <span>男士</span>, sub: '2' },
-{ title: <span>儿童</span>, sub: '3' },
+{ title: <span>女士</span>, sub: '2' },
+{ title: <span>男士</span>, sub: '1' },
+{ title: <span>儿童</span>, sub: '4' },
 ];
 
-const TabExample = () => (
-  <div style={{flex:1}}>
-    <Tabs tabs={tabs}
-      initialPage={1}
-      onChange={(tab, index) => { console.log('onChange', index, tab); }}
-      onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-        Content of first tab
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  backgroundColor: '#fff' }}>
-        Content of second tab
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-        Content of third tab
-      </div>
-    </Tabs>
-    <WhiteSpace />
-    </div>  
-);
 
-export default class CategoryComponent extends Component{
+class CategoryComponent extends Component{
+    componentWillMount(){
+        this.props.getData({tab:'2'})
+    }
     state={
         titlename:'商品类别'
     }
+    getData(event){
+
+        this.props.getData({tab:event.sub})
+    }
     render(){
+
         return(
             <div className='category'>
                 <Title name={this.state.titlename}/>
-                <TabExample/>
+                <div style={{flex:1}}>
+                    <div>
+                        <Tabs tabs={tabs} initialPage={0} onChange={this.getData.bind(this)}>
+                           <List  className="my-list" >
+                            {
+                                this.props.result.map(function(item,index){
+                                 return  <Item  key={index} arrow="horizontal" onClick={(e) => {
+                                    //console.log(e)
+                                    hashHistory.push({
+                                        pathname: '/list',
+                                        query: {
+                                            catename:item.category_name,
+                                            categoryid:item.cate_id
+                                        },
+                                    })
+                                 }}
+                                 >{item.category_name}</Item>
+                                })
+                            }
+                            </List>
+                        </Tabs>
+                        <WhiteSpace />
+                    </div>  
+                </div>
                 <Footnav/>
             </div>
 
             )
     }
   
+} 
+
+let mapStateToProps = (state) => {
+  //console.log(state)
+    return {
+        result:state.cateReducer.result || []
+    }
+
 }
+
+export default connect(mapStateToProps,action)(CategoryComponent);

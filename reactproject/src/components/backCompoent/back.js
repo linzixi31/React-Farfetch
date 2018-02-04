@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { NavBar, Icon } from 'antd-mobile';
-//import backScss from './back.scss'
+import { hashHistory } from 'react-router';
+import './back.scss'
 export default class Back extends Component{
 
     render(){
@@ -9,7 +10,7 @@ export default class Back extends Component{
                 <NavBar
                   mode="light"
                   icon={<Icon type="left" />}
-                  onLeftClick={() => console.log('onLeftClick')}
+                  onLeftClick={() => hashHistory.goBack()}
                   rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
                     <Icon key="1" type="ellipsis" />,

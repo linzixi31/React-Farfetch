@@ -13,18 +13,20 @@ export function ajaxMiddleware(api){
             let defaultConstants = [ajaxConstants.AJAX_REQUESTING, ajaxConstants.AJAX_REQUESTED, ajaxConstants.AJAX_REQUESTERROR]
             let [requesting, requested, requesterror] = types ? types : defaultConstants;
             
-            api.dispatch({type: ajaxConstants.AJAX_REQUESTING});
+            api.dispatch({type: requesting});
             if(url){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
+                        console.log(res)
                         api.dispatch({
-                            type: ajaxConstants.AJAX_REQUESTED,
-                            result: res.body.data
+                            type: requested,
+                            result:res.body.data
+                            
                         })
                         resolve(res.body.data)
                     }).catch(error => {
                         api.dispatch({
-                            type: ajaxConstants.AJAX_REQUESTERROR,
+                            type: requesterror,
                             result: error
                         })
                         reject(error)
