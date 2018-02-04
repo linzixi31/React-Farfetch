@@ -15,6 +15,28 @@ html,body{
 }
 
 
+.am-action-sheet-share{
+    background:#FFFFFF;
+}
+.am-action-sheet-message{
+    height:1.2rem;line-height:1.2rem;font-size:0.34rem;background:#FFFFFF;margin:0;padding:0;
+}
+.am-action-sheet-share-list{
+    justify-content:space-around;height:3rem;padding-top:0.5rem;
+    .am-action-sheet-share-list-item-icon{
+        margin:0;width:1.33rem;height:1.33rem;
+        img{
+           width:1.33rem;
+        }
+    }
+    .am-action-sheet-share-list-item-title{
+        font-size:0.34rem;margin-top:0.13rem;
+    }
+}
+.am-action-sheet-share-cancel-button{
+    height:1.2rem;line-height:1.2rem;font-size:0.34rem;
+}
+
 
 #app{
     height:100%;width:100%;
@@ -25,6 +47,9 @@ html,body{
                 height:1.06rem;width:100%;position:fixed;background: none;z-index: 1000;
                 .am-icon{
                     height: 0.51rem;width:0.51rem;fill:#333333;
+                }
+                .qty{
+                    font-size:0.34rem;margin-right:0.13rem;
                 }
             }
         }
@@ -53,6 +78,7 @@ html,body{
                             color:#E65A67;font-size:0.37rem;
                         }
                     }
+                    
                 }
                 .mainSize{
                     background:#fff;padding: 0.65rem;
@@ -80,6 +106,15 @@ html,body{
                             font-weight: normal;
                         }
                     }
+                    .share{
+                        height:2.66rem;font-size:0.42rem;padding-top:0.7rem;box-sizing: border-box;
+                        .shareWrap{
+                            border:0.02rem solid #ccc;border-radius:0.13rem;height:1.2rem;line-height:1.2rem;width:2.13rem;text-align: center;
+                            .shareIcon{
+                                font-size:0.46rem;
+                            }
+                        }
+                    }
                     .arrow{
                         top:45%;display: block;height:0.4rem;width:0.4rem;
                     }
@@ -90,8 +125,11 @@ html,body{
                         height:1.73rem;line-height:1.46rem;text-align: center;
                     }
                     .connectionCenter{
-                        height:2.21rem;line-height: 2.21rem;display: flex;border-top:0.03rem #F8F8F8 solid;
+                        height:2.21rem;display: flex;border-top:0.03rem #F8F8F8 solid;box-sizing: border-box;padding-top:0.3rem;
                         border-bottom: 0.03rem #F8F8F8 solid;
+                        .tubiao{
+                            font-size:0.6rem;
+                        }
                         i{
                             border:0.03rem #F8F8F8 solid;
                         }

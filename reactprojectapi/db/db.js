@@ -40,7 +40,6 @@ module.exports = {
     },
     getHotGood:function(_cb){
     	console.log('有请求数据库')
-//  	var brand = _data.brand
     	var sql = `
     				SELECT id,
     				mainImg,
@@ -58,6 +57,18 @@ module.exports = {
                          _cb({status:true,data:{results}});
                 }
         })
+    },
+    getCart:function(_data,_cb){
+    	//获取当前用户的购物车数量
+    	var userId = _data.userId;
+    	var sql = `SELECT qty FROM buycart where userId = ${userId}`
+    	db.query(sql,function(err,results,fields){
+    		if(err){
+                _cb({status:false,error:err});
+            }else{
+             	_cb({status:true,data:{results}});
+            }
+    	})
     },
     getHotel:function(_data,_cb){
             //获取当前id的酒店房间信息

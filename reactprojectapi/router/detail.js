@@ -8,6 +8,11 @@ module.exports = {
 				res.send(result);
 			})
 		});
+		_app.get('/getCart',function(req,res){
+			db.getCart(req.query,function(result){
+				res.send(result);
+			})
+		})
 		_app.get('/getHotGood',function(req,res){
 			db.getHotGood(function(result){
 				res.send(result);

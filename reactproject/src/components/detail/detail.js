@@ -14,15 +14,25 @@ export default class Detail extends React.Component{
 		}else{
 			this.setState({userid:'游客'})
 		}
+		//获取当前用户购物车的数量;
+		http.get('/getCart',{userId:1}).then(res=>{
+			var total = 0;
+			res.body.data.results.forEach(function(item){
+				total += item.qty*1;
+			})
+			this.setState({
+				cartQty:total
+			})
+			console.log(total);
+		})
 		http.get('/getGood',{id:10}).then(res=>{
             this.setState({
-            	goods:res.data.results[0]
+            	goods:res.body.data.results[0]
             })
             http.get('/getHotGood').then(result => {
 	        	this.setState({
-	        		hot:result.data.results
+	        		hot:result.body.data.results
 	        	})
-	        	console.log(this.state.hot);
 	        }).catch(err =>{
 	        	console.log(err);
 	        })
@@ -34,7 +44,8 @@ export default class Detail extends React.Component{
 		goods:[],
 		hot:[],
 		gid:this.props.location.query.id,
-		userid:''
+		userId:'',
+		cartQty:0
 	}
 	onChange = (key) => {
     	console.log(key);
@@ -44,7 +55,6 @@ export default class Detail extends React.Component{
 		if(e.target.className == 'iconfont icon-star__easyico' && this.state.userid != '游客'){
 			http.get('/shouCang',{userid:this.state.userid,id:this.state.gid})
 		}
-		//还有游客的处理,和删除收藏
 	}
 	routeToCart(){
 		let _size = document.querySelector('.currentSize').innerText;
@@ -76,8 +86,8 @@ export default class Detail extends React.Component{
 		                  onLeftClick={() => hashHistory.goBack()}
 		                  rightContent={[
 		                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-		                    <span key="1" className="qty">{this.state.qty}</span>,
-		                    <Icon key="2" type="ellipsis" />,
+		                    <span key="1" className="qty">{this.state.cartQty}</span>,
+		                    <span key="2" className="iconfont icon-baobao"></span>,
 		                  ]}
 		                ></NavBar>
 					</div>
@@ -104,9 +114,15 @@ export default class Detail extends React.Component{
 								联系我们
 							</div>
 							<div className="connectionCenter">
-								<div>电话</div>
+								<div>
+									<p><span className="iconfont icon-web-icon- tubiao"></span></p>
+									<p>电话</p>
+								</div>
 								<i></i>
-								<div>电邮地址</div>
+								<div>
+									<p><span className="iconfont icon-icon1 tubiao"></span></p>
+									<p>电邮地址</p>
+								</div>
 							</div>
 							<div className="connectionFoot">
 								Farfetch特定编号:{this.state.goods.sku}

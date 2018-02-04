@@ -59,10 +59,7 @@ export default class DetailSize extends React.Component {
 	          	onClose={this.onClose('modal2')}
 	          	animationType="slide-up"
 	        >
-	        <ul render={
-	        	() => <div>选择你的尺寸</div>
-	        	} className="popup-list sizeList"
-	        	>
+	        <ul className="popup-list sizeList">
 	        	<li className="sizeTop">选择尺码:均码</li>
 	            {['L', 'XL', 'XXL'].map((i, index) => (
 	              	<li key={index} onClick={this.onClose('modal2')} className="detail-am-list-item">{i}</li>
