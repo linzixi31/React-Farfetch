@@ -1,5 +1,5 @@
 
-import {ADD,REMOVE,SPINNER,CLOSESPINNER} from '../constants/login.js';
+import {ADD,REMOVE,SPINNER,CLOSESPINNER} from './loginConstants.js';
 
 export function add(){
     return {
@@ -23,9 +23,17 @@ export function closespinner(){
         type:CLOSESPINNER
     }
 }
-export function loginajax(params){
+
+export function loginTest(params){
     return{
         url:'/login',
+        method:'post',
+        data:params
+    }
+}
+export function registerTest(params){
+    return{
+        url:'/register',
         method:'post',
         data:params
     }

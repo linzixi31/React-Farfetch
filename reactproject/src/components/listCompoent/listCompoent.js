@@ -86,7 +86,7 @@ import './list.scss'
                                             <div className='start_list' >
                                                 <i  className="iconfont icon-shoucang" ></i>
                                             </div> 
-                                            <img src={item.mainImg}/>
+                                            <img  src={item.mainImg}/>
                                             <p className='title'>{item.title}</p>
                                             <p className='price'>￥{item.currentPrice}</p>
                                       </li>
