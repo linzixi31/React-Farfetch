@@ -1,8 +1,9 @@
-import React ,{Component} from "react"
+import React ,{Component} from "react";
 import Backcomponent from '../backCompoent/back.js';
 import Footnav from '../footnavcompoent/footnav.js';
 import * as action from './listAction.js'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {hashHistory} from 'react-router';
 import './font/iconfont.css'
 import './list.scss'
  class ListComponent extends Component{
@@ -23,11 +24,34 @@ import './list.scss'
         })
 
      }
-     
+     componentDidUpdate(){
+        console.log(66)
+     }
+     listaction(e,item){
+        //console.log(e.target)
+        let target = e.target
+        if(target.tagName.toLowerCase()==='i'){
+            if(target.className==='iconfont icon-shoucang'){
+
+                target.classList.add("active_list_lzx");
+            }else if(target.className==='iconfont icon-shoucang active_list_lzx'){
+                target.classList.remove("active_list_lzx");
+            }
+        }
+        if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
+            hashHistory.push({
+                pathname:'/detail',
+                query: {
+                    proId:item.id
+                }
+            })
+        }
+     }
      state={
         pagename :'上衣',
         brand:[]
      }
+
      render(){
         let self = this;
       
@@ -56,10 +80,12 @@ import './list.scss'
                     <ul className="list_cont">
                         { 
                             this.props.result.map(function(item,idx){
-                                return<li key={idx}>
-                                            <div className='start_list'>
-                                                <i className="iconfont icon-shoucang" ></i>
-                                            </div>
+                                return<li key={idx} onClick={(e)=>{
+                                            self.listaction(e,item)
+                                            }}>
+                                            <div className='start_list' >
+                                                <i  className="iconfont icon-shoucang" ></i>
+                                            </div> 
                                             <img src={item.mainImg}/>
                                             <p className='title'>{item.title}</p>
                                             <p className='price'>￥{item.currentPrice}</p>
