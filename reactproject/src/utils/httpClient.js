@@ -24,8 +24,9 @@ const HttpClient = {
                 if (err) {
                     reject(err);
 
-                } else {              
-                    resolve(res.body||JSON.parse(res.text));
+                } else { 
+
+                    resolve(res);
                 }
             });
     }),
@@ -39,6 +40,7 @@ const HttpClient = {
                 if (err) {
                     reject(err);
                 } else {
+
                     resolve(res);
                 }
             });

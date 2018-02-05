@@ -4,24 +4,31 @@ body,html{height:100%;}
 #app>div{height:100%;}
 #app>div>div{height:100%;}
 .my{height:100%;display:flex;flex-direction:column;}
-.my_header{width:100%;height:2rem;background:#fff;line-height:2rem;font-size:0.5rem;margin:0;padding-left:0.27rem;font-weight:bold;}
-.my_main{flex:1;background:#E2E2E2;padding-top:25px;overflow-x:hidden;}
+.my_header{width:100%;height:2rem;background:#fff;line-height:2rem;font-size:0.5rem;margin:0;font-weight:bold;display:flex;}
+.my_header>div:nth-child(1){padding-left:0.27rem;}
+.my_header>div{flex:1;}
+.my_header>div:nth-child(2){text-align:center;}
+.my_main{flex:1;background:#E2E2E2;overflow-x:hidden;padding-top:0.3rem;}
 .my_main>.loginAndregister{display:flex;height:2rem;width:95%;margin:0 auto;background:#fff;padding-top:30px;padding-bottom:0.27rem;line-height:30px;font-size:0.5rem;}
 .my_main>.loginAndregister>div:nth-child(1){width:25%;}
 .my_main>.loginAndregister>div:nth-child(2){width:75%;}
 .my_main>.loginAndregister>div:nth-child(2)>h4{line-height:0.5rem;font-size:0.4rem;font-weight:bold;}
 .my_main>.loginAndregister>div:nth-child(2)>p{line-height:0.3rem;font-size:0.3rem;color:#666;}
-.my_main>.my_place{height:1rem;padding-top:30px;padding-left:0.27rem;font-size:0.4rem;}
+.my_main>.my_place{height:1.4rem;padding-top:0.5rem;padding-left:0.27rem;font-size:0.4rem;}
 .my_main>.my_chinaIn{height:1rem;background:#fff;line-height:1rem;padding-left:0.27rem;font-size:0.4rem;}
 .my_main>.pickgender{padding-left:0.27rem;}
 .my_main>.pickgender>p{padding-top:0.2rem;padding-bottom:0.2rem;color:#757575;font-size:0.3rem;}
-.my_main>.pickgender>h4{padding-bottom:0.27rem;font-size:0.3rem;}
+.my_main>.pickgender>p>input{
+    
+}
+.my_main>.pickgender>h4{padding-bottom:0.27rem;font-size:0.4rem;}
 .my_main>.my_gender{padding-left:0.27rem;padding-right:0.27rem;background:#fff;font-size:0.4rem;}
 .my_main>.my_gender>p{height:1.5rem;line-height:1.5rem;}
 .my_main>.my_gender>p:nth-child(1){border-bottom:1px solid #ccc;}
 .my_main>.my_inform{font-size:0.4rem;padding-left:0.27rem;padding-right:0.27rem;background:#fff;}
 .my_main>.my_inform>p{height:1.5rem;line-height:1.5rem;}
-.my_main>.my_help{font-size:0.4rem;padding-left:0.27rem;font-size:16px;line-height:1.5rem;}
+.my_main>.my_help{padding-left:0.27rem;line-height:1.5rem;}
+.my_main>.my_help>span{font-size:0.4rem;}
 
 
 .my_main>.my_about{font-size:0.4rem;padding-left:0.27rem;padding-right:0.27rem;background:#fff;}
@@ -35,4 +42,7 @@ body,html{height:100%;}
 .my_main>.my_end{font-size:0.4rem;padding-left:0.27rem;height:1rem;line-height:1rem;color:#757575;}
 .my_footer{height:1.5rem;background:#fff;}
 
-.my_main>.zjx_logined>div{height:30px;padding-left:0.27rem;padding-right:0.27rem;border-bottom:1px solid #ccc;}
+.my_main>.myAccount>div{height:1.4rem;font-size:0.4rem;line-height:1.4rem;padding-left:0.27rem;padding-right:0.27rem;border-bottom:1px solid #ccc;background:#fff;}
+.my_main>.myAccount>div:nth-child(1){background:#E2E2E2;height:1.4rem;line-height:1.4rem;}
+.my_main>.my_quit{height:2rem;padding-top:0.25rem;}
+.my_main>.my_quit>h4{width:90%;height:1.3rem;font-size:0.4rem;text-align:center;line-height:1.3rem;background:#fff;margin:0 auto;}

@@ -1,5 +1,5 @@
-import {ADD,REMOVE,SPINNER,CLOSESPINNER} from '../constants/login.js';
-import * as ajaxConstants from '../constants/ajaxConstants'
+import {ADD,REMOVE,SPINNER,CLOSESPINNER} from './loginConstants.js';
+import * as ajaxConstants from '../../constants/ajaxConstants'
 
 export default function login(state={ count:0,loading:false},action){
     var newstate = JSON.parse(JSON.stringify(state))
@@ -21,7 +21,9 @@ export default function login(state={ count:0,loading:false},action){
             break;
         case ajaxConstants.AJAX_REQUESTED:
             newstate.status = 1;
-            newstate.result = action.result.results[0];
+            newstate.token=action.token;
+            let a = (action.result ? action.result.results : {results:{insertId:''}});
+            newstate.result = a;
             break;
         case ajaxConstants.AJAX_REQUESTERROR:
             newstate.status = -1;
@@ -30,7 +32,7 @@ export default function login(state={ count:0,loading:false},action){
       
 
     }
-    console.log(state,action)
+    // console.log(state,action)
 
     return newstate;
 }
