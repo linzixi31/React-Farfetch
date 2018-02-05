@@ -9,7 +9,7 @@ export default class Back extends Component{
                   mode="light"
                   rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                    <Icon key="1" type="ellipsis" />,
+                    <i className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}}></i>,
                   ]}
                 >{this.props.name}</NavBar>
             </div>

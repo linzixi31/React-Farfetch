@@ -43,6 +43,7 @@ module.exports = {
 			//先判断是否曾加入愿望清单
 			db.selectShouCang(req.query,function(result){
 				if(result.data.results.length > 0){
+					console.log(result.data.results);
 					req.query.type = (result.data.results[0].type == 1) ? 0 : 1;
 					//取消原有收藏状态
 					db.changeShouCang(req.query,function(changeResult){

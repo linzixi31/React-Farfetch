@@ -37,10 +37,11 @@ export default class Detail extends React.Component{
 		//获取当前商品是否有被收藏;
 		http.get('/checkShouCang',{userId:currentUserId,proId:currentProId}).then(rest=>{
 			console.log(rest.body.type,currentUserId,currentProId)
-			this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-star__easyico' : 'iconfont icon-shoucang'})
+			this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-shoucang' : 'iconfont icon-shoucang1'})
 		})
 		//获取当前产品信息
 		http.get('/getGood',{id:currentProId}).then(res=>{
+			console.log(res);
             this.setState({
             	goods:res.body.data.results[0],
             	size:res.body.data.results[0].size.split(',')
@@ -75,7 +76,7 @@ export default class Detail extends React.Component{
 					console.log(res);
 				})
 				hashHistory.push({
-		            pathname: '/category',
+		            pathname: '/cart',
 		        })
 			}
 		}
@@ -95,7 +96,7 @@ export default class Detail extends React.Component{
 			http.get('/shouCang',{userId:this.state.userId,proId:this.state.proId,type:1}).then(res =>{
 				console.log(res);
 			})
-			e.target.className = (e.target.className == 'iconfont icon-star__easyico') ? 'iconfont icon-shoucang' : 'iconfont icon-star__easyico';
+			e.target.className = (e.target.className == 'iconfont icon-shoucang') ? 'iconfont icon-shoucang1' : 'iconfont icon-shoucang';
 		}else{
 			//没有登录时的操作
 //			http.get('/deleteShouCang',{userId:1,proId:10}).then(res)=>{
@@ -112,7 +113,7 @@ export default class Detail extends React.Component{
             })
         	http.get('/checkShouCang',{userId:this.state.userId,proId:_id}).then(rest=>{
         		console.log(_id);
-				this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-star__easyico' : 'iconfont icon-shoucang'})
+				this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-shoucang' : 'iconfont icon-shoucang1'})
 			})
 	        .catch(err =>{
 	        	console.log(err);

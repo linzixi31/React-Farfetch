@@ -16,7 +16,10 @@ var order = require('./order')
 var detail = require('./detail');
 var hotHotel = require("./hotHotel");
 var payment = require('./payment')
-var userHotelStatus=require('./userHotelStatus')
+var userStatus=require('./userStatus')
+
+var cart = require('./cart');
+
 var category = require('./category.js')
 
 
@@ -43,7 +46,8 @@ module.exports = {
         detail.register(app);
         hotHotel.register(app);
         payment.reg(app);
-        userHotelStatus.getUserStatus(app);
+        userStatus.getUserStatus(app,jwt);
+        cart.register(app);
         category.register(app)
         app.listen(_port);
     }

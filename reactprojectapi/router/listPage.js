@@ -8,5 +8,11 @@ module.exports = {
                     res.send(data)
                 });
             })
+            app.post('/listBrand',function(req,res){
+                var sql = "select * from `goods` where  brand = '"+ req.body.brand +"'"
+                db.select(sql,function(data){
+                    res.send(data)
+                });
+            })
     }
 }

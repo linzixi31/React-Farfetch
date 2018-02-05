@@ -7,3 +7,11 @@ export function getDataList(params){
         data:params
     }
 }
+export function getDataBrand(params){
+    return{
+        types:[listConstants.ListBRAND_REQUESTING,listConstants.ListBRAND_REQUESTED,listConstants.ListBRAND_REQUESTERROR],
+        url:"/listBrand",
+        method:'post',
+        data:params
+    }
+}
