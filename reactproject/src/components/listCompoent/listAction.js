@@ -15,3 +15,29 @@ export function getDataBrand(params){
         data:params
     }
 }
+export function getchoseData(params,value){
+    // let url = null
+    // console.log(value)
+    // switch(value)
+    //     {
+    //     case 0:
+    //       url='/choseshop'
+    //       break;
+    //     case 1:
+    //       url='/newest'
+    //       break;
+    //     case 2:
+    //       url='/orderL'
+    //       break;
+    //     case 3:
+    //       url='/orderT'
+    //       break;
+          
+    //     }
+    return{
+        types:[listConstants.List_REQUESTING,listConstants.List_REQUESTED,listConstants.List_REQUESTERROR],
+        url:'/choseshop',
+        data:params,
+        method:'post'
+    }
+}

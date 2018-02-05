@@ -111,7 +111,7 @@ class MyComponent extends Component{
                     </div>
                 </div>
                 <div className="my_footer">
-                    {<Foot/>}
+                    {<Foot selectedTab='my'/>}
                 </div>
             </div>
         )

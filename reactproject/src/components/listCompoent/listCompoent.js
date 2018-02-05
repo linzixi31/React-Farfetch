@@ -4,25 +4,39 @@ import Footnav from '../footnavcompoent/footnav.js';
 import * as action from './listAction.js'
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
+
 import './font/iconfont.css'
 import './list.scss'
  class ListComponent extends Component{
      componentWillMount(){
         this.setState({pagename:this.props.location.query.catename});
-
-        this.props.getDataList({
-            catename:this.props.location.query.catename,
-            cateId:this.props.location.query.categoryid
-        }).then(res=>{
-            var newarr = [];
-            this.props.result.map(function(item,idx){
-                    if(!newarr.includes(item.brand)){
-                        newarr.push(item.brand)
-                    }
+        if(!this.props.location.query.value){
+            this.props.getDataList({
+                catename:this.props.location.query.catename,
+                cateId:this.props.location.query.categoryid
+            }).then(res=>{
+                var newarr = [];
+                this.props.result.map(function(item,idx){
+                        if(!newarr.includes(item.brand)){
+                            newarr.push(item.brand)
+                        }
+                })
+                this.setState({brand:newarr})
             })
-            this.setState({brand:newarr})
-        })
-
+        }else{
+            this.props.getchoseData({
+                catename:this.props.location.query.catename,
+                cateId:this.props.location.query.categoryid
+            },this.props.location.query.value).then(res=>{
+                var newarr = [];
+                this.props.result.map(function(item,idx){
+                        if(!newarr.includes(item.brand)){
+                            newarr.push(item.brand)
+                        }
+                })
+                this.setState({brand:newarr})
+            })
+        }
      }
      componentDidUpdate(){
         console.log(66)
@@ -65,7 +79,8 @@ import './list.scss'
                             hashHistory.push({
                                 pathname:'/chose',
                                 query:{
-
+                                    listname:this.props.location.query.catename,
+                                    categoryid:this.props.location.query.categoryid
                                 }
                             })
                         }}><span>筛选</span></li>
@@ -102,7 +117,7 @@ import './list.scss'
                     </ul>
                 </div>
             </div>
-            <Footnav/>
+            <Footnav selectedTab='category'/>
          </div> 
 
             )
