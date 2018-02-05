@@ -1,0 +1,7 @@
+export const List_REQUESTING = 'List_REQUESTING'
+export const List_REQUESTED = 'List_REQUESTED'
+export const List_REQUESTERROR = 'List_REQUESTERROR'
+
+export const ListBRAND_REQUESTING = 'ListBRAND_REQUESTING'
+export const ListBRAND_REQUESTED = 'ListBRAND_REQUESTED'
+export const ListBRAND_REQUESTERROR = 'ListBRAND_REQUESTERROR'

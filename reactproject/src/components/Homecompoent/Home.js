@@ -132,7 +132,6 @@ export class HomeComponent extends Component {
 
 let mapToState =  (state) =>{
 	return {
-		
 		status:state.getHot.status,
 		result:state.getHot.result || [],
 		offresult:state.getHot.offresult || [],

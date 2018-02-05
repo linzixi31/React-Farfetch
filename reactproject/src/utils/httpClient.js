@@ -1,7 +1,6 @@
 //http://visionmedia.github.io/superagent/
 import request from 'superagent'
 
-
 const LOCAL_SERVER = 'http://10.3.136.86:88';
 
 
@@ -18,13 +17,13 @@ const HttpClient = {
     get: (path, query) => new Promise((resolve, reject) => {
 
         var req = request
+        request
             .get(getUrl(path))
             .query(query)
             .end((err, res) => {
                 if (err) {
                     reject(err);
-
-                } else {              
+                }else {
                     resolve(res);
                 }
             });
@@ -37,8 +36,10 @@ const HttpClient = {
             .send(formdata)
             .end((err, res) => {
                 if (err) {
+                    
                     reject(err);
                 } else {
+
                     resolve(res);
                 }
             });

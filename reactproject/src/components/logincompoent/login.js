@@ -10,7 +10,7 @@ class Logincompoent extends Component{
        count:0
      }
      add(){
-      console.log(this.props)
+
        this.props.add()
        this.setState({count:this.props.count})
      }
@@ -22,16 +22,18 @@ class Logincompoent extends Component{
      submit(e){
         e.preventDefault()
         this.props.spinner()
-        console.log(this.props)
         var params = {telephone:document.getElementById("firstname").value,password:document.getElementById("password").value}
         this.props.loginajax(params).then(res=>{
           console.log(res)
+        }).catch(res=>{
+        	console.log(res)
+
         })
         
     }
     render(){
         if(this.props.state==0 ){
-          console.log(this.props.state)
+
           var c = <Spinnercomponent/>
         }else{
           var c = null
@@ -75,7 +77,7 @@ class Logincompoent extends Component{
 }
 
 let mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
     return {
         count: state.login.count,
         loading:state.login.loading,
