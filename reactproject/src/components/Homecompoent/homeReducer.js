@@ -45,6 +45,16 @@ export default function getHot(state = {},action){
 		case homeConstants.GETGUCCI_REQUESTERROR:
 			newState.status = -1;
 			break;
+		case homeConstants.GETOTHER_REQUESTING:
+			newState.status = 0;
+			break;
+		case homeConstants.GETOTHER_REQUESTED:
+			newState.status  =	1;
+			newState.otherresult = action.result.results;	
+			break;
+		case homeConstants.GETOTHER_REQUESTERROR:
+			newState.status = -1;
+			break;
 	}
 	return newState;
 }

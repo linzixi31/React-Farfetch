@@ -7,7 +7,5 @@ import cateReducer from '../components/categoryComponent/cateReducer.js'
 import listReducer from '../components/listCompoent/listReducer.js'
 
 export default combineReducers({
-
    my,getHot,login,cateReducer,listReducer,cartReducer
-
 })

@@ -40,3 +40,13 @@ export function getGucci(){
 		params:{}
 	}
 }
+
+export function getOther(){
+	return{
+		types: [homeConstants.GETOTHER_REQUESTING, homeConstants.GETOTHER_REQUESTED,
+			homeConstants.GETOTHER_REQUESTERROR],	
+		method:"get",
+		url:"/getOther",
+		params:{}
+	}
+}

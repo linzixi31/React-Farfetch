@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import * as action from "./homeAction.js";
 import Carousel from "./carousel.js";
 import Footernav from "../footnavcompoent/footnav.js";
-
+import homeScss from './home.scss';
 
 export class HomeComponent extends Component {
 	componentWillMount(){
@@ -13,7 +13,7 @@ export class HomeComponent extends Component {
 		this.props.getOff();
 		this.props.getYsl();
 		this.props.getGucci();
-		
+		this.props.getOther();
 	}
     render(){
         return(
@@ -119,12 +119,31 @@ export class HomeComponent extends Component {
 		            		<div className="otherTitle">
 		            			<h3>新年"红"运当头</h3>
 		            		</div>
+							<div className="otherContent">
+								{
+									this.props.otherresult.map((item) =>{
+										return (<div className="otherDetail" key={item.id}>
+											<div className="otherImg">
+												<img src={item.mainImg} />
+											</div>
+											<div className="otherMsg">
+												<p>{item.brand}</p>
+												<p>￥{item.currentPrice}</p>
+											</div>
+										</div>)
+									})
+								}
+							</div>
+							<div className="allItem">
+								<input type="button" value='选购全部' />
+							</div>
 		            	</div>
 	            	</div>
 	            	
 	                <div>{this.props.children}</div>
+					<Footernav selectTab="index" />
 	            </div>
-	            <Footernav />
+				
             </div>
             )
     }
@@ -136,7 +155,8 @@ let mapToState =  (state) =>{
 		result:state.getHot.result || [],
 		offresult:state.getHot.offresult || [],
 		yslresult:state.getHot.yslresult ||[],
-		gucciresult:state.getHot.gucciresult || []
+		gucciresult:state.getHot.gucciresult || [],
+		otherresult: state.getHot.otherresult || []
 	}
 }
 export default connect(mapToState,action)(HomeComponent); 

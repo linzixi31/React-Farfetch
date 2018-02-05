@@ -1,6 +1,8 @@
 #index{
     width: 100%;
     background: #F5F5F5;
+    display: flex;
+    flex-direction: column;
     .index_header{
         width: 100%;
         height: 2.88rem;
@@ -31,6 +33,9 @@
     .index_main{
         width: 100%;
         margin-top: 3.05rem;
+        flex: 1;
+        overflow-x:hidden;
+
         .tips{
             width: 100%;
             height: 1.17rem;
@@ -123,7 +128,7 @@
                             width: 100%;
                             height: 1.04rem;
                             text-align: center;
-                            font-size: 24px;
+                            font-size: 26px;
                             font-family: "微软雅黑","华文细黑";
                             font-weight: bold;
                             
@@ -131,7 +136,7 @@
                         span{
                             display:block;
                             width: 100%;
-                            font-size: 20px;
+                            font-size: 22px;
                             font-family: "微软雅黑","华文细黑";
                             text-align: center;
                         }
@@ -208,12 +213,12 @@
            
        }
        .otherRecommend{
-           width: 100%;
-           height: 8.61rem;
-           margin-top: 0.26rem;
-           background: #ffffff;
-           border-top: 0.02rem solid #E5E5E5;
-           border-bottom: 0.02rem solid #E5E5E5;
+            width: 100%;
+            height: 8.61rem;
+            margin-top: 0.26rem;
+            background: #ffffff;
+            border-top: 0.02rem solid #E5E5E5;
+            border-bottom: 0.02rem solid #E5E5E5;
            .otherTitle{
                 width: 100%;
                 height: 1.14rem;
@@ -228,6 +233,71 @@
                     font-weight: bold;
                 }
            }
-       }
+            .otherContent{
+                width:100%;
+                height: 6.13rem;
+                border-bottom: .03rem solid #e5e5e5;
+                float: left;
+                .otherDetail{
+                    width: 3.33rem;
+                    height: 100%;
+                    float: left;
+                    .otherImg{
+                        width: 100%;
+                        height: 4.53rem;
+                        padding: .27rem .27rem 0 .27rem;
+                        
+                        img{
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            margin: 0 auto;
+                            border: none;
+                        }
+                    }
+                    .otherMsg{
+                        width: 100%;
+                        height: 1.6rem;
+                        p{
+                            font-weight: bold;
+                            text-align: center;
+                            &:nth-child(1){
+                                height: .77rem;
+                                line-height: .45rem;
+                                font-size:24px;
+                            }
+                        }
+                        p{
+                            font-weight: bold;
+                            text-align: center;
+                            &:nth-child(2){
+                                font-size: 22px;
+                                height: .83rem;
+                                line-height: .83rem;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .allItem{
+                width: 100%;
+                height: 1.28rem;
+                padding: .24rem 0;
+                float: left;
+                input{
+                    display: block;
+                    width: 2.05rem;
+                    height: .8rem;
+                    background: #00B0FF;
+                    color: #ffffff;
+                    text-align: center;
+                    line-height: .8rem;
+                    font-size: 24px;
+                    margin: 0 auto;
+                }
+            }
+        }
+       
     }
 }

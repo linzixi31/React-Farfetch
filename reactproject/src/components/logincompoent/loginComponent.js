@@ -4,7 +4,7 @@ import * as action from './loginAction.js';
 import Spinnercomponent from '../spinner/spinner.js'
 import {connect} from 'react-redux'
 import { browserHistory } from 'react-router'
-
+import'./login.scss'
 
 class Logincompoent extends Component{
     

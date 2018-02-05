@@ -21,7 +21,8 @@ export function ajaxMiddleware(api){
                         api.dispatch({
                             type: requested,
                             operation:operation,
-                            result: res.body.data
+                            result: res.body.data,
+                            token : res.body.token
                         })
                         resolve(res.body.data)
                     }).catch(error => {

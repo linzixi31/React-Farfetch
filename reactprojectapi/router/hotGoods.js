@@ -25,6 +25,12 @@ module.exports = {
 			db.select(sql,function(result){
 				response.send(result);
 			})
+		}),
+		app.get("/getOther",function(request,response){
+			var sql = "select * from goods where seasonRecommend = 1 limit 3";
+			db.select(sql,function(result){
+				response.send(result);
+			})
 		})
 		
 	}

@@ -4,7 +4,7 @@ import Foot from '../footnavcompoent/footnav.js'
 import * as actions from './myAction.js'
 import Back from '../backCompoent/back.js'
 import {connect} from 'react-redux'
-
+import './my.scss'
 const leavenFun=function(){
     return true;
 }
