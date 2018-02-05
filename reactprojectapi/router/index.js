@@ -47,7 +47,6 @@ module.exports = {
         hotHotel.register(app);
         payment.reg(app);
         userStatus.getUserStatus(app,jwt);
-        userHotelStatus.getUserStatus(app);
         cart.register(app);
         category.register(app)
         app.listen(_port);

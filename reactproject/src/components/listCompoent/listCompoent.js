@@ -57,11 +57,18 @@ import './list.scss'
       
         return(
          <div className="wrap_lzx">
-            <Backcomponent name={this.state.pagename}/>
+            <Backcomponent name={this.state.pagename} />
             <div style={{flex:1,overflowX:'hidden'}}>
                 <div className="chose_lzx">
                     <ul className="choseBtn">
-                        <li><span>筛选</span></li>
+                        <li onClick={()=>{
+                            hashHistory.push({
+                                pathname:'/chose',
+                                query:{
+
+                                }
+                            })
+                        }}><span>筛选</span></li>
                          {
                             this.state.brand.map(function(item,idx){
                                 return <li key={idx} onClick={()=>{
