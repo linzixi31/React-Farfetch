@@ -11,18 +11,16 @@ module.exports = {
             })
         })
         app.post('/login', function(req, res){
-        	//console.log(req.body)
-            var sql = "SELECT * FROM userlist WHERE email = '"+req.body.email+"'"+"and password='"+req.body.password +"'";
+        	console.log(req.body.username,req.body.password)
+            var sql = "SELECT * FROM userlist WHERE email = '"+req.body.username+"'"+"and password='"+req.body.password +"'";
             db.select(sql, function(data){
-               
+                
             	  if(data.status){
-                    var token = jwt.sign({username: req.body.email}, 'abc', {
-                        'expiresIn':1440,
-                    })
-                    data.token = token;
+
+                    res.send(data)
+                  }else{
+                    res.send(data)
                   }
-                   console.log(data);
-            	   res.send(data);
                 
             })
         })

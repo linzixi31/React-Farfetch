@@ -4,7 +4,7 @@ import * as action from './loginAction.js';
 import Spinnercomponent from '../spinner/spinner.js'
 import {connect} from 'react-redux'
 import { browserHistory } from 'react-router'
-
+import './login.scss'
 
 class Logincompoent extends Component{
     
@@ -28,12 +28,17 @@ class Logincompoent extends Component{
     submit_login(){
         var self=this;
         this.props.loginTest({username:self.refs.login_email.value,password:self.refs.login_password.value}).then(res =>{
-            console.log(this.props);
-            if(this.props.token){
-                window.localStorage.username=this.props.token;
+            
+            
+            if(res.results.length>0){
+                window.localStorage.username=self.refs.login_email.value;
                 alert('登录成功');
                 location.href='#/my'
                
+            }else{
+                alert('登陆失败');
+                self.refs.login_email.value='';
+                self.refs.login_password.value='';
             }
             
         })
@@ -71,6 +76,9 @@ class Logincompoent extends Component{
        
      
     }
+    back(){
+        location.href="#/my"
+    }
     getFocus(a){
      
       this.refs[a].style='border-bottom:3px solid black;color:black;'
@@ -89,6 +97,10 @@ class Logincompoent extends Component{
         }
         return(
              <div className="zjx_loginAndreg">
+                <div className="zjx_nav">
+                    <i onClick={this.back.bind(this)}>&lt;返回</i>
+                    
+                </div>
                 <div>
                     <h4><span ref="login_border" onClick={this.showLogin.bind(this)}>登录</span><span ref="reg_border" onClick={this.showReg.bind(this)}>创建账户</span></h4>
                     <div className="zjx_login" ref="zjx_login">

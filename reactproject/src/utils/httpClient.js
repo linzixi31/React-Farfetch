@@ -2,13 +2,7 @@
 import request from 'superagent'
 
 
-<<<<<<< HEAD
 const LOCAL_SERVER = 'http://10.3.136.164:88';
-=======
-
-const LOCAL_SERVER = 'http://10.3.136.56:88';
->>>>>>> 993d50af509300041eac24075004479ad2fc7865
-
 
 const DEV_SERVER = '';
 const PRO_SERVER = '';
@@ -29,11 +23,8 @@ const HttpClient = {
 
                     reject(err);
 
-<<<<<<< HEAD
-                } else { 
-=======
+
                 } else {              
->>>>>>> 993d50af509300041eac24075004479ad2fc7865
 
                     resolve(res);
                 }

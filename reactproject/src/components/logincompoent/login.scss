@@ -4,7 +4,7 @@ html,body{
         &>div{height:100%;}
     }
 }
-
+.zjx_loginAndreg>.zjx_nav{display:flex;width:100%;height:1rem;padding-left:0.3rem;line-height:1rem;position:absolute;left:0;top:0;font-size:0.5rem;background:#4000FF;}
 .zjx_loginAndreg{height:100%;background:#4000FF;padding-top:20%;}
 .zjx_loginAndreg>div{display:flex;flex-direction:column;width:90%;height:70%;background:#fff;margin:0 auto;}
 .zjx_loginAndreg>div>h4{height:1rem;line-height:1rem;font-size:0.5rem;text-align:center;border-bottom:1px solid #ccc;color:#000;font-weight:bold;}

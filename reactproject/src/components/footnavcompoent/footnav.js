@@ -14,11 +14,8 @@ constructor(props) {
   
    render() {
     return (
-<<<<<<< HEAD
-      <div style={this.state.fullScreen ? {  top: 0 } : { height: 400 }}>
-=======
+
       <div>
->>>>>>> 993d50af509300041eac24075004479ad2fc7865
         <TabBar
           unselectedTintColor="#AAAAAA"
           tintColor="#222"

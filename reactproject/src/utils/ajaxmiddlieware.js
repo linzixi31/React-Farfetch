@@ -20,19 +20,13 @@ export function ajaxMiddleware(api){
             if(url){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
-<<<<<<< HEAD
-                        
-                        api.dispatch({
-                            type: ajaxConstants.AJAX_REQUESTED,
-                            result: res.body.data,
-                            token : res.body.token
-=======
+
 
                         api.dispatch({
                             type: requested,
                             operation:operation,
-                            result: res.body.data
->>>>>>> 993d50af509300041eac24075004479ad2fc7865
+                            result: res.body.data,
+                            token : res.body.token
                         })
                         resolve(res.body.data)
                     }).catch(error => {

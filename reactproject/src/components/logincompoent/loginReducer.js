@@ -29,14 +29,10 @@ export default function login(state={ count:0,loading:false},action){
             newstate.status = -1;
             newstate.result = action.result.data;
             break;
-      
+    
 
     }
-<<<<<<< HEAD:reactproject/src/components/logincompoent/loginReducer.js
-    // console.log(state,action)
 
-=======
->>>>>>> 993d50af509300041eac24075004479ad2fc7865:reactproject/src/reducer/login.js
     return newstate;
 }
 
