@@ -2,6 +2,7 @@
 import request from 'superagent'
 
 
+
 const LOCAL_SERVER = 'http://10.3.136.56:88';
 
 
@@ -20,13 +21,12 @@ const HttpClient = {
             .get(getUrl(path))
             .query(query)
             .end((err, res) => {
-
                 if (err) {
 
                     reject(err);
 
-                } else { 
-                    
+                } else {              
+
                     resolve(res);
                 }
             });
