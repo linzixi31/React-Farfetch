@@ -16,16 +16,18 @@ function getUrl(path) {
 }
 const HttpClient = {
     get: (path, query) => new Promise((resolve, reject) => {
-        var req = request
+        request
             .get(getUrl(path))
             .query(query)
             .end((err, res) => {
 
                 if (err) {
+
                     reject(err);
 
-                } else {              
-                    resolve(res.body||JSON.parse(res.text));
+                } else { 
+                    
+                    resolve(res);
                 }
             });
     }),
@@ -37,6 +39,7 @@ const HttpClient = {
             .send(formdata)
             .end((err, res) => {
                 if (err) {
+                    
                     reject(err);
                 } else {
                     resolve(res);
