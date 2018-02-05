@@ -27,6 +27,7 @@ export default class Detail extends React.Component{
 			//获取当前用户购物车的数量;
 		http.get('/getCart',{userId:currentUserId}).then(res=>{
 			var total = 0;
+			console.log(res,111);
 			res.body.data.results.forEach(function(item){
 				total += item.qty*1;
 			})
