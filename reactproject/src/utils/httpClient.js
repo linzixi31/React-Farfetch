@@ -4,6 +4,10 @@ import request from 'superagent'
 
 const LOCAL_SERVER = 'http://10.3.136.164:88';
 
+
+
+
+
 const DEV_SERVER = '';
 const PRO_SERVER = '';
 
@@ -24,7 +28,9 @@ const HttpClient = {
                     reject(err);
 
 
-                } else {              
+                } else { 
+
+
 
                     resolve(res);
                 }

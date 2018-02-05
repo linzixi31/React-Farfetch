@@ -38,11 +38,6 @@ export default class DataShare extends React.Component {
 		    },
 		    (buttonIndex) => {
 		      	this.setState({ clicked1: buttonIndex > -1 ? this.dataList[buttonIndex].title : 'cancel' });
-		      	// also support Promise
-//		      	return new Promise((resolve) => {
-//		        	Toast.info('closed after 1000ms');
-//		        	setTimeout(resolve, 1000);
-//		      	});
 		    });
 		}
 

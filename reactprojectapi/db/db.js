@@ -21,17 +21,97 @@ module.exports = {
         })
     },
     delete: function(){},
-
+    saveCart:function(_data,_cb){
+    	//详情页加入购物车
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let user_size = _data.user_size;
+    	let qty = _data.qty;
+    	let sql = `INSERT INTO  db_farfetch.buycart 
+			        (userId,proId,user_size,qty) 
+			        VALUES ('${userId}','${proId}','${user_size}','${qty}')`;
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                        _cb({status:true,data:{results}});
+                }
+        })
+    },
+    selectShouCang:function(_data,_cb){
+    	//查询是否有收藏过
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let sql = `SELECT * FROM userwishes WHERE userId = ${userId} and proId = ${proId}`
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                        _cb({status:true,data:{results}});
+                }
+        })
+    },
+    changeShouCang:function(_data,_cb){
+    	//修改收藏状态
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let type = _data.type;
+    	let sql = `UPDATE userwishes SET type = ${type} WHERE userId = ${userId} and proId = ${proId}`
+    	db.query(sql,function(err,results,fields){
+    		if(err){
+                    _cb({status:false,error:err});
+            }else{
+                    _cb({status:true,data:{results}});
+            }
+    	})
+    },
+    shouCang:function(_data,_cb){
+    	//加入愿望清单
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let type = _data.type;
+    	let sql = `INSERT INTO db_farfetch.userwishes
+    				(userId,proId,type)
+    				VALUES ('${userId}','${proId}','${type}')`;
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                        _cb({status:true,data:{results}});
+                }
+        })
+    },
     //2月3日 李阳 获取购物车商品信息
     getCart:function(_data,_cb){
         var sql = `select * from goods as g , 
                     buycart as b , countries as c 
                     where b.status = 0 and b.proId = g.id and g.comefrom = c.country_id and b.userId = ${_data.userId}`;
         db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                            console.log(results);
+                         _cb({status:true,data:{results}});
+                }
+        })
+    },
+    getHotGood:function(_data,_cb){
+    	let category = _data.category;
+    	//获取当前热门产品
+    	var sql = `
+    				SELECT id,
+    				mainImg,
+    				currentPrice,
+    				brand
+    				FROM goods
+    				where hot = '1' and category = ${category}
+    				limit 0,4
+    				`
+    	db.query(sql,function(err,results,fields){
             if(err){
-                _cb({status:false,error:err});
+                    _cb({status:false,error:err});
             }else{
-                _cb({status:true,data:{results}});
+                     _cb({status:true,data:{results}});
             }
         })
     },
@@ -65,15 +145,25 @@ module.exports = {
                     db.query(sql2,function(err,results,fields){
                         if(err){
                             _cb({status:false,error:err});
-                        }else{
+                    	}else{
                             _cb({status:true,data:{results}});
-                        }
-                    })
-                }else{
-                    _cb({status:true,data:{results:'already exist'}});
+                    	}
+            		})
                 }
             }
         })
+    },
+    getGood:function(_data,_cb){
+            //获取当前id的商品信息
+        var id = _data.id;
+        var sql = `SELECT id,title,currentPrice,mainImg,size,sku,category,brand,descriptions FROM goods where goods.id = ${id}`;
+        db.query(sql,function(err,results,fields){
+            if(err){
+            	_cb({status:false,error:err});
+            }else{
+                _cb({status:true,data:{results}});
+            }
+       	})
     },
     //2月4日 李阳 改变购物车中商品的加够信息
     changecart:function(_data,_cb){

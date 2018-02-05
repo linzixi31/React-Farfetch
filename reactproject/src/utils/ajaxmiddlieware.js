@@ -27,6 +27,7 @@ export function ajaxMiddleware(api){
                             operation:operation,
                             result: res.body.data,
                             token : res.body.token
+
                         })
                         resolve(res.body.data)
                     }).catch(error => {

@@ -16,12 +16,11 @@ module.exports = {
             db.select(sql, function(data){
                 
             	  if(data.status){
-
                     res.send(data)
                   }else{
                     res.send(data)
                   }
-                
+                console.log(data);
             })
         })
     }

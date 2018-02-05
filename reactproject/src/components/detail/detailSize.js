@@ -16,10 +16,11 @@ export default class DetailSize extends React.Component {
   	constructor(props) {
     	super(props);
     	this.state = {
-      	modal2: false,
+      	modal2: false
     	};
   	}
   	showModal = key => (e) => {
+  		console.log();
 	    e.preventDefault(); // 修复 Android 上点击穿透
 	    this.setState({
 	      	[key]: true,
@@ -61,7 +62,7 @@ export default class DetailSize extends React.Component {
 	        >
 	        <ul className="popup-list sizeList">
 	        	<li className="sizeTop">选择尺码:均码</li>
-	            {['L', 'XL', 'XXL'].map((i, index) => (
+	            {this.props.size.map((i, index) => (
 	              	<li key={index} onClick={this.onClose('modal2')} className="detail-am-list-item">{i}</li>
 	            ))}
 	        </ul>
