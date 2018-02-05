@@ -7,13 +7,17 @@ html,body{
 .sizeList{
     padding-bottom: 1.2rem;
     .detail-am-list-item{
-        height:1.2rem;line-height: 1.2rem;font-size:0.6rem;font-size:0.32rem;
+        height:1.2rem;line-height: 1.2rem;font-size:0.6rem;font-size:0.4rem;
     }
     .sizeTop{
         font-size:0.4rem;height:1.2rem;line-height: 1.2rem;
     }
 }
 
+.popup-list .am-list-body {
+  height: 210px;
+  overflow: auto;
+}
 
 .am-action-sheet-share{
     background:#FFFFFF;
@@ -36,7 +40,27 @@ html,body{
 .am-action-sheet-share-cancel-button{
     height:1.2rem;line-height:1.2rem;font-size:0.34rem;
 }
-
+.am-modal-transparent{
+    height: 3.3rem;width:5.5rem;
+    .am-modal-content{
+        display: flex;flex-direction:column;padding-top:0px;
+    }
+    .am-modal-header{
+        height: 1.33rem;line-height: 1.33rem;padding-top:0.2rem;
+    }
+    .am-modal-body{
+        flex:1;font-size:0.4rem;
+    }
+    .am-modal-foot{
+        height:1.33rem;
+    }
+    .am-modal-button{
+        font-size:0.4rem;
+    }
+    div{
+        font-size:0.34rem;
+    }
+}
 
 #app{
     height:100%;width:100%;
@@ -49,7 +73,10 @@ html,body{
                     height: 0.51rem;width:0.51rem;fill:#333333;
                 }
                 .qty{
-                    font-size:0.34rem;margin-right:0.13rem;
+                    font-size:0.4rem;margin-right:0.13rem;
+                }
+                .cartBao{
+                    font-size:0.51rem;
                 }
             }
         }
@@ -95,16 +122,18 @@ html,body{
                         height:2rem;padding:0 0.6rem;line-height:2rem;font-size:0.45rem;color:#1A1A1A;font-weight: bold;
                     }
                     p{
-                        text-align:left;font-size:0.4rem;color:#222222;font-weight:bold;padding:0 0.8rem;overflow: visible;white-space: normal;text-overflow:normal;
+                        text-align:left;font-size:0.4rem;color:#222222;padding:0 0.8rem;overflow: visible;white-space: normal;text-overflow:normal;
                     }
                     p:nth-child(1){
                         height:2rem;padding-top:0.5rem;
+                        
                     }
                     p:nth-child(2){
-                        height:0.8rem;
+//                      height:0.8rem;
                         span{
                             font-weight: normal;
                         }
+                        
                     }
                     .share{
                         height:2.66rem;font-size:0.42rem;padding-top:0.7rem;box-sizing: border-box;
@@ -115,9 +144,22 @@ html,body{
                             }
                         }
                     }
+                    #mainCountry{
+                        height:1.2rem;
+                    }
+                    #mainEmail
+                    #mainBrand{
+                        height:1.2rem;font-weight: bold;
+                    }
+                    #mainfree{
+                        p:nth-child(1){
+                            height:1.2rem;padding-top:0.3rem;
+                        }
+                    }
                     .arrow{
                         top:45%;display: block;height:0.4rem;width:0.4rem;
                     }
+                    
                 }
                 .mainConnection{
                     height:7.06rem;font-size:0.4rem;color:#252525;font-weight: bold;padding-top:0.5rem;box-sizing: border-box;
@@ -125,7 +167,7 @@ html,body{
                         height:1.73rem;line-height:1.46rem;text-align: center;
                     }
                     .connectionCenter{
-                        height:2.21rem;display: flex;border-top:0.03rem #F8F8F8 solid;box-sizing: border-box;padding-top:0.3rem;
+                        height:2.21rem;display: flex;border-top:0.03rem #F8F8F8 solid;box-sizing: border-box;
                         border-bottom: 0.03rem #F8F8F8 solid;
                         .tubiao{
                             font-size:0.6rem;
@@ -134,7 +176,12 @@ html,body{
                             border:0.03rem #F8F8F8 solid;
                         }
                         div{
-                            flex:1;text-align: center;
+                            flex:1;text-align: center;padding-top:0.3rem;
+                        }
+                        .am-wingblank-lg{
+                            p{
+                                margin:0rem;
+                            }
                         }
                     }
                     .connectionFoot{

@@ -21,6 +21,66 @@ module.exports = {
         })
     },
     delete: function(){},
+    saveCart:function(_data,_cb){
+    	//详情页加入购物车
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let user_size = _data.user_size;
+    	let qty = _data.qty;
+    	let sql = `INSERT INTO  db_farfetch.buycart 
+			        (userId,proId,user_size,qty) 
+			        VALUES ('${userId}','${proId}','${user_size}','${qty}')`;
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                        _cb({status:true,data:{results}});
+                }
+        })
+    },
+    selectShouCang:function(_data,_cb){
+    	//查询是否有收藏过
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let sql = `SELECT * FROM userwishes WHERE userId = ${userId} and proId = ${proId}`
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                        _cb({status:true,data:{results}});
+                }
+        })
+    },
+    changeShouCang:function(_data,_cb){
+    	//修改收藏状态
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let type = _data.type;
+    	let sql = `UPDATE userwishes SET type = ${type} WHERE userId = ${userId} and proId = ${proId}`
+    	db.query(sql,function(err,results,fields){
+    		if(err){
+                    _cb({status:false,error:err});
+            }else{
+                    _cb({status:true,data:{results}});
+            }
+    	})
+    },
+    shouCang:function(_data,_cb){
+    	//加入愿望清单
+    	let userId = _data.userId;
+    	let proId = _data.proId;
+    	let type = _data.type;
+    	let sql = `INSERT INTO db_farfetch.userwishes
+    				(userId,proId,type)
+    				VALUES ('${userId}','${proId}','${type}')`;
+    	db.query(sql,function(err,results,fields){
+                if(err){
+                        _cb({status:false,error:err});
+                }else{
+                        _cb({status:true,data:{results}});
+                }
+        })
+    },
     updateStatus: function(_data,_cb){
         //更新订单状态(待出行)
         console.log(_data)
@@ -38,22 +98,22 @@ module.exports = {
                 }
         })
     },
-    getHotGood:function(_cb){
-    	console.log('有请求数据库')
+    getHotGood:function(_data,_cb){
+    	let category = _data.category;
+    	//获取当前热门产品
     	var sql = `
     				SELECT id,
     				mainImg,
     				currentPrice,
     				brand
     				FROM goods
-    				where hot = '1'
+    				where hot = '1' and category = ${category}
     				limit 0,4
     				`
     	db.query(sql,function(err,results,fields){
                 if(err){
                         _cb({status:false,error:err});
                 }else{
-                            console.log(results);
                          _cb({status:true,data:{results}});
                 }
         })
@@ -100,7 +160,6 @@ module.exports = {
             })
     },
     getGood:function(_data,_cb){
-            console.log(_data);
             //获取当前id的商品信息
             var id = _data.id;
 //          var cancel = _data.cancelAllow;
