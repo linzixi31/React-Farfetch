@@ -3,6 +3,7 @@ import request from 'superagent'
 
 const LOCAL_SERVER = 'http://10.3.136.134:88';
 
+
 const DEV_SERVER = '';
 const PRO_SERVER = '';
 
@@ -23,6 +24,7 @@ const HttpClient = {
                 if (err) {
                     reject(err);
                 } else { 
+
                     resolve(res);
                 }
             });

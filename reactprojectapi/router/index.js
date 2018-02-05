@@ -49,6 +49,7 @@ module.exports = {
         userStatus.getUserStatus(app,jwt);
         cart.register(app);
         category.register(app)
+
         app.listen(_port);
     }
 }

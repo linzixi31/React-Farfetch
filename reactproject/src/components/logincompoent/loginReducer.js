@@ -29,7 +29,7 @@ export default function login(state={ count:0,loading:false},action){
             newstate.status = -1;
             newstate.result = action.result.data;
             break;
-      
+    
 
     }
     return newstate;

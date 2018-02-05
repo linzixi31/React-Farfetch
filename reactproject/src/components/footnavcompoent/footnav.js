@@ -14,8 +14,9 @@ constructor(props) {
   
    render() {
     return (
-      <div>
 
+
+      <div>
         <TabBar
           unselectedTintColor="#AAAAAA"
           tintColor="#222"
