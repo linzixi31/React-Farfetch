@@ -1,0 +1,150 @@
+*{margin: 0;padding: 0;}
+html,body{height:100%;}
+ul,li{list-style: none;}
+
+#app{
+	height: 100%;
+	&>div{
+		height: 100%;
+		&>div{
+			height: 100%;
+			.cart_ly{
+				height: 100%;display: flex;flex-direction:column;
+				.cartHeader{
+					font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
+					background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
+					.cartBack{flex:1;text-align: center;}
+					.cartHeaderTitle{
+						flex:9;text-align: left;padding-left: 0.4rem;
+						span{padding:0 0.133333rem;color:#B7A785;}
+					}
+				}
+				.cartBody{
+					flex:1;overflow-x:hidden;
+					.cartempty{text-align: center;font-size: 0.4rem;padding-top:4.0rem;}
+					.cartProList{
+						li{
+							margin:0.133333rem 0.2rem;background:#fff;padding:0.466667rem;padding-top: 0;
+							box-shadow: 0 0.026667rem 0.026667rem #ccc;
+							.cartProList_h{
+								display: flex;border-bottom: 0.013333rem solid #E3E3E3;
+								padding: 0.26rem 0;
+								&>div:first-child{flex:1;}
+								&>div:last-child{flex:10;}
+								p{
+									font-size: 0.31rem;color:#888;
+									.freight{float: right;}
+									span{color:#000;padding:0 0.04rem;}
+								}
+								img{width:0.733333rem;}
+							}
+							.cartProlist_b{
+								padding: 0.266667rem 0;display: flex;
+								.cartProImg{
+									flex:1;
+									img{height:2.933333rem;}
+								}
+								.cartProInfor{
+									flex:2;
+									.cartInfor_t{
+										position:relative;
+										h3{font-size: 0.4rem;font-weight: bold;}
+										h4{font-size: 0.26rem;font-weight:normal;}
+										.cartDelete{
+											position:absolute;width:0.533333rem;height:0.533333rem;border-radius: 50%;text-align: center;
+											right:0.133333rem;top:0;font-size: 0.4rem;background:#E4E4E4;
+										}
+									}
+									.cartInfor_m{
+										display: flex;padding:0.533333rem 0;
+										&>span{
+											flex:1;margin:0 0.133333rem;border:0.001333rem solid #ccc;
+											line-height: 0.8rem;text-align: center;font-size: 0.3rem;font-weight: bold;
+											span{padding-left:0.133333rem;}
+										}
+									}
+								}
+							}
+							.cartProFoot{
+								display: flex;
+								.cartToWish{
+									flex:1;
+									p{font-size: 0.3rem;padding-top:0.266667rem;}
+								}
+								.cartProPrice{
+									flex:1;text-align: right;
+									p:first-child{font-size:0.4rem;}
+									p:last-child{font-size: 0.28rem;}
+								}
+								
+							}
+						}
+					}
+					.cartHelp{
+						background:#fff;
+						.cartHelp_t,.cartNeedHelp{
+							padding:0.266667rem 0;margin:0 0.266667rem;border-bottom: 0.013333rem solid #E3E3E3;
+							p{font-size: 0.38rem;}
+							h5{font-size: 0.32rem;line-height: 0.45rem;}
+						}
+						.cartHelpMethod{
+							display: flex;border-top:0.013333rem solid #ccc;border-bottom:0.013333rem solid #ccc;
+							span{
+								flex:1;text-align: center;line-height:1.066667rem;font-size: 0.32rem;
+								&:first-child{border-right:0.013333rem solid #ccc;}
+							}
+						}
+					}
+				}
+				.cartFoot{
+					padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
+					.cartTotalPrice{
+						display: flex;background:#fff;
+						.cartPrice1{flex:1;text-align: left;padding-left: 0.4rem;padding-top:0.133333rem;}
+						.cartPrice2{flex:1;text-align: right;padding-right: 0.4rem;padding-top:0.133333rem;}
+						p{
+							font-size: 0.32rem;margin-bottom:0.133333rem;
+							span{padding:0 0.066667rem;font-weight: bold;}
+						}
+					}
+					.cartBtn{
+						line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+						font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
+					}
+				}
+			}
+			
+		}
+	}
+}
+
+
+//提示框样式
+.am-toast{
+	padding:0.266667rem 0;
+ 	.am-toast-text-info{font-size:0.32rem;}
+ 	.am-icon-lg{width:0.64rem;height:0.64rem;}
+}
+
+//颜色尺码选择弹窗样式
+.sizeQty_change{
+	position:fixed;
+	height:100%;
+	width: 100%;
+	z-index: 100;
+	background: rgba(0,0,0,0.5);
+	.sizeQty_content{
+		position:absolute;
+		width:100%;
+		bottom:0;background:#fff;
+		padding:0.266667rem 0 1.333333rem;
+		h3{
+			font-size:0.48rem;line-height: 1rem;
+			border-bottom:0.013333rem solid #ccc;padding-left: 0.333333rem;
+		}
+		ul li{
+			font-size:0.4rem;line-height: 0.9rem;margin:0 0.666667rem;
+			border-bottom:0.013333rem solid #ccc;text-align: center;
+		}
+	}
+}

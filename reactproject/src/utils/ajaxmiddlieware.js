@@ -1,10 +1,13 @@
 import http from './httpClient'
 import * as ajaxConstants from '../constants/ajaxConstants'
 export function ajaxMiddleware(api){
-    console.log(api)
+    // console.log(api)
     return function(dispatch){
         return function(action){
+
             let {type, types, method = 'get', data = {}, url} = action;
+            
+            let operation = action.operation || null;
 
             if(!url){
                 return dispatch(action)
@@ -12,23 +15,34 @@ export function ajaxMiddleware(api){
 
             let defaultConstants = [ajaxConstants.AJAX_REQUESTING, ajaxConstants.AJAX_REQUESTED, ajaxConstants.AJAX_REQUESTERROR]
             let [requesting, requested, requesterror] = types ? types : defaultConstants;
-            
-            api.dispatch({type: ajaxConstants.AJAX_REQUESTING});
+
+            api.dispatch({type: requesting});
             if(url){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
+<<<<<<< HEAD
                         
                         api.dispatch({
                             type: ajaxConstants.AJAX_REQUESTED,
                             result: res.body.data,
                             token : res.body.token
+=======
+
+                        api.dispatch({
+                            type: requested,
+                            operation:operation,
+                            result: res.body.data
+>>>>>>> 993d50af509300041eac24075004479ad2fc7865
                         })
                         resolve(res.body.data)
                     }).catch(error => {
+
                         api.dispatch({
-                            type: ajaxConstants.AJAX_REQUESTERROR,
+                            type: requesterror,
+                            operation:operation,
                             result: error
                         })
+
                         reject(error)
                     })
                 })

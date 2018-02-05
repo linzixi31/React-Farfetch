@@ -18,6 +18,10 @@ var hotHotel = require("./hotHotel");
 var payment = require('./payment')
 var userStatus=require('./userStatus')
 
+var cart = require('./cart');
+
+var category = require('./category.js')
+
 
 module.exports = {
     start: function(_port){
@@ -42,9 +46,18 @@ module.exports = {
         detail.register(app);
         hotHotel.register(app);
         payment.reg(app);
+<<<<<<< HEAD
         userStatus.getUserStatus(app,jwt);
         
         
+=======
+        userHotelStatus.getUserStatus(app);
+
+        cart.register(app);
+
+        category.register(app)
+
+>>>>>>> 993d50af509300041eac24075004479ad2fc7865
         app.listen(_port);
     }
 }
