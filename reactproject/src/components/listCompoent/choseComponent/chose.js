@@ -20,6 +20,9 @@ import './chose.scss'
       value,
     });
   };
+  componentWillMount(){
+    console.log(this.props)
+  }
   submit(){
     console.log(this.state)
     let catename = this.props.location.query.listname
@@ -70,7 +73,7 @@ import './chose.scss'
               </List>
               <Button onClick={()=>{
                 self.submit()
-              }}>显示81笔结果</Button>
+              }}>显示{this.props.total}笔结果</Button>
             </div>
 
             )
@@ -80,6 +83,7 @@ let mapStateToProps = (state) => {
   console.log(state)
     return {
         result:state.listReducer.result || [],
+        total:state.listReducer.result.length || ''
     }
 
 }

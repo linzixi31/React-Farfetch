@@ -21,7 +21,7 @@ export function ajaxMiddleware(api){
                 return new Promise((resolve, reject) => {
                     http[method](url, data).then(res => {
 
-
+                        console.log(res)
                         api.dispatch({
                             type: requested,
                             operation:operation,

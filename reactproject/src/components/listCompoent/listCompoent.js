@@ -23,7 +23,7 @@ import './list.scss'
                 })
                 this.setState({brand:newarr})
             })
-        }else{
+        }else if(this.props.location.query.value){
             this.props.getchoseData({
                 catename:this.props.location.query.catename,
                 cateId:this.props.location.query.categoryid
@@ -46,7 +46,7 @@ import './list.scss'
         let target = e.target
         if(target.tagName.toLowerCase()==='i'){
             if(target.className==='iconfont icon-shoucang'){
-
+                console.log(localstorage)
                 target.classList.add("active_list_lzx");
             }else if(target.className==='iconfont icon-shoucang active_list_lzx'){
                 target.classList.remove("active_list_lzx");
