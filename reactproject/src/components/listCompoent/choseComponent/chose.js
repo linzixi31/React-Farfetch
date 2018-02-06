@@ -67,7 +67,14 @@ import './chose.scss'
               </List>
               <List renderHeader={() => '筛选'}>
                 <Item  arrow="horizontal" onClick={(e) => {}}>商品分类</Item>
-                <Item  arrow="horizontal" onClick={(e) => {}}>品牌</Item>
+                <Item  arrow="horizontal" onClick={(e) => {
+                  hashHistory.push({
+                    pathname:'/listindexed',
+                    query:{
+                      
+                    }
+                  })
+                }}>品牌</Item>
                 <Item  arrow="horizontal" onClick={(e) => {}}>颜色</Item>
                 <Item  arrow="horizontal" onClick={(e) => {}}>价格范围</Item>
               </List>
