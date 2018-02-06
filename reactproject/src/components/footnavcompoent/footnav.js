@@ -25,8 +25,10 @@ constructor(props) {
   
    render() {
     return (
-      <div>
 
+
+    
+      <div style={{height:'1.333333rem'}}>
         <TabBar
           unselectedTintColor="#AAAAAA"
           tintColor="#222"
@@ -89,14 +91,14 @@ constructor(props) {
             icon={{ uri: './src/components/footnavcompoent/img/star2.svg' }}
             selectedIcon={{ uri: './src/components/footnavcompoent/img/star1.svg' }}
             title="愿望单"
-            key="Wishlist"
-            selected={this.state.selectedTab === 'Wishlist'}
+            key="wishlist"
+            selected={this.state.selectedTab === 'wishlist'}
             onPress={() => {
               this.setState({
-                selectedTab: 'Wishlist',
+                selectedTab: 'wishlist',
               });
               hashHistory.push({
-                pathname:'/Wishlist'
+                pathname:'/wishlist'
               })
             }}
           >

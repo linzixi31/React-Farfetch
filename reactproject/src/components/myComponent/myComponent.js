@@ -5,6 +5,14 @@ import * as actions from './myAction.js'
 import Back from '../backCompoent/back.js'
 import {connect} from 'react-redux'
 import './my.scss'
+import { Modal, List, Button, WhiteSpace, WingBlank } from 'antd-mobile';
+import { Icon, Grid } from 'antd-mobile';
+
+
+
+
+
+
 const leavenFun=function(){
     return true;
 }
@@ -18,12 +26,14 @@ class MyComponent extends Component{
             this.props.router.setRouteLeaveHook(this.props.route, leavenFun)
         }
         if(window.localStorage.username){
+            let self=this;
             this.refs.unlogin.style="display:none;";
             this.refs.my_account.style="display:block;";
             this.refs.my_quit.style="display:block;";
             console.log(actions)
             this.props.getUserInformation({username:window.localStorage.username}).then(res=>{
-                console.log(res);
+                // console.log(res.results[0]);
+                self.refs.username.innerHTML=res.results[0].username;
             })
             
           
@@ -33,20 +43,30 @@ class MyComponent extends Component{
             this.refs.my_quit.style="display:none;";
         }
     }
+    myback(){
+        hashHistory.goBack();
+    }
     my_quit(){
         window.localStorage.username='';
         alert('退出成功')
+        this.refs.username.innerHTML="我的账户"
         this.componentDidMount();
     }
     getLogin(){
         location.href="#/login";
     }
+    myPhone(){
+        Modal.alert('你想电话联系+864001204877吗？','',[{ text: '取消', onPress:()=>{}, style: 'default' },{ text: '确定', onPress: () =>{}, style: 'default' }])
+    }
+    message(){
+        Modal.alert('您即将退出应用程序并前往Farfetch官网。您确定继续吗？','',[{ text: '取消', onPress:()=>{}, style: 'default' },{ text: '确定', onPress: () =>{}, style: 'default' }])
+    }
     render(){
         return (
             <div className="my">
                 <h1 className="my_header">
-                    <div><i> &lt; </i></div>
-                    <div><span>我的账户</span></div>
+                    <div><i onClick={this.myback.bind(this)}> <Icon type={'left'} size={'lg'}/>返回</i></div>
+                    <div><span ref="username">我的账户</span></div>
                     <div></div>
                 </h1>
                 
@@ -82,8 +102,8 @@ class MyComponent extends Component{
                         <h4>选择男士/女士</h4>
                     </div>
                     <div className="my_gender">
-                        <p><input type="radio" name="gender"/>&nbsp;<label>女士</label></p>
-                        <p><input type="radio" name="gender"/>&nbsp;<label>男士</label></p>
+                        <p><input type="radio" name="gender"/>&nbsp;&nbsp;&nbsp;<label>女士</label></p>
+                        <p><input type="radio" name="gender" defaultChecked/>&nbsp;&nbsp;&nbsp;<label>男士</label></p>
                     </div>
                     <div className="pickgender">
                         <p>您可以利用此功能享受app个人化购物体验，我们将优先展示最适合你的单品</p>
@@ -91,20 +111,25 @@ class MyComponent extends Component{
                     </div>
                     <div className="my_inform">
                         <p>通知</p>
-                        <p>指纹识别<span></span></p>
+                        <p>指纹识别<span>
+
+
+
+
+                    </span></p>
                     </div>
                     <div className="my_help">
                         <span>寻求协助</span>
                     </div>
                     <div className="my_about">
-                        <p>关于我们</p>
-                        <p>条款与条件</p>
-                        <p>隐私政策</p>
-                        <p>常见问题及指南</p>
-                        <p>合作伙伴</p>
+                        <p onClick={this.message.bind(this)}>关于我们</p>
+                        <p onClick={this.message.bind(this)}>条款与条件</p>
+                        <p onClick={this.message.bind(this)}>隐私政策</p>
+                        <p onClick={this.message.bind(this)}>常见问题及指南</p>
+                        <p onClick={this.message.bind(this)}>合作伙伴</p>
                     </div>
                     <div className="connectUs">联系我们</div>
-                    <div className="telAndmsg"><button>电话</button><button>短信</button></div>
+                    <div className="telAndmsg"><button onClick={this.myPhone.bind(this)}>电话</button><button onClick={this.message.bind(this)}>短信</button></div>
                     <div className="my_end">服务时间：周一至周五，北京时间09:00到18:00</div>
                     <div className="my_quit" ref="my_quit">
                         <h4 onClick={this.my_quit.bind(this)}>退出</h4>

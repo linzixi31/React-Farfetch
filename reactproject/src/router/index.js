@@ -5,16 +5,19 @@ import HomeComponent from "../components/Homecompoent/Home.js";
 import LoginComponent from "../components/logincompoent/loginComponent.js";
 import rootReducer from '../reducer/rootReducer.js'
 import My from '../components/myComponent/myComponent.js'
+import ListComponent from "../components/listCompoent/listCompoent.js"
 import DetailComponent from "../components/detail/detail.js";
 import cartComponent from './../components/cartComponent/cartComponent';
-import ListComponent from "../components/listCompoent/listCompoent.js"
 import CategoryComponent from "../components/categoryComponent/category.js"
 import ChoseComponent from "../components/listCompoent/choseComponent/chose.js"
 import SearchComponent from "../components/searchCompoent/search.js"
-
+import WishListComponent from "../components/wishListComponent/wishListComponent.js"
+import ParentCompoent from "../components/Homecompoent/parent.js"
+import ListIndexedComponent from "../components/listCompoent/choseComponent/listindexedComponent/listindexed.js"
 const  route = (
-   <Router path='/' component={HomeComponent}>
+   <Router path='/' component={ParentCompoent}>
         <Route path="/login" component={LoginComponent}></Route>
+        <Route path="/index" component={HomeComponent}></Route>
         <Route path="/detail" component={DetailComponent}></Route>
         <Route path="/my" component={My}></Route>
         <Route path="/cart" component={cartComponent}></Route>
@@ -22,6 +25,8 @@ const  route = (
         <Route path="/category" component={CategoryComponent}></Route>
         <Route path="/chose" component={ChoseComponent}></Route>
         <Route path="/search" component={SearchComponent}></Route>
+        <Route path="/wishlist" component={WishListComponent}></Route>
+        <Route path="/listindexed" component={ListIndexedComponent}></Route>
    </Router>
 
         )

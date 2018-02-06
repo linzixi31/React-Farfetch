@@ -46,7 +46,7 @@ import './list.scss'
         let target = e.target
         if(target.tagName.toLowerCase()==='i'){
             if(target.className==='iconfont icon-shoucang'){
-                console.log(localstorage)
+                // console.log(localstorage)
                 target.classList.add("active_list_lzx");
             }else if(target.className==='iconfont icon-shoucang active_list_lzx'){
                 target.classList.remove("active_list_lzx");
@@ -133,4 +133,4 @@ let mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps,action)(ListComponent);
+export default connect(mapStateToProps,action)(ListComponent)

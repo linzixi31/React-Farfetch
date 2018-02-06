@@ -23,23 +23,18 @@ module.exports = {
         });
         app.post('/userDetails', function(req, res){
             var token=req.body.username;
-            console.log(token)
-            if(token){
-                jwt.verify(token, 'abc' , function(error, result){
-                    if(error){
-                       console.log(error)
-                       res.send(error)
-                    } else {
-                        console.log(result)
-                        var sql="select *  from `user` where email="+token;
-                        db.select(sql, function(data){
-                           console.log(data)
-                           res.send(data);
-                        })
-
-                    }
+            // console.log(token)
+           
+              
+                var sql="select *  from userlist where email='"+token+"'";
+                db.select(sql, function(data){
+                   console.log(data)
+                   res.send(data);
                 })
-            }
+
+                    
+            
+            
            
 
             
