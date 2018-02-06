@@ -155,7 +155,7 @@ export class HomeComponent extends Component {
 	}
 	test(_id){
 		hashHistory.push({
-			path:"/detail",
+			pathname:"/detail",
 			query:{
 				proId:_id
 			}
