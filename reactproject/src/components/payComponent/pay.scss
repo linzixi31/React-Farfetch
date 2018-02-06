@@ -1,0 +1,54 @@
+.pay_ly{
+	display: flex;flex-direction:column;background:#efefef;
+	.payHeader{
+		font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
+		background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
+		.payBack{flex:1;text-align: center;}
+		.payHeaderTitle{
+			flex:9;text-align: left;padding-left: 0.4rem;
+		}
+	}
+	.payBody{
+		flex:1;overflow-x: hidden;
+		.pay_shippingAaddress,.pay_distributionBy,.pay_method{
+			margin-top: 0.2rem;background:#fff;display: flex;
+			border-bottom: 0.013333rem solid #ccc;
+			border-top: 0.013333rem solid #ccc;
+			line-height: 2.4rem;font-weight: bold;font-size: 0.4rem;
+			.pay_infor_left{
+				flex:3;padding:0 0.2rem;
+			}
+			.pay_infor_middle{
+				flex:8;padding-top: 0.533333rem;
+				.infor_mid_title,.infor_mid_context{line-height: 0.48rem;font-size: 0.4rem;font-weight: normal;margin-bottom: 0;}
+				.infor_mid_title p{
+					word-wrap:break-word;word-break:break-all;
+				}
+				.infor_mid_context{
+					color: #888;
+					span{padding:0 0.106667rem;}
+				}
+			}
+			.pay_icon_right{
+				flex:1;
+			}
+		}
+	}
+	.payFoot{
+		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
+		.cartTotalPrice{
+			display: flex;background:#fff;
+			.cartPrice1{flex:1;text-align: left;padding-left: 0.4rem;padding-top:0.133333rem;}
+			.cartPrice2{flex:1;text-align: right;padding-right: 0.4rem;padding-top:0.133333rem;}
+			p{
+				font-size: 0.32rem;margin-bottom:0.133333rem;
+				span{padding:0 0.066667rem;font-weight: bold;}
+			}
+		}
+		.payBtn{
+			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
+		}
+	}
+	
+}

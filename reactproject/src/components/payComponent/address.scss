@@ -1,0 +1,81 @@
+//添加地址的样式
+.addAddress{
+	background:#efefef;
+	display: flex;flex-direction:column;
+	.adr_Header{
+		font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
+		background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
+		.adr_Back{flex:1;text-align: center;}
+		.adr_HeaderTitle{
+			flex:9;text-align: left;padding-left: 0.4rem;
+		}
+	}
+	.add_addr_body{
+		flex:1;overflow-x: hidden;background:#fff;margin-top: 0.266667rem;
+		.add_attention{
+			text-align: right;padding-right: 0.666667rem;color:#f00;
+			font-size: 0.32rem;line-height: 0.88rem;margin: 0;
+		}
+		.addr_infor{
+			padding:0 0.333333rem;
+			li{
+				border-bottom: 0.013333rem solid #ccc;display: flex;
+				.error{border-bottom-color:red;}
+				input{
+					flex: 12;height: 1.066667rem;border:0 none;
+					font-size:0.36rem;line-height: 1.066667rem
+				}
+				i{flex:1;font-size:0.48rem;line-height: 1.066667rem;text-align: center;}
+
+			}
+		}
+	}
+	.addr_Foot{
+		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
+		.addr_Btn{
+			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
+		}
+	}
+}
+
+//地址列表的样式
+.choose_addr{
+	display: flex;flex-direction: column;
+	.adr_Header{
+		font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
+		background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
+		.adr_Back{flex:1;text-align: center;}
+		.adr_HeaderTitle{
+			flex:9;text-align: left;padding-left: 0.4rem;
+		}
+	}
+	ul{
+		background:#efefef;flex:1;overflow-x: hidden;
+		li{
+			display: flex;margin-top: 0.2rem;background:#fff;
+			border-bottom:0.013333rem solid #ccc;padding:0.133333rem 0.066667rem;
+			div p{
+				margin: 0;font-size:0.346667rem;
+				span{padding-right: 0.133333rem;}
+			}
+			.chooseRadio{
+				flex:1;
+				input{width:0.35rem;height:0.35rem;margin:0.866667rem 0.25rem 0;}
+			}
+			.chooseList{flex:8;padding-left:0.266667rem;}
+			.chooseEdit{flex:1;font-size: 0.346667rem;line-height: 2.08rem;}
+		}
+		.addNewAddr{
+			width: 2.999rem;border:0.013333rem solid #ccc;margin:0.4rem auto;display: block;
+			font-size: 0.4rem;line-height:0.8rem;text-align: center;
+		}
+	}
+	.addr_Foot{
+		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
+		.addr_Btn{
+			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
+		}
+	}
+}

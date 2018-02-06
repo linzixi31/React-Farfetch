@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import {connect} from 'react-redux';
-
+import {hashHistory} from 'react-router';
 import * as actions from './cartActions';
 
 // import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
@@ -15,7 +15,7 @@ class CartComponent extends Component{
 	componentWillMount(){
 		//请求购物车数据
 		this.props.getCartProduct().then(res =>{
-			console.log(res)
+			// console.log(res)
 		});
 	}
 	//data：存储尺码数量数据；selectTitle：尺码选择弹出层的标题；switchType：要改变的字段名；changeCartId：要改变的购物车id
@@ -31,18 +31,17 @@ class CartComponent extends Component{
 		helpTitle:'14天无理由免费退货（退款含税）',
 		helpContent:'还在犹豫？别担心，我们提供14天无理由免费退货。来自中国内地的退货，你的退款将包含下单时所支付的关税。'
 	}
-	
+	//改变颜色尺码
 	getSizeQty(res){
 		//改变购物车中的加购商品信息
 		if(res != 'none'){
-			console.log(res,this.state.switchType,this.state.changeCartId);
+			// console.log(res,this.state.switchType,this.state.changeCartId);
 			this.props.changeCart(res,this.state.switchType,this.state.changeCartId);
 		}
 		this.setState({switch:0});
 	}
-
+	//改变购物车状态
 	changeCartPro(event){
-		
 		if(event.target.className.toLowerCase() === 'cartdelete'){
 			//删除购物车商品信息
 			let delId = event.target.getAttribute('data-guid');
@@ -81,7 +80,30 @@ class CartComponent extends Component{
 			});
 		}
 	}
-	
+	//跳转去下单页面
+	toOrder(){
+
+		//根据不同国家生成不同订单（数组，同一个国家多个商品生成一个订单）
+		let orders = JSON.stringify(this.props.ordersCates());
+
+		//购物车的id
+		let cartIds = this.props.cartIds();
+
+		//商品总价
+		let totalPrice = this.props.totalPrice();
+
+		//跳转传参
+		var path = {
+		  	pathname:'/pay',
+		  	query:{
+				orders:orders,
+				cartIds:cartIds,
+				totalPrice:totalPrice
+		  	},
+		}
+		hashHistory.push(path);
+
+	}
 	
 	render(){
 		//购物车无商品信息时
@@ -182,15 +204,15 @@ class CartComponent extends Component{
 				<footer className="cartFoot">
 					<div style={styleHide} className="cartTotalPrice">
 						<div className="cartPrice1">
-							<p>小计 ￥<span>234234</span></p>
-							<p>配送 ￥<span>234234</span></p>
+							<p>小计 ￥<span>{this.props.totalPrice()}</span></p>
+							<p>配送 ￥<span>{this.props.totalPrice()}</span></p>
 						</div>
 						<div className="cartPrice2">
-							<p>总计 CNY ￥<span>234234</span></p>
+							<p>总计 CNY ￥<span>{this.props.totalPrice()}</span></p>
 							<p>（已含关税）</p>
 						</div>
 					</div>
-					<div className="cartBtn">{cartBtn}</div>
+					<div className="cartBtn" onClick={this.toOrder.bind(this)}>{cartBtn}</div>
 				</footer>
 				{html}
 			</div>
@@ -199,11 +221,45 @@ class CartComponent extends Component{
 }
 
 const mapStateToProps = (state) => {
-	console.log(state)
+	// console.log(state)
 	return {
 		cartList:state.cartReducer.cartList.results || [],
 		operaResult:state.cartReducer.operaResult,
-		status:state.cartReducer.status
+		status:state.cartReducer.status,
+		totalPrice:function(){
+			let totalP = 0;
+			this.cartList.map(function(item){
+				totalP += item.currentPrice * item.qty;
+			})
+			return totalP;
+		},
+		cartIds:function(){
+			let cartIds = '';
+			this.cartList.map(function(item){
+				cartIds += item.cart_id + ',';
+			})
+			return cartIds.slice(0,-1);
+		},
+		ordersCates:function(){
+			let orders = [];
+			this.cartList.forEach(function(item){
+				let i = 0;
+				orders.forEach(function(or){
+					if(or.country != item.country_name){
+						i++;
+					}else{
+						return;
+					}
+				})
+				if(i == orders.length){
+					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice})
+				}else{
+					orders[i].proids += ',' + item.id;
+					orders[i].totalPrice += item.currentPrice;
+				}
+			})
+			return orders;
+		}
 	}
 };
 

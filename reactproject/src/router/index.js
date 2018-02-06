@@ -11,6 +11,9 @@ import Back from "../components/backCompoent/back.js"
 import rootReducer from '../reducer/rootReducer.js'
 
 import cartComponent from './../components/cartComponent/cartComponent';
+import PayComponent from './../components/payComponent/payComponent';
+import addAddress from './../components/payComponent/addaddrComponent';
+import chooseAddress from './../components/payComponent/chooseAddrComponent';
 
 
 
@@ -28,6 +31,9 @@ const  route = (
         <Route path="/cart" component={cartComponent}></Route>
         <Route path="/list" component={ListComponent}></Route>
         <Route path="/category" component={CategoryComponent}></Route>
+        <Route path="/pay" component={PayComponent}></Route>
+        <Route path="/addaddr" component={addAddress}></Route>
+        <Route path="/chooseaddress" component={chooseAddress}></Route>
    </Router>
 
         )
