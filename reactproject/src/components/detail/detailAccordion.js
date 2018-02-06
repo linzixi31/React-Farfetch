@@ -16,9 +16,6 @@ class DetailAccordion extends React.Component {
 	          	<DetailShare/>
 	          </div>
 	        </Accordion.Panel>
-	        <Accordion.Panel header="尺码" className="pad">this is panel content2 or other</Accordion.Panel>
-	        <Accordion.Panel header="成分与护理" className="pad">
-	        </Accordion.Panel>
 	        <Accordion.Panel header="购物须知及无理由免费退货" className="pad">
 	        	<p id="mainCountry">商品来自意大利</p>
 	        	<div id="mainfree">

@@ -45,12 +45,7 @@ export default class DetailEmailModal extends React.Component {
   render() {
     return (
       <WingBlank>
-        <div onClick={this.showModal('modal1')}>
-			<p>
-				<span className="iconfont icon-icon1 tubiao"></span>
-			</p>
-			<p>电邮地址</p>
-		</div>
+        
         <WhiteSpace />
         <Modal
           visible={this.state.modal1}

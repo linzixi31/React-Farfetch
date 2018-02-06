@@ -58,7 +58,7 @@ export default class Detail extends React.Component{
 		//获取当前商品是否有被收藏;
 		http.get('/checkShouCang',{userId:currentUserId,proId:currentProId}).then(rest=>{
 			console.log(rest.body.type,currentUserId,currentProId)
-			this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-shoucang' : 'iconfont icon-shoucang1'})
+			this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-shoucang2' : 'iconfont icon-shoucang'})
 		})
 		getDetail();
         
@@ -66,7 +66,7 @@ export default class Detail extends React.Component{
 			this.setState({userId:'游客'});
 			currentUserId = '游客’';
 			getDetail();
-			this.setState({shouCang : 'iconfont icon-shoucang1'})
+			this.setState({shouCang : 'iconfont icon-shoucang'})
 		}
 	}
 	
@@ -78,7 +78,15 @@ export default class Detail extends React.Component{
 		
 			if(this.state.userId != '游客'){
 				if(_size == '选择您的尺寸'){
-					alert('请选择您的尺寸')
+					layer.open({
+						title: [
+						    '提示',
+						    'background-color: #FF4351; color:#fff;'
+					    ],
+					    content: '请先选择尺寸',
+					    btn:'OK',
+					   	className:'layerAlert'
+					});
 				}else{
 					http.get('/saveCart',{userId:this.state.userId,proId:this.state.proId,user_size:_size,qty:1}).then(res =>{
 						console.log(res);
@@ -140,7 +148,7 @@ export default class Detail extends React.Component{
 			http.get('/shouCang',{userId:this.state.userId,proId:this.state.proId,type:1}).then(res =>{
 				console.log(res);
 			})
-			e.target.className = (e.target.className == 'iconfont icon-shoucang') ? 'iconfont icon-shoucang1' : 'iconfont icon-shoucang';
+			e.target.className = (e.target.className == 'iconfont icon-shoucang2') ? 'iconfont icon-shoucang' : 'iconfont icon-shoucang2';
 		}else{
 			layer.open({
 				title: [
@@ -159,6 +167,30 @@ export default class Detail extends React.Component{
 			});
 		}
 	}
+	
+	showPhone(){
+		layer.open({
+			title: [
+			    '联系电话',
+			    'background-color: #FF4351; color:#fff;'
+		    ],
+		    content: '电话：13666666666',
+		    btn:'OK',
+		   	className:'layerAlert'
+		});
+	}
+	showEmail(){
+		layer.open({
+			title: [
+			    '电邮地址',
+			    'background-color: #FF4351; color:#fff;'
+		    ],
+		    content: 'Email：290035807@qq.com',
+		    btn:'OK',
+		   	className:'layerAlert'
+		});
+	}
+	
 	ceshi(_id){
 		//获取商品
 		http.get('/getGood',{id:_id}).then(res=>{
@@ -170,7 +202,7 @@ export default class Detail extends React.Component{
             if(this.state.userId != '游客'){
             	http.get('/checkShouCang',{userId:this.state.userId,proId:_id}).then(rest=>{
 	        		console.log(_id);
-					this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-shoucang' : 'iconfont icon-shoucang1'})
+					this.setState({shouCang : (rest.body.type == 1) ? 'iconfont icon-shoucang2' : 'iconfont icon-shoucang'})
 				})
 		        .catch(err =>{
 		        	console.log(err);
@@ -188,6 +220,11 @@ export default class Detail extends React.Component{
 			pathname:'/list'
 		})
 	}
+	
+	
+	
+	
+	
 	state = {
 		goods:[],
 		hot:[],
@@ -197,6 +234,9 @@ export default class Detail extends React.Component{
 		cartQty:0,
 		shouCang:0
 	}
+	
+	
+	
 	render(){
 		console.log(555);
 		return(
@@ -238,16 +278,26 @@ export default class Detail extends React.Component{
 								联系我们
 							</div>
 							<div className="connectionCenter">
-								<DetailModal/>
+								<div onClick={this.showPhone.bind(this)}>
+						        	<p>
+						        		<span className="iconfont icon-web-icon- tubiao"></span>
+						        	</p>
+									<p>电话</p>
+						        </div>
 								<i></i>
-								<DetailEmailModal/>
+								<div onClick={this.showEmail.bind(this)}>
+									<p>
+										<span className="iconfont icon-icon1 tubiao"></span>
+									</p>
+									<p>电邮地址</p>
+								</div>
 							</div>
 							<div className="connectionFoot">
 								Farfetch特定编号:{this.state.goods.sku}
 							</div>
 						</div>
 						<div className="mainRecommend">
-							<h3>选购这套造型</h3>
+							<h3>特别为您推荐</h3>
 							<ul className="hotGoods">
 								{this.state.hot.map((item,idx)=>{
 									return (
