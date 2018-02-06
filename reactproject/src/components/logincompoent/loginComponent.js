@@ -54,7 +54,7 @@ class Logincompoent extends Component{
        var password_value=self.refs.reg_password.value;
        if(emailRegExp.test(email_value)&&passwordRegExp.test(password_value)){
             this.props.registerTest({username:username_value,email:email_value,password:password_value}).then(res => {
-                 console.log(res);
+                //  console.log(res);
                 if(res){
                     alert('注册成功');
                     self.refs.reg_username.value='';
@@ -91,7 +91,7 @@ class Logincompoent extends Component{
     }
     render(){
         if(this.props.state==0 ){
-          console.log(this.props.state)
+        //   console.log(this.props.state)
           var c = <Spinnercomponent/>
         }else{
           var c = null
@@ -149,7 +149,7 @@ class Logincompoent extends Component{
 }
 
 let mapStateToProps = (state) => {
-  console.log(state)
+//   console.log(state)
     return {
         count: state.login.count,
         loading:state.login.loading,
