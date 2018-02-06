@@ -19,6 +19,27 @@ html,body{
   overflow: auto;
 }
 
+
+.layui-m-layer0 .layui-m-layerchild{
+    max-width: 12rem;
+}
+.layerAlert{
+    height:4.8rem;display: flex;flex-direction:column;margin:0 auto;max-width: 10.66rem;
+    h3{
+        font-size:0.4rem;height:1.33rem;line-height:1.33rem;background-color: #222222;margin: 0rem;
+    }
+    .layui-m-layercont{
+        font-size:0.4rem;flex:1;
+    }
+    .layui-m-layerbtn{
+        height:1rem;line-height:1rem;
+        span{
+            font-size:0.4rem;
+            }
+    }
+    
+}
+
 .am-action-sheet-share{
     background:#FFFFFF;
 }
@@ -68,7 +89,7 @@ html,body{
         display: flex;flex-direction:column;height:100%;width:100%;
         #header{
             .am-navbar{
-                height:1.06rem;width:100%;position:fixed;background: none;z-index: 1000;
+                height:1.06rem;width:100%;background: none;padding:0 0.26rem;
                 .am-icon{
                     height: 0.51rem;width:0.51rem;fill:#333333;
                 }

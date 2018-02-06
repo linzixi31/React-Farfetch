@@ -4,7 +4,7 @@ import {Router, hashHistory} from "react-router";
 import route from './router'
 import {Provider} from 'react-redux'
 import store from './store/Store.js'
-
+import layer from './utils/layer/layer/mobile/layer.js'
 
 //routes react自带属性
 ReactDOM.render(
