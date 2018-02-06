@@ -3,9 +3,9 @@ body,html{height:100%;}
 ul,li{list-style:none;}
 #app{height:100%;}
 #app>div{height:100%;}
-#app>div>div{height:100%;}
+// #app>div>div{height:100%;}
 .order{height:100%;display:flex;flex-direction:column;}
-.order_header{width:100%;background:#fff;line-height:2rem;font-size:0.5rem;margin:0;font-weight:bold;display:flex;}
+
 
 .order_main{
     flex:1;background:#E2E2E2;overflow-x:hidden;

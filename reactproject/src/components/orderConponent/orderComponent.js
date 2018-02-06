@@ -53,7 +53,7 @@ class OrderComponent extends Component{
         }
 
         return (
-            <div className="my">
+            <div className="order">
                <Back name={'订单与退货'} />
                 
                 <ul className="order_main">

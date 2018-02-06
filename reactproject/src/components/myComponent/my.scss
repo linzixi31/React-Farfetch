@@ -2,7 +2,7 @@
 body,html{height:100%;}
 #app{height:100%;}
 #app>div{height:100%;}
-#app>div>div{height:100%;}
+// #app>div>div{height:100%;}
 .my{height:100%;display:flex;flex-direction:column;}
 .my_header{width:100%;height:2rem;background:#fff;line-height:2rem;font-size:0.5rem;margin:0;font-weight:bold;display:flex;}
 .my_header>div:nth-child(1){padding-left:0.27rem;}

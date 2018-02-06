@@ -14,7 +14,7 @@ var listPage = require('./listPage')
 var homepage = require("./homepage")
 var order = require('./order')
 var detail = require('./detail');
-var hotHotel = require("./hotHotel");
+var hotGoods = require("./hotGoods");
 var payment = require('./payment')
 var userStatus=require('./userStatus')
 
@@ -44,7 +44,7 @@ module.exports = {
         homepage.register(app);
         order.register(app);
         detail.register(app);
-        hotHotel.register(app);
+        hotGoods.register(app);
         payment.reg(app);
         userStatus.getUserStatus(app,jwt);
         cart.register(app);

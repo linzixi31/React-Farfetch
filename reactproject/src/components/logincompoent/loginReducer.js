@@ -32,7 +32,6 @@ export default function login(state={ count:0,loading:false},action){
     
 
     }
-
     return newstate;
 }
 
