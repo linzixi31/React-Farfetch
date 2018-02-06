@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import './my.scss'
 import { Modal, List, Button, WhiteSpace, WingBlank } from 'antd-mobile';
 import { Icon, Grid } from 'antd-mobile';
+import { PickerView } from 'antd-mobile';
 
 
 
@@ -16,7 +17,11 @@ import { Icon, Grid } from 'antd-mobile';
 const leavenFun=function(){
     return true;
 }
+
 class MyComponent extends Component{
+    state={
+        _username:''
+    }
     componentWillMount(){
         
     }
@@ -32,8 +37,8 @@ class MyComponent extends Component{
             this.refs.my_quit.style="display:block;";
             console.log(actions)
             this.props.getUserInformation({username:window.localStorage.username}).then(res=>{
-                // console.log(res.results[0]);
-                self.refs.username.innerHTML=res.results[0].username;
+               
+                this.setState({_username:res.results[0].username});
             })
             
           
@@ -49,7 +54,7 @@ class MyComponent extends Component{
     my_quit(){
         window.localStorage.username='';
         alert('退出成功')
-        this.refs.username.innerHTML="我的账户"
+        this.setState({_username:"我的账户"})
         this.componentDidMount();
     }
     getLogin(){
@@ -61,14 +66,14 @@ class MyComponent extends Component{
     message(){
         Modal.alert('您即将退出应用程序并前往Farfetch官网。您确定继续吗？','',[{ text: '取消', onPress:()=>{}, style: 'default' },{ text: '确定', onPress: () =>{}, style: 'default' }])
     }
+ 
+    getMy(){
+        location.href="#/order"
+    }
     render(){
         return (
             <div className="my">
-                <h1 className="my_header">
-                    <div><i onClick={this.myback.bind(this)}> <Icon type={'left'} size={'lg'}/>返回</i></div>
-                    <div><span ref="username">我的账户</span></div>
-                    <div></div>
-                </h1>
+               <Back name={this.state._username} />
                 
                 <div className="my_main">
                     
@@ -84,7 +89,7 @@ class MyComponent extends Component{
                                 
                                 <div className="myAccount" ref="my_account">
                                     <div>我的账户</div>
-                                    <div>订单与退货</div>
+                                    <div onClick={this.getMy.bind(this)}>订单与退货</div>
                                     <div>个人信息与密码</div>
                                     <div>地址簿</div>
                                 </div>
@@ -136,7 +141,7 @@ class MyComponent extends Component{
                     </div>
                 </div>
                 <div className="my_footer">
-                    {<Foot/>}
+                    {<Foot selectedTab='my'/>}
                 </div>
             </div>
         )

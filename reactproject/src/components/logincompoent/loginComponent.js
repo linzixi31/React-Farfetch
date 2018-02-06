@@ -32,7 +32,10 @@ class Logincompoent extends Component{
             
             
             if(res.results.length>0){
+                console.log(res.results)
                 window.localStorage.username=self.refs.login_email.value;
+                window.localStorage.userId=res.results[0].id;
+
                 alert('登录成功');
                 location.href='#/my'
                

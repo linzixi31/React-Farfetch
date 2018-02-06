@@ -19,7 +19,7 @@ export class HomeComponent extends Component {
 	}
     render(){
         return(
-            <div>
+            <div style={{height:"100%"}}>
             	<div id="index">
 	            	<div className="index_header">
 	            		<h1>Farfetch</h1>
@@ -70,7 +70,7 @@ export class HomeComponent extends Component {
 	           					</div>
 	           					{
 									this.props.offresult.map((item) =>{
-										return (<div className="brandContent" key={item.id}>
+										return (<div className="brandContent" key={item.id} onClick={this.test.bind(this, item.id)} >
 					           						<div className="brandImg">
 					           							<img src={item.mainImg} />
 					           						</div>
@@ -90,7 +90,7 @@ export class HomeComponent extends Component {
 	           					</div>
 								{
 									this.props.yslresult.map((item) =>{
-										return(<div className="brandContent" key={item.id}>
+										return (<div className="brandContent" key={item.id} onClick={this.test.bind(this, item.id)}>
 					           						<div className="brandImg">
 					           							<img src={item.mainImg} />
 					           						</div>
@@ -109,7 +109,7 @@ export class HomeComponent extends Component {
 	           					</div>
 	           					{
 	           						this.props.gucciresult.map((item) =>{
-	           							return(<div className="brandContent" key={item.id}>
+										return (<div className="brandContent" key={item.id} onClick={this.test.bind(this, item.id)}>
 					           						<div className="brandImg">
 					           							<img src={item.mainImg} />
 					           						</div>
@@ -128,7 +128,7 @@ export class HomeComponent extends Component {
 							<div className="otherContent">
 								{
 									this.props.otherresult.map((item) =>{
-										return (<div className="otherDetail" key={item.id}>
+										return (<div className="otherDetail" key={item.id} onClick={this.test.bind(this, item.id)}>
 											<div className="otherImg">
 												<img src={item.mainImg} />
 											</div>
@@ -145,9 +145,9 @@ export class HomeComponent extends Component {
 							</div>
 		            	</div>
 	            	</div>
-	            	
-	                <div>{this.props.children}</div>
-					<Footernav selectTab="index" />
+	            	<div style={{height:'1.3333rem'}}>
+					<Footernav selectedTab='index' />
+					</div>
 	            </div>
 				
             </div>

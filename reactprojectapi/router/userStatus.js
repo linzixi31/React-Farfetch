@@ -31,17 +31,18 @@ module.exports = {
                    console.log(data)
                    res.send(data);
                 })
-
-                    
-            
-            
-           
-
-            
-                
-                
                 
            
+        })
+        app.post('/orderDetails',function(req,res){
+            var userId=req.body.userId
+            var sql="select *  from orders , goods,countries where userId='"+userId+"' and orders.cartId=goods.id  and countries.country_id=goods.comefrom";
+           
+            db.select(sql, function(data){
+                   console.log(data)
+                   res.send(data);
+            })
+
         })
 
 

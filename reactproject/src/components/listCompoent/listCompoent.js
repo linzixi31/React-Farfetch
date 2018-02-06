@@ -4,25 +4,39 @@ import Footnav from '../footnavcompoent/footnav.js';
 import * as action from './listAction.js'
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
+
 import './font/iconfont.css'
 import './list.scss'
  class ListComponent extends Component{
      componentWillMount(){
         this.setState({pagename:this.props.location.query.catename});
-
-        this.props.getDataList({
-            catename:this.props.location.query.catename,
-            cateId:this.props.location.query.categoryid
-        }).then(res=>{
-            var newarr = [];
-            this.props.result.map(function(item,idx){
-                    if(!newarr.includes(item.brand)){
-                        newarr.push(item.brand)
-                    }
+        if(!this.props.location.query.value){
+            this.props.getDataList({
+                catename:this.props.location.query.catename,
+                cateId:this.props.location.query.categoryid
+            }).then(res=>{
+                var newarr = [];
+                this.props.result.map(function(item,idx){
+                        if(!newarr.includes(item.brand)){
+                            newarr.push(item.brand)
+                        }
+                })
+                this.setState({brand:newarr})
             })
-            this.setState({brand:newarr})
-        })
-
+        }else if(this.props.location.query.value){
+            this.props.getchoseData({
+                catename:this.props.location.query.catename,
+                cateId:this.props.location.query.categoryid
+            },this.props.location.query.value).then(res=>{
+                var newarr = [];
+                this.props.result.map(function(item,idx){
+                        if(!newarr.includes(item.brand)){
+                            newarr.push(item.brand)
+                        }
+                })
+                this.setState({brand:newarr})
+            })
+        }
      }
      componentDidUpdate(){
         console.log(66)
@@ -32,7 +46,7 @@ import './list.scss'
         let target = e.target
         if(target.tagName.toLowerCase()==='i'){
             if(target.className==='iconfont icon-shoucang'){
-
+                // console.log(localstorage)
                 target.classList.add("active_list_lzx");
             }else if(target.className==='iconfont icon-shoucang active_list_lzx'){
                 target.classList.remove("active_list_lzx");
@@ -57,11 +71,19 @@ import './list.scss'
       
         return(
          <div className="wrap_lzx">
-            <Backcomponent name={this.state.pagename}/>
+            <Backcomponent name={this.state.pagename} />
             <div style={{flex:1,overflowX:'hidden'}}>
                 <div className="chose_lzx">
                     <ul className="choseBtn">
-                        <li><span>筛选</span></li>
+                        <li onClick={()=>{
+                            hashHistory.push({
+                                pathname:'/chose',
+                                query:{
+                                    listname:this.props.location.query.catename,
+                                    categoryid:this.props.location.query.categoryid
+                                }
+                            })
+                        }}><span>筛选</span></li>
                          {
                             this.state.brand.map(function(item,idx){
                                 return <li key={idx} onClick={()=>{
@@ -95,7 +117,7 @@ import './list.scss'
                     </ul>
                 </div>
             </div>
-            <Footnav/>
+            <Footnav selectedTab='category'/>
          </div> 
 
             )
@@ -111,4 +133,4 @@ let mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps,action)(ListComponent);
+export default connect(mapStateToProps,action)(ListComponent)
