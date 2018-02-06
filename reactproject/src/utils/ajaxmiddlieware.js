@@ -9,6 +9,7 @@ export function ajaxMiddleware(api){
 
             if(!url){
                 return dispatch(action)
+                
             }
 
             let defaultConstants = [ajaxConstants.AJAX_REQUESTING, ajaxConstants.AJAX_REQUESTED, ajaxConstants.AJAX_REQUESTERROR]

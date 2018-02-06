@@ -60,10 +60,18 @@ export function getchoseData(params,value){
         }
     
 }
-export function getstarData(){
+export function getstarData(params){
     return{
         types:[listConstants.STAR_REQUESTING,listConstants.STAR_REQUESTED,listConstants.STAR_REQUESTERROR],
-        url:"/star",
+        url:"/getstar",
+        data:params,
+        method:'post'
+    }
+}
+export function setstarData(){
+    return{
+        types:[listConstants.STAR_REQUESTING,listConstants.STAR_REQUESTED,listConstants.STAR_REQUESTERROR],
+        url:"/setstar",
         data:params,
         method:'post'
     }

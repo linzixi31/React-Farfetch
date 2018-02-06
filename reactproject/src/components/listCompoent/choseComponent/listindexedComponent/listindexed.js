@@ -61,7 +61,7 @@ componentDidMount(){
             })
 
         })   
-        this.setState(data:newarr)
+        this.setState({data:newarr})
         console.log(newarr)  
 }
 state={
