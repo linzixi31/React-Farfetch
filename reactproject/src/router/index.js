@@ -9,6 +9,7 @@ import ListComponent from "../components/listCompoent/listCompoent.js"
 import DetailComponent from "../components/detail/detail.js";
 import cartComponent from './../components/cartComponent/cartComponent';
 import CategoryComponent from "../components/categoryComponent/category.js"
+import OrderComponent from "../components/orderConponent/orderComponent.js"
 
 const  route = (
    <Router path='/' component={HomeComponent}>
@@ -18,6 +19,7 @@ const  route = (
         <Route path="/cart" component={cartComponent}></Route>
         <Route path="/list" component={ListComponent}></Route>
         <Route path="/category" component={CategoryComponent}></Route>
+        <Route path="/order" component={OrderComponent}></Route>
    </Router>
 
         )

@@ -4,7 +4,7 @@ import my from '../components/myComponent/myReducer.js'
 import cartReducer from './../components/cartComponent/cartReducer.js'
 import cateReducer from '../components/categoryComponent/cateReducer.js'
 import listReducer from '../components/listCompoent/listReducer.js'
-
+import orderReducer from '../components/orderConponent/orderReducer.js'
 export default combineReducers({
-   login,cateReducer,listReducer,cartReducer,my
+   login,cateReducer,listReducer,cartReducer,my,orderReducer
 })
