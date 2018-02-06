@@ -11,8 +11,8 @@ import cartComponent from './../components/cartComponent/cartComponent';
 import CategoryComponent from "../components/categoryComponent/category.js"
 import OrderComponent from "../components/orderConponent/orderComponent.js"
 import WishListComponent from "../components/wishListComponent/wishListComponent.js"
-
-
+import PersonalComponent from "../components/myComponent/personalInformation.js"
+import AddressComponent from "../components/myComponent/addressComponent.js"
 const  route = (
    <Router path='/' >
         <Route path="/login" component={LoginComponent}></Route>
@@ -24,6 +24,10 @@ const  route = (
         <Route path="/category" component={CategoryComponent}></Route>
         <Route path="/order" component={OrderComponent}></Route>
         <Route path="/wishlist" component={WishListComponent}></Route>
+        <Route path="/personal" component={PersonalComponent}></Route>
+        <Route path="/address" component={AddressComponent}></Route>
+
+    
    </Router>
 
         )
