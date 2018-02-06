@@ -35,7 +35,7 @@ class MyComponent extends Component{
             this.refs.unlogin.style="display:none;";
             this.refs.my_account.style="display:block;";
             this.refs.my_quit.style="display:block;";
-            console.log(actions)
+            // console.log(actions)
             this.props.getUserInformation({username:window.localStorage.username}).then(res=>{
                
                 this.setState({_username:res.results[0].username});
@@ -149,7 +149,7 @@ class MyComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-  console.log(state)
+//   console.log(state)
     return {
        
     }
