@@ -14,6 +14,10 @@ import SearchComponent from "../components/searchCompoent/search.js"
 import WishListComponent from "../components/wishListComponent/wishListComponent.js"
 import ParentCompoent from "../components/Homecompoent/parent.js"
 import ListIndexedComponent from "../components/listCompoent/choseComponent/listindexedComponent/listindexed.js"
+import OrderComponent from "../components/orderConponent/orderComponent.js"
+
+
+
 const  route = (
    <Router path='/' component={ParentCompoent}>
         <Route path="/login" component={LoginComponent}></Route>
@@ -25,6 +29,7 @@ const  route = (
         <Route path="/category" component={CategoryComponent}></Route>
         <Route path="/chose" component={ChoseComponent}></Route>
         <Route path="/search" component={SearchComponent}></Route>
+        <Route path="/order" component={OrderComponent}></Route>
         <Route path="/wishlist" component={WishListComponent}></Route>
         <Route path="/listindexed" component={ListIndexedComponent}></Route>
    </Router>
