@@ -26,6 +26,11 @@ class BrandComponent extends React.Component{
 	state={
 		pagename:'上衣'
 	}
+	routeToSearch(){
+		hashHistory.push({
+			pathname:'/search',
+		})
+	}
 	getBrandData(event){
 		this.props.getBrandData({tab:event.sub});
 	}
@@ -37,7 +42,7 @@ class BrandComponent extends React.Component{
 				<div id="brandMain">
                     <Tabs tabs={tabs} initialPage={0} onChange={this.getBrandData.bind(this)}>
                        <div>
-                       		<div className="BrandTop">
+                       		<div className="BrandTop" onClick={this.routeToSearch.bind(this)}>
                        			<p>
                        				探索品牌名称<span>A-Z ></span>
                        			</p>
