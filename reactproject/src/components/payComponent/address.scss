@@ -1,11 +1,14 @@
 //添加地址的样式
 .addAddress{
-	background:#efefef;
+	background:#efefef;height: 100%;
 	display: flex;flex-direction:column;
 	.adr_Header{
 		font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
 		background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
-		.adr_Back{flex:1;text-align: center;}
+		.adr_Back{
+			flex:1;text-align: center;
+			i{font-size:0.4rem;}
+		}
 		.adr_HeaderTitle{
 			flex:9;text-align: left;padding-left: 0.4rem;
 		}
@@ -41,36 +44,42 @@
 
 //地址列表的样式
 .choose_addr{
-	display: flex;flex-direction: column;
+	display: flex;flex-direction: column;height: 100%;
 	.adr_Header{
 		font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
 		background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
-		.adr_Back{flex:1;text-align: center;}
+		.adr_Back{
+			flex:1;text-align: center;
+			i{font-size:0.4rem;}
+		}
 		.adr_HeaderTitle{
 			flex:9;text-align: left;padding-left: 0.4rem;
 		}
 	}
-	ul{
+	.adrList_body{
 		background:#efefef;flex:1;overflow-x: hidden;
-		li{
-			display: flex;margin-top: 0.2rem;background:#fff;
-			border-bottom:0.013333rem solid #ccc;padding:0.133333rem 0.066667rem;
-			div p{
-				margin: 0;font-size:0.346667rem;
-				span{padding-right: 0.133333rem;}
+		ul{
+			li{
+				display: flex;margin-top: 0.2rem;background:#fff;
+				border-bottom:0.013333rem solid #ccc;padding:0.133333rem 0.066667rem;
+				div p{
+					margin: 0;font-size:0.346667rem;line-height: 0.48rem;
+					span{padding-right: 0.133333rem;}
+				}
+				.chooseRadio{
+					flex:1;
+					input{width:0.35rem;height:0.35rem;margin:0.866667rem 0.25rem 0;}
+				}
+				.chooseList{flex:8;padding-left:0.266667rem;}
+				.chooseEdit{flex:1;font-size: 0.346667rem;line-height: 2.08rem;}
 			}
-			.chooseRadio{
-				flex:1;
-				input{width:0.35rem;height:0.35rem;margin:0.866667rem 0.25rem 0;}
+			.addNewAddr{
+				width: 2.999rem;border:0.013333rem solid #ccc;margin:0.4rem auto;display: block;
+				font-size: 0.4rem;line-height:0.8rem;text-align: center;
 			}
-			.chooseList{flex:8;padding-left:0.266667rem;}
-			.chooseEdit{flex:1;font-size: 0.346667rem;line-height: 2.08rem;}
-		}
-		.addNewAddr{
-			width: 2.999rem;border:0.013333rem solid #ccc;margin:0.4rem auto;display: block;
-			font-size: 0.4rem;line-height:0.8rem;text-align: center;
 		}
 	}
+	
 	.addr_Foot{
 		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
 		.addr_Btn{

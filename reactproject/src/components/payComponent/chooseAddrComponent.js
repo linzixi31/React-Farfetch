@@ -51,36 +51,42 @@ class ChooseAddrComponent extends Component{
 			}
 		});
 	}
+	//返回
+	goBack(){
+		hashHistory.go(-1);
+	}
 	render(){
 		return (
 			<div className="choose_addr">
 				<header className="adr_Header">
-					{<Back />}
+					<div className="adr_Back" onClick={this.goBack.bind(this)}><i className="iconfont icon-fanhui"></i></div>
 					<div className="adr_HeaderTitle">选择配送地址</div>
 				</header>
-				<ul onClick={this.changeDefaultAddr.bind(this)}>
-					{
-						this.props.addresses().map(function(item){
-							return (
-								<li key={item.addr_id} data-guid={item.addr_id}>
-										<div className="chooseRadio">
-											<input type="radio" name="address" id={item.addr_id}/>
-										</div>
-										<div className="chooseList" data-guid={item.addr_id}>
-											<p><span>{item.firstname}</span><span>{item.lastname}</span></p>
-											<p><span>{item.country}</span><span>{item.province}</span><span>{item.city}</span><span>{item.zipCode}</span></p>
-											<p><span>{item.addr_one}{item.addr_second}{item.addr_third}</span></p>
-											<p><span>{item.tele}</span></p>
-										</div>
-										<div className="chooseEdit">
-											编辑
-										</div>
-								</li>
-							)
-						})		
-					}
-					<li key="add" className="addNewAddr" onClick={this.toAddAddress.bind(this)}>添加新地址</li>
-				</ul>
+				<div className="adrList_body">
+					<ul onClick={this.changeDefaultAddr.bind(this)}>
+						{
+							this.props.addresses().map(function(item){
+								return (
+									<li key={item.addr_id} data-guid={item.addr_id}>
+											<div className="chooseRadio">
+												<input type="radio" name="address" id={item.addr_id}/>
+											</div>
+											<div className="chooseList" data-guid={item.addr_id}>
+												<p><span>{item.firstname}</span><span>{item.lastname}</span></p>
+												<p><span>{item.country}</span><span>{item.province}</span><span>{item.city}</span><span>{item.zipCode}</span></p>
+												<p><span>{item.addr_one}{item.addr_second}{item.addr_third}</span></p>
+												<p><span>{item.tele}</span></p>
+											</div>
+											<div className="chooseEdit">
+												编辑
+											</div>
+									</li>
+								)
+							})		
+						}
+						<li key="add" className="addNewAddr" onClick={this.toAddAddress.bind(this)}>添加新地址</li>
+					</ul>
+				</div>
 				<footer className="addr_Foot">
 					<div className="addr_Btn" onClick={this.changeAddr.bind(this)}>确认并返回</div>
 				</footer>

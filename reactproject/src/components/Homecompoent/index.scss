@@ -1,0 +1,328 @@
+#index{
+    width: 100%;
+    background: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    .index_header{
+        width: 100%;
+        height: 2.88rem;
+        padding: 0.21rem 0;
+        background: #ffffff;
+        position: fixed;
+        top: 0;
+        z-index: 1111111111111111;
+        h1{
+            font-size: 36px;
+            font-weight: bold;
+            height: 1.7rem;
+            line-height: 1.7rem;
+            text-align: center;
+        }
+        input{
+            width: 100%;
+            height: 0.74rem;
+            background: #F5F5F5;
+            padding: 0.13rem 0;
+        }
+        input::-webkit-input-placeholder{
+            font-size: 32px;
+            color: #8E8E93;
+            text-align: center;
+        }
+    }
+    .index_main{
+        width: 100%;
+        margin-top: 3.05rem;
+        flex: 1;
+        overflow-x:hidden;
+
+        .tips{
+            width: 100%;
+            height: 1.17rem;
+            background: #F5F5F5;
+            h3{
+                width: 100%;
+                height: 100%;
+                line-height: 1.17rem;
+                text-align: center;
+                font-weight: bold;
+                font-size: 26px;
+            }
+        }
+        .carousel{
+            width: 100%;
+            height: 8.16rem;
+            background: #FFFFFF;
+            padding: 0 0.64rem;
+            .carouselTitle{
+                width: 100%;
+                height:1.7rem;
+                h2{
+                    font-size: 38px;
+                    width: 100%;
+                    height: 1.7rem;
+                    line-height: 1.7rem;
+                    text-align: center; 
+                    font-weight: bold;   
+                }
+                .banner{
+                    width: 100%;
+                    height:5.01rem;
+                }
+            }
+        }
+        .specialRecommand{
+            width: 100%;
+            height: 12.08rem;
+            background: #FFFFFF;
+            margin-top: 0.26rem;
+            .recTitle{
+                width: 100%;
+                height: 1.12rem;
+                padding: 0 0.4rem;
+                border-bottom: 0.02rem solid #E5E5E5;
+                position: relative;
+                p{
+                    width: 4.53rem;
+                    height: 100%;
+                    line-height: 1.06rem;
+                    font-size: 28px;
+                    font-weight: bold;
+                    float: left;
+                }
+                span{
+                    display: block;
+                    width: 4.2rem;
+                    height: 100%;
+                    line-height: 1.06rem;
+                    float: left;
+                    font-size: 24px;
+                    text-align: right;
+                    font-weight: bold;
+                }
+                i{
+                    display: block;
+                    width: .36rem;
+                    height: .36rem;
+                    line-height: .36rem;
+                    font-size: 26px;
+                    float: left;
+                    position: absolute;
+                    top: .35rem;
+                    right: .31rem;
+                }
+            }
+            .recContent{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                .detail{
+                    width: 3.33rem;
+                    height: 5.46rem;
+                    .detail_img{
+                        width: 100%;
+                        height: 3.73rem;
+                        float: left;
+                        padding-top: 0.19rem;
+                        
+                        img{
+                            display: block;
+                            height: 100%;
+                            width: 75%;
+                            margin: 0 auto;
+                        }
+                    }
+                    .describe{
+                        width: 100%;
+                        height:1.73rem;
+                        float: left;
+                        p{
+                            width: 100%;
+                            height: 1.04rem;
+                            text-align: center;
+                            font-size: 26px;
+                            font-family: "微软雅黑","华文细黑";
+                            font-weight: bold;
+                            
+                        }
+                        span{
+                            display:block;
+                            width: 100%;
+                            font-size: 22px;
+                            font-family: "微软雅黑","华文细黑";
+                            text-align: center;
+                        }
+                    }
+                }
+                
+            }
+       }
+       .maybe{
+           width: 100%;
+           height: 17.97rem;
+           background: #FFFFFF;
+           margin-top: 0.26rem;
+           border-top: 0.02rem solid #E5E5E5;
+           h3{
+               width: 100%;
+               height: 1.09rem;
+               line-height: 1.09rem;
+               text-align:center;
+               font-size: 26px;
+               font-weight: bold;
+               border-bottom: 0.02rem solid #E5E5E5;
+           }
+           .brands{
+               width: 100%;
+               height: 5.62rem;
+               border-bottom: 0.02rem solid #E5E5E5;
+                .brandsTop{
+                    width: 100%;
+                    height: 1.12rem;
+                    line-height: 1.12rem;
+                    border-bottom: 0.02rem solid #E5E5E5;
+                    padding: 0 0.58rem 0 0.41rem;
+                    display: flex;
+                    position: relative;
+                    p{
+                        flex: 1;
+                        font-size: 26px;
+                        font-weight: bold;
+                        text-align: left;
+                    }
+                    span{
+                        width: 2rem;
+                        text-align: center;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                    i{
+                        display: block;
+                        width: .36rem;
+                        height: .36rem;
+                        line-height: .36rem;
+                        font-size: 26px;
+                        float: left;
+                        position: absolute;
+                        top: .4rem;
+                        right: .31rem;
+                    }
+                }
+                .brandContent{
+                    width: 3.33rem;
+                    height: 4.48rem;
+                    float: left;
+                    .brandImg{
+                        width: 100%;
+                        height: 3.52rem;
+                        padding-top: 0.26rem;
+                        img{
+                            display:block;
+                            height: 100%;
+                            margin: 0 auto;
+                        }
+                    }
+                    .brandDescribe{
+                        width: 100%;
+                        height: 1rem;
+                        line-height: 1rem;
+                        p{
+                            width: 100%;
+                            text-align: center;
+                            font-size: 22px;
+                        }
+                    }
+                }
+           }
+           
+       }
+       .otherRecommend{
+            width: 100%;
+            height: 8.61rem;
+            margin-top: 0.26rem;
+            background: #ffffff;
+            border-top: 0.02rem solid #E5E5E5;
+            border-bottom: 0.02rem solid #E5E5E5;
+           .otherTitle{
+                width: 100%;
+                height: 1.14rem;
+                line-height: 1.14rem;
+                border-bottom: 0.02rem solid #E5E5E5;
+                h3{
+                    height: 1.14rem;
+                    line-height: 1.14rem;
+                    font-size: 26px;
+                    width: 100%;
+                    text-align: center;
+                    font-weight: bold;
+                }
+           }
+            .otherContent{
+                width:100%;
+                height: 6.13rem;
+                border-bottom: .03rem solid #e5e5e5;
+                float: left;
+                .otherDetail{
+                    width: 3.33rem;
+                    height: 100%;
+                    float: left;
+                    .otherImg{
+                        width: 100%;
+                        height: 4.53rem;
+                        padding: .27rem .27rem 0 .27rem;
+                        
+                        img{
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            margin: 0 auto;
+                            border: none;
+                        }
+                    }
+                    .otherMsg{
+                        width: 100%;
+                        height: 1.6rem;
+                        p{
+                            font-weight: bold;
+                            text-align: center;
+                            &:nth-child(1){
+                                height: .77rem;
+                                line-height: .45rem;
+                                font-size:24px;
+                            }
+                        }
+                        p{
+                            font-weight: bold;
+                            text-align: center;
+                            &:nth-child(2){
+                                font-size: 22px;
+                                height: .83rem;
+                                line-height: .83rem;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .allItem{
+                width: 100%;
+                height: 1.28rem;
+                padding: .24rem 0;
+                float: left;
+                input{
+                    display: block;
+                    width: 2.05rem;
+                    height: .8rem;
+                    background: #00B0FF;
+                    color: #ffffff;
+                    text-align: center;
+                    line-height: .8rem;
+                    font-size: 24px;
+                    margin: 0 auto;
+                }
+            }
+        }
+       
+    }
+}

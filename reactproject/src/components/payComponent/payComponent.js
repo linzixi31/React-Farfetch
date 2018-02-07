@@ -67,7 +67,7 @@ class PayComponent extends Component{
 		return (
 			<div className="pay_ly">
 				<header className="payHeader">
-					<div className="payBack" onClick={this.goBack.bind(this)}>&lt;</div>
+					<div className="payBack" onClick={this.goBack.bind(this)}><i className="iconfont icon-fanhui"></i></div>
 					<div className="payHeaderTitle">结算</div>
 				</header>
 				<div className="payBody">

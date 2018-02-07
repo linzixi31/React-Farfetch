@@ -13,14 +13,18 @@ import './cart.scss';
 
 class CartComponent extends Component{
 	componentWillMount(){
-		//请求购物车数据
-		this.props.getCartProduct().then(res =>{
-			// console.log(res)
-		});
+		if(this.state.userId != ''){
+			//请求购物车数据
+			this.props.getCartProduct(this.state.userId).then(res =>{
+				// console.log(res)
+			});
+		}
+		
 	}
 	//data：存储尺码数量数据；selectTitle：尺码选择弹出层的标题；switchType：要改变的字段名；changeCartId：要改变的购物车id
 	//switch：控制弹出层显示隐藏的开关
 	state = {
+		userId:window.localStorage.userId || '',
 		switch:0,
 		data:'',
 		selectTitle:'',
@@ -36,7 +40,7 @@ class CartComponent extends Component{
 		//改变购物车中的加购商品信息
 		if(res != 'none'){
 			// console.log(res,this.state.switchType,this.state.changeCartId);
-			this.props.changeCart(res,this.state.switchType,this.state.changeCartId);
+			this.props.changeCart(this.state.userId,res,this.state.switchType,this.state.changeCartId);
 		}
 		this.setState({switch:0});
 	}
@@ -45,11 +49,11 @@ class CartComponent extends Component{
 		if(event.target.className.toLowerCase() === 'cartdelete'){
 			//删除购物车商品信息
 			let delId = event.target.getAttribute('data-guid');
-			this.props.deleteCartPro(delId);
+			this.props.deleteCartPro(this.state.userId,delId);
 		}else if(event.target.className.toLowerCase() === 'towishbtn'){
 			//从购物车添加到心愿单
 			let wishId = event.target.getAttribute('data-guid');
-			this.props.addToWish(wishId);
+			this.props.addToWish(this.state.userId,wishId);
 		}else if(event.target.className.toLowerCase() === 'cartqtysel'){
 			//改变数量
 			let cartid = event.target.getAttribute('data-guid');
@@ -83,28 +87,45 @@ class CartComponent extends Component{
 	//跳转去下单页面
 	toOrder(){
 
-		//根据不同国家生成不同订单（数组，同一个国家多个商品生成一个订单）
-		let orders = JSON.stringify(this.props.ordersCates());
-
-		//购物车的id
-		let cartIds = this.props.cartIds();
-
-		//商品总价
-		let totalPrice = this.props.totalPrice();
-
-		//跳转传参
-		var path = {
-		  	pathname:'/pay',
-		  	query:{
-				orders:orders,
-				cartIds:cartIds,
-				totalPrice:totalPrice
-		  	},
+		if(!window.localStorage){
+			hashHistory.push({
+				pathname:'/login'
+			})
+			return;
 		}
-		hashHistory.push(path);
+		if(window.localStorage && this.props.cartList.length == 0){
+			hashHistory.push({
+				pathname:'/index'
+			})
+			return;
+		}
+		if(window.localStorage){
+			//根据不同国家生成不同订单（数组，同一个国家多个商品生成一个订单）
+			let orders = JSON.stringify(this.props.ordersCates());
+
+			//购物车的id
+			let cartIds = this.props.cartIds();
+
+			//商品总价
+			let totalPrice = this.props.totalPrice();
+
+			//跳转传参
+			var path = {
+			  	pathname:'/pay',
+			  	query:{
+					orders:orders,
+					cartIds:cartIds,
+					totalPrice:totalPrice
+			  	},
+			}
+			hashHistory.push(path);
+		}
 
 	}
-	
+	//返回
+	goBack(){
+		hashHistory.go(-1);
+	}
 	render(){
 		//购物车无商品信息时
 		let styleShow,styleHide;
@@ -134,7 +155,7 @@ class CartComponent extends Component{
 		return (
 			<div className="cart_ly">
 				<header className="cartHeader">
-					<div className="cartBack">&lt;</div>
+					<div className="cartBack" onClick={this.goBack}><i className="iconfont icon-fanhui"></i></div>
 					<div className="cartHeaderTitle">
 						{this.state.cartHead}
 						<span>{this.props.cartList.length}</span>
@@ -174,7 +195,7 @@ class CartComponent extends Component{
 										</div>
 										<div className="cartProFoot">
 											<div className="cartToWish">
-												<p className="toWishBtn" data-guid={item.id}>加入愿望单</p>
+												<p className="toWishBtn" data-guid={item.id}><i className="iconfont icon-shoucang2"></i>加入愿望单</p>
 											</div>
 											<div className="cartProPrice">
 												<p>￥<span>{item.currentPrice}</span></p>
@@ -196,8 +217,8 @@ class CartComponent extends Component{
 							<h5>请以如下方式联系我们的客服：</h5>
 						</div>
 						<div className="cartHelpMethod">
-							<span>电话</span>
-							<span>邮箱</span>
+							<span><i className="iconfont icon-web-icon-"></i></span>
+							<span><i className="iconfont icon-icon1"></i></span>
 						</div>
 					</div>
 				</main>

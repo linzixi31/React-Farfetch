@@ -68,7 +68,7 @@ class AddressComponent extends Component{
 		return (
 			<div className="addAddress">
 				<header className="adr_Header">
-					<div className="adr_Back" onClick={this.goBack}>&lt;</div>
+					<div className="adr_Back" onClick={this.goBack}><i className="iconfont icon-fanhui"></i></div>
 					<div className="adr_HeaderTitle">添加配送地址</div>
 				</header>
 				<main className="add_addr_body">
