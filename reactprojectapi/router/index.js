@@ -21,6 +21,7 @@ var userStatus=require('./userStatus')
 var cart = require('./cart');
 
 var category = require('./category.js')
+var search = require('./search.js')
 
 
 module.exports = {
@@ -49,6 +50,7 @@ module.exports = {
         userStatus.getUserStatus(app,jwt);
         cart.register(app);
         category.register(app)
+        search.reg(app)
 
         app.listen(_port);
     }
