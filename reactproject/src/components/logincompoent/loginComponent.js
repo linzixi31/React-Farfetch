@@ -3,7 +3,7 @@ import http from '../../utils/httpClient.js';
 import * as action from './loginAction.js';
 import Spinnercomponent from '../spinner/spinner.js'
 import {connect} from 'react-redux'
-import { browserHistory } from 'react-router'
+import { browserHistory,hashHistory } from 'react-router'
 import './login.scss'
 
 
@@ -81,7 +81,7 @@ class Logincompoent extends Component{
      
     }
     back(){
-        location.href="#/my"
+        hashHistory.go(-1)
     }
     getFocus(a){
      

@@ -23,6 +23,26 @@ export default function login(state={},action){
             case ListConstants.ListBRAND_REQUESTERROR :
                   newstate.status = -1
             break;
+            case ListConstants.STAR_REQUESTING :
+                  newstate.status = 0
+            break;
+            case ListConstants.STAR_REQUESTED :
+                  newstate.status = 1
+                  newstate.starresult = action.result.results
+            break;
+            case ListConstants.STAR_REQUESTERROR :
+                  newstate.status = -1
+            break;
+            case ListConstants.setSTAR_REQUESTING :
+                  newstate.status = 0
+            break;
+            case ListConstants.setSTAR_REQUESTED :
+                  newstate.status = 1
+                  newstate.setstarresult = action.result.results
+            break;
+            case ListConstants.setSTAR_REQUESTERROR :
+                  newstate.status = -1
+            break;
         }
         //console.log(newstate)
         return newstate;

@@ -23,6 +23,7 @@ var delfromwish = require("./deleteFromWish");
 var cart = require('./cart');
 
 var category = require('./category.js')
+var search = require('./search.js')
 
 
 module.exports = {
@@ -50,9 +51,12 @@ module.exports = {
         payment.reg(app);
         userStatus.getUserStatus(app,jwt);
         cart.register(app);
-        category.register(app);
+
         checklist.register(app);
         delfromwish.register(app);
+
+        category.register(app);
+        search.reg(app)
 
         app.listen(_port);
     }

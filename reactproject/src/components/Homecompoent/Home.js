@@ -17,13 +17,16 @@ export class HomeComponent extends Component {
 		this.props.getGucci();
 		this.props.getOther();
 	}
+	toSearch(){
+		this.props.router.push("/search");
+	}
     render(){
         return(
             <div style={{height:"100%"}}>
             	<div id="index">
 	            	<div className="index_header">
 	            		<h1>Farfetch</h1>
-	            		<input type="text" placeholder="搜索"/>
+	            		<input type="text" placeholder="搜索" onClick={this.toSearch.bind(this)}/>
 	            	</div>
 	            	<div className="index_main">
 	            		<div className="tips">
@@ -170,9 +173,8 @@ export class HomeComponent extends Component {
 	toBrand(event){
 		var brandName = event.target.parentNode.children[0].innerText;
 		brandName = brandName.replace(" ","");
-		// console.log(brandName)
 		hashHistory.push({
-			pathname:"/brand",
+			pathname:"/brandlist",
 			query:{
 				brand:brandName
 			}

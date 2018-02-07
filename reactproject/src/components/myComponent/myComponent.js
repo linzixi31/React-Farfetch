@@ -59,7 +59,8 @@ class MyComponent extends Component{
         this.componentDidMount();
     }
     getLogin(){
-        location.href="#/login";
+        
+         hashHistory.push({pathname:"/login"})
     }
     myPhone(){
         Modal.alert('你想电话联系+864001204877吗？','',[{ text: '取消', onPress:()=>{}, style: 'default' },{ text: '确定', onPress: () =>{}, style: 'default' }])
@@ -69,7 +70,13 @@ class MyComponent extends Component{
     }
  
     getMy(){
-        location.href="#/order"
+        hashHistory.push({pathname:"/order"})
+    }
+    getPersonal(){
+        hashHistory.push({pathname:"/personal"})
+    }
+    getAddress(){
+        hashHistory.push({pathname:"/address"})
     }
     render(){
         return (
@@ -91,8 +98,8 @@ class MyComponent extends Component{
                                 <div className="myAccount" ref="my_account">
                                     <div>我的账户</div>
                                     <div onClick={this.getMy.bind(this)}>订单与退货</div>
-                                    <div>个人信息与密码</div>
-                                    <div>地址簿</div>
+                                    <div onClick={this.getPersonal.bind(this)}>个人信息与密码</div>
+                                    <div onClick={this.getAddress.bind(this)}>地址簿</div>
                                 </div>
                     
                     

@@ -16,10 +16,17 @@ export default class Detail extends React.Component{
 		//获取当前产品信息
 		var getDetail = () =>{
 			http.get('/getGood',{id:currentProId}).then(res=>{
-	            this.setState({
-	            	goods:res.body.data.results[0],
-	            	size:res.body.data.results[0].size.split(',')
-	            })
+				if(res.body.data.results[0].size){
+					this.setState({
+		            	goods:res.body.data.results[0],
+		            	size:res.body.data.results[0].size.split(',')
+		            })
+				}else{
+					this.setState({
+		            	goods:res.body.data.results[0],
+		            	size:['free']
+		            })
+				}
 	            http.get('/getHotGood',{category:res.body.data.results[0].category}).then(result => {
 		        	this.setState({
 		        		hot:result.body.data.results
@@ -194,11 +201,21 @@ export default class Detail extends React.Component{
 	ceshi(_id){
 		//获取商品
 		http.get('/getGood',{id:_id}).then(res=>{
-            this.setState({
-            	goods:res.body.data.results[0],
-            	size:res.body.data.results[0].size.split(','),
-            	proId:_id
-            })
+			console.log(_id);
+			if(res.body.data.results[0].size){
+				this.setState({
+	            	goods:res.body.data.results[0],
+	            	size:res.body.data.results[0].size.split(','),
+	            	proId:_id
+	            })
+			}else{
+				this.setState({
+	            	goods:res.body.data.results[0],
+	            	size:['free'],
+	            	proId:_id
+	            })
+			}
+            
             if(this.state.userId != '游客'){
             	http.get('/checkShouCang',{userId:this.state.userId,proId:_id}).then(rest=>{
 	        		console.log(_id);
@@ -217,7 +234,7 @@ export default class Detail extends React.Component{
 	}
 	routeToList(){
 		hashHistory.push({
-			pathname:'/list'
+			pathname:'/category'
 		})
 	}
 	
@@ -238,7 +255,6 @@ export default class Detail extends React.Component{
 	
 	
 	render(){
-		console.log(555);
 		return(
 			<div id="detail">
 				<header id="header">

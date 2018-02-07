@@ -4,9 +4,9 @@ import Footnav from '../footnavcompoent/footnav.js';
 import * as action from './listAction.js'
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
-
 import './font/iconfont.css'
 import './list.scss'
+
  class ListComponent extends Component{
      componentWillMount(){
         this.setState({pagename:this.props.location.query.catename});
@@ -37,35 +37,103 @@ import './list.scss'
                 this.setState({brand:newarr})
             })
         }
+        this.props.getstarData({
+          userId:window.localStorage.userId
+        }).then(res=>{
+            var newarr = []
+            res.results.forEach(function(item,idx){
+                newarr.push(item.proId)
+            })
+            //console.log(newarr)
+            this.setState({starpro:newarr})
+            //console.log(this.state.starpro)
+        })
      }
      componentDidUpdate(){
-        console.log(66)
+        //console.log(66)
      }
      listaction(e,item){
         //console.log(e.target)
         let target = e.target
-        if(target.tagName.toLowerCase()==='i'){
+        
+        if(target.tagName.toLowerCase()==='i' && window.localStorage.username){
             if(target.className==='iconfont icon-shoucang'){
                 // console.log(localstorage)
-                target.classList.add("active_list_lzx");
-            }else if(target.className==='iconfont icon-shoucang active_list_lzx'){
-                target.classList.remove("active_list_lzx");
+                this.props.setstarData({
+                    userId:window.localStorage.userId,
+                    proId:item.id,
+                    type:1
+                }).then(res=>{
+                    if(res.results.affectedRows==1){
+                        target.setAttribute('class',"iconfont icon-shoucang2");
+                    }
+                    
+                })
+                
+                
+            }else if(target.className==='iconfont icon-shoucang2'){
+                this.props.setstarData({
+                    userId:window.localStorage.userId,
+                    proId:item.id,
+                    type:0
+                }).then(res=>{
+                    
+                        target.setAttribute('class',"iconfont icon-shoucang");
+                    
+                })
+
             }
-        }
-        if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
+        }else if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
             hashHistory.push({
                 pathname:'/detail',
                 query: {
                     proId:item.id
                 }
             })
+        }else{
+             layer.open({
+                content: '您请先登录吧？'
+                ,btn: ['登录', '取消']
+                ,yes: function(index){
+                  hashHistory.push({
+                    pathname:'/login'
+
+                  })
+                  layer.close(index);
+                }
+              });
         }
      }
      state={
         pagename :'上衣',
-        brand:[]
+        brand:[],
+        starpro:[]
      }
+     renderstar(item){
+            if(this.state.starpro.includes(item.id))
+            {
+            return(
+                <i  className="iconfont icon-shoucang2" ></i>
+                )
 
+            }else{
+            return(
+                <i  className="iconfont icon-shoucang" ></i>
+                )
+            }
+      }
+     renderNewshop(item){
+            if(item.newest==1){
+                return(
+                    <p className="newest">新类</p>
+                    )
+            }else{
+                return(
+
+                    <div className='jian'></div>
+                    )
+            }
+     }
      render(){
         let self = this;
       
@@ -86,11 +154,13 @@ import './list.scss'
                         }}><span>筛选</span></li>
                          {
                             this.state.brand.map(function(item,idx){
-                                return <li key={idx} onClick={()=>{
-                                   self.props.getDataBrand({
-                                        brand:item
-                                   })
-                                }}><span>{item}</span></li>
+                                return  <li key={idx} onClick={()=>{
+                                           self.props.getDataBrand({
+                                                brand:item
+                                           })
+                                        }}>
+                                            <span>{item}</span>
+                                        </li>
                             })
                         }
                     </ul>                      
@@ -106,9 +176,10 @@ import './list.scss'
                                             self.listaction(e,item)
                                             }}>
                                             <div className='start_list' >
-                                                <i  className="iconfont icon-shoucang" ></i>
+                                                {self.renderstar(item)}
                                             </div> 
                                             <img  src={item.mainImg}/>
+                                            {self.renderNewshop(item)}
                                             <p className='title'>{item.title}</p>
                                             <p className='price'>￥{item.currentPrice}</p>
                                       </li>
@@ -126,9 +197,11 @@ import './list.scss'
 
 
 let mapStateToProps = (state) => {
-  console.log(state)
+  //console.log(state)
     return {
         result:state.listReducer.result || [],
+        starresult:state.listReducer.starresult || [],
+        setstarresult:state.listReducer.setstarresult || []
     }
 
 }

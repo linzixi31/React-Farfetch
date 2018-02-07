@@ -21,17 +21,11 @@ const leavenFun=function(){
 
 class OrderComponent extends Component{
     state={
-        _username:'',
-        msg:''
+        _username:''
     }
-    componentWillMount(){
-        
-    }
+ 
     componentDidMount(){
-        // console.log(this)
-        if(this.props.router){
-            this.props.router.setRouteLeaveHook(this.props.route, leavenFun)
-        }
+   
         if(window.localStorage.userId){
            this.props.getOrderInformation({userId:window.localStorage.userId}).then(res =>{
                 // console.log(res.results)
@@ -61,26 +55,42 @@ class OrderComponent extends Component{
                 {
                    
                    this.props.datas.map(function(item){
-                
+                        var sg='';
+                        if(item.status==0){
+                            sg='买家未付款'
+                        }else if(item.status==1){
+                            sg='交易完成'
+                        }else{
+                            sg='订单已取消'
+                        }
                         return(
                             <li key={item.order_id}>
                                 <h4>
                                     <span><img src={item.country_img}/>{item.country_name}</span>
-                                    <span>{item.status==0?'买家未付款':'交易完成'}</span>
+                                    <span>{sg}</span>
                                 </h4>
                                 <div>
                                     <div><img src={item.mainImg}/></div>
                                     <div>
                                         <p>{item.title}</p>
                                         <p>{item.descriptions}</p>
+                                        <p>{item.size}</p>
 
                                     </div>
                                     <div> 
-                                        <span></span>
+                                        <span>￥{item.currentPrice}</span>
                                         <span></span>
                                     </div>
                                 </div>
-                                <p></p>
+                                <p>
+                                    <p>
+                                        <h4>运费险</h4>
+                                        <span>确认收货前退货可理赔</span>
+                                    </p>
+                                    <p>
+                                        运费险已失效
+                                    </p>
+                                </p>
                             </li>
 
                             )
