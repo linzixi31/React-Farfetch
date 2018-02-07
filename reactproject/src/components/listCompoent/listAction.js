@@ -76,3 +76,11 @@ export function setstarData(params){
         method:'post'
     }
 }
+export function getbrandListData(params){
+    return{
+        types:[listConstants.List_REQUESTING,listConstants.List_REQUESTED,listConstants.List_REQUESTERROR],
+        url:"/getBrandlist",
+        data:params,
+        method:'post'
+    }
+}

@@ -83,6 +83,13 @@ import './list.scss'
                 })
 
             }
+        }else if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
+            hashHistory.push({
+                pathname:'/detail',
+                query: {
+                    proId:item.id
+                }
+            })
         }else{
              layer.open({
                 content: '您请先登录吧？'
@@ -95,14 +102,6 @@ import './list.scss'
                   layer.close(index);
                 }
               });
-        }
-        if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
-            hashHistory.push({
-                pathname:'/detail',
-                query: {
-                    proId:item.id
-                }
-            })
         }
      }
      state={
@@ -123,6 +122,18 @@ import './list.scss'
                 )
             }
       }
+     renderNewshop(item){
+            if(item.newest==1){
+                return(
+                    <p className="newest">新类</p>
+                    )
+            }else{
+                return(
+
+                    <div className='jian'></div>
+                    )
+            }
+     }
      render(){
         let self = this;
       
@@ -143,11 +154,13 @@ import './list.scss'
                         }}><span>筛选</span></li>
                          {
                             this.state.brand.map(function(item,idx){
-                                return <li key={idx} onClick={()=>{
-                                   self.props.getDataBrand({
-                                        brand:item
-                                   })
-                                }}><span>{item}</span></li>
+                                return  <li key={idx} onClick={()=>{
+                                           self.props.getDataBrand({
+                                                brand:item
+                                           })
+                                        }}>
+                                            <span>{item}</span>
+                                        </li>
                             })
                         }
                     </ul>                      
@@ -166,6 +179,7 @@ import './list.scss'
                                                 {self.renderstar(item)}
                                             </div> 
                                             <img  src={item.mainImg}/>
+                                            {self.renderNewshop(item)}
                                             <p className='title'>{item.title}</p>
                                             <p className='price'>￥{item.currentPrice}</p>
                                       </li>
