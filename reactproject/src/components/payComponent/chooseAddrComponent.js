@@ -13,17 +13,17 @@ class ChooseAddrComponent extends Component{
 	componentWillMount(){
 		//获取路由参数
 		var data = this.props.location.query;
-		
-		this.props.getAddresses().then(res =>{
+		//获取用户所有地址
+		this.props.getAddresses(data.userId, 2).then(res =>{
+			
 			res.results.forEach(function(item){
 				if(item.defaultAddr == 1){
 					document.getElementById(item.addr_id).checked = 'checked';
 					this.setState({
-						currentAdrrId:item.defaultAddr
+						currentAdrrId:item.addr_id
 					})
 				}
 			}.bind(this))
-			console.log(this.state.currentAdrrId)
 		});
 	}
 	toAddAddress(){
@@ -37,6 +37,7 @@ class ChooseAddrComponent extends Component{
 		if(e1 === 'chooselist' || e2 === 'p' || e2 == 'input'){
 			let currentId = e.target.parentNode.parentNode.getAttribute('data-guid');
 			document.getElementById(currentId).checked = 'checked';
+
 			this.setState({
 				currentAdrrId:currentId
 			})
@@ -44,8 +45,8 @@ class ChooseAddrComponent extends Component{
 	}
 	changeAddr(){
 		let currentId = this.state.currentAdrrId;
-		this.props.changeDefault(currentId).then(res =>{
-			console.log(res)
+
+		this.props.changeDefault(window.localStorage.userId,currentId).then(res =>{
 			if(res.results.length == 2){
 				hashHistory.go(-1);
 			}
@@ -65,9 +66,9 @@ class ChooseAddrComponent extends Component{
 				<div className="adrList_body">
 					<ul onClick={this.changeDefaultAddr.bind(this)}>
 						{
-							this.props.addresses().map(function(item){
+							this.props.addresses().map(function(item,idx){
 								return (
-									<li key={item.addr_id} data-guid={item.addr_id}>
+									<li key={idx} data-guid={item.addr_id}>
 											<div className="chooseRadio">
 												<input type="radio" name="address" id={item.addr_id}/>
 											</div>
@@ -94,9 +95,9 @@ class ChooseAddrComponent extends Component{
 		)
 	}
 }
-//addresses:state.payReducer.result == undefined ? [] : state.payReducer.result.results
+
 const mapStateToProps = (state) =>{
-	console.log(state)
+	// console.log(state)
 	return {
 		addresses:function(){
 			if(state.payReducer.result && !state.payReducer.result.results.affectedRows){

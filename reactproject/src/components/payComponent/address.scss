@@ -28,7 +28,8 @@
 					flex: 12;height: 1.066667rem;border:0 none;
 					font-size:0.36rem;line-height: 1.066667rem
 				}
-				i{flex:1;font-size:0.48rem;line-height: 1.066667rem;text-align: center;}
+				.iconfont{flex:1;font-size:0.3rem;line-height: 1.066667rem;text-align: center;}
+				.icon-zhengquequeding{color:#1CD467;font-size:0.42rem;}
 
 			}
 		}
@@ -36,9 +37,10 @@
 	.addr_Foot{
 		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
 		.addr_Btn{
-			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			line-height: 1.2rem;text-align: center;color:#fff;background:#222222;
 			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
 		}
+		.success{color:#1CD467;}
 	}
 }
 
@@ -83,7 +85,7 @@
 	.addr_Foot{
 		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
 		.addr_Btn{
-			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			line-height: 1.2rem;text-align: center;color:#fff;background:#222222;
 			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
 		}
 	}

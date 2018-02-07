@@ -38,6 +38,18 @@ module.exports = {
                 }
         })
     },
+    getBrand:function(_data,_cb){
+    	//查询类型品牌的商品
+    	let brandType = _data.tab;
+    	let sql = `SELECT * FROM brand WHERE brandType = ${brandType}`;
+    	db.query(sql,function(err,results,fields){
+    		if(err){
+    			_cb({status:false,error:err});
+    		}else{
+    			_cb({status:true,data:{results}});
+    		}
+    	})
+    },
     selectShouCang:function(_data,_cb){
     	//查询是否有收藏过
     	let userId = _data.userId;
@@ -183,18 +195,31 @@ module.exports = {
             }
         }.bind(this))
     },
+    //删除愿望单中的商品
+    delFromWish:function (_data,_cb) {
+        // console.log(_data)
+        var sql = 'delete from userwishes where proId = '+ _data.proId  + ' and userId = ' + _data.userId + 'and type = 1 ';
+        db.query(sql,function(err,result){
+            if(err){
+                _cb({status:false,err:err})
+            }else {
+                _cb({status:true,result:result})
+            }
+        })
+    },
     //2月5日 李阳 添加地址到数据库
     addaddress:function(_data,_cb){
-        
-        //提前地址二和地址三（可能为空
-        var addr2 = _data['addr[addr_second]'] || '';
-        var addr3 = _data['addr[addr_third]'] || '';
+        console.log(_data)
+        var addr = JSON.parse(_data.addr);
+        //提取地址二和地址三（可能为空
+        var addr2 = addr.addr_second || '';
+        var addr3 = addr.addr_third || '';
+        var sql = `update useraddress set defaultAddr = 0 where userId = ${_data.userId};`;
 
-        var sql = `insert into useraddress 
-                (userId,lastname,firstname,country,province,city,addr_one,addr_second,addr_third,zipCode,tele)
-                values (${_data.userId},'${_data['addr[lastname]']}','${_data['addr[firstname]']}','${_data['addr[country]']}',
-                '${_data['addr[province]']}','${_data['addr[city]']}','${_data['addr[addr_one]']}',
-                '${addr2}','${addr3}',${_data['addr[zipCode]']},${_data['addr[tele]']})`;
+        sql += `insert into useraddress 
+                (userId,lastname,firstname,country,province,city,addr_one,addr_second,addr_third,zipCode,tele,defaultAddr)
+                values (${_data.userId},'${addr.lastname}','${addr.firstname}','${addr.country}',
+                '${addr.province}','${addr.city}','${addr.addr_one}','${addr2}','${addr3}',${addr.zipCode},${addr.tele},1);`;
         db.query(sql, function(error, results){
             if(error){
                 _cb({status: false, error: error})
@@ -213,11 +238,11 @@ module.exports = {
         // console.log(orders);
         //生成订单的sql(同时生产多个订单)
         var sql = orders.map(function(item){
-            return `insert into orders (userId,totalPrice,cartId,delivery_country,addr_id) values (${userId},${item.totalPrice},'${item.proids}','${item.country}',${addrId});`
+            return `insert into orders (userId,totalPrice,pro_Id,delivery_country,addr_id) values (${userId},${item.totalPrice},'${item.proids}','${item.country}',${addrId});`
         }).join('');
-
+        //改变购物车状态sql
         sql += "update buycart set status = 1 where cart_id in (" + cartIds + ");";
-        // console.log(sql);
+        
          db.query(sql, function(error, results){
             if(error){
                 _cb({status: false, error: error})
@@ -226,19 +251,34 @@ module.exports = {
             } 
         })
     },
-    //2月5日 李阳 获取当前用户订单信息
+    //2月7日 李阳 获取当前用户订单信息
     getorders:function(_data,_cb){
         var userId = _data.userId;
         var orderIds = _data.orderIds;
-        //查询订单和地址
-        var sql = `select * from orders where status = 0 and userId = ${userId} and order_id in (${orderIds});
-                select * from useraddress where defaultAddr = 1 and userId = ${userId};`;
-                
+
+        //查询订单,订单商品和地址
+        var sql = `select * from orders,useraddress where 
+            orders.status = 0 and orders.userId = ${userId} and orders.order_id in (${orderIds}) 
+            and orders.addr_id = useraddress.addr_id;`;
+        
         db.query(sql, function(error, results){
             if(error){
                 _cb({status: false, error: error})
             } else {
-                _cb({status: true, data: {results}});
+                let res1 = results;
+                var proIds = results.map(function(item){
+                    return item.pro_Id
+                }).join(',');
+                // console.log(proIds);
+                var sql1 = `select * from goods where id in (${proIds})`;
+                db.query(sql1, function(error1, results1){
+                    if(error1){
+                        _cb({status: false, error: error1})
+                    } else {
+                        // console.log(results1,res1);
+                        _cb({status: true, data: {results:{orders:res1,goods:results1}}});
+                    } 
+                })
             } 
         })
     },
@@ -262,8 +302,9 @@ module.exports = {
     },
     //2月6日 李阳 改变当前用户的默认地址
     changedefaultaddr:function(_data,_cb){
+
         var sql = `update useraddress set defaultAddr = 0 where userId = ${_data.userId};
-                update useraddress set defaultAddr = 1 where userId = 1 and addr_id = ${_data.changeId};`;
+                update useraddress set defaultAddr = 1 where userId = ${_data.userId} and addr_id = ${_data.changeId};`;
         db.query(sql, function(error, results){
             if(error){
                 _cb({status: false, error: error})
@@ -271,5 +312,16 @@ module.exports = {
                 _cb({status: true, data: {results}});
             } 
         })      
+    },
+    //2月7日 李阳 订单付款
+    payorders:function(_data,_cb){
+        var sql = `update orders set status = 1 where order_id in (${_data.orderIds})`;
+        db.query(sql, function(error, results){
+            if(error){
+                _cb({status: false, error: error})
+            } else {
+                _cb({status: true, data: {results}});
+            } 
+        }) 
     }
 }

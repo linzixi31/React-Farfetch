@@ -28,7 +28,13 @@ module.exports = {
         })
         //改变默认地址
         _app.post('/changedefaultaddr',function(req,res){
-             db.changedefaultaddr(req.body,function(result){
+            db.changedefaultaddr(req.body,function(result){
+                res.send(result);
+            })
+        })
+        //订单付款
+        _app.post('/payorders',function(req,res){
+            db.payorders(req.body,function(result){
                 res.send(result);
             })
         })

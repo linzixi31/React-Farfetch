@@ -8,7 +8,7 @@ app.use(bp.json())
 var rooms = require('./rooms')
 var login = require('./login')
 var reg = require('./register')
-
+var brand = require('./brand')
 var jwt = require('jsonwebtoken');
 var listPage = require('./listPage')
 var homepage = require("./homepage")
@@ -16,7 +16,9 @@ var order = require('./order')
 var detail = require('./detail');
 var hotGoods = require("./hotGoods");
 var payment = require('./payment')
-var userStatus=require('./userStatus')
+var userStatus=require('./userStatus');
+var checklist = require("./checklist");
+var delfromwish = require("./deleteFromWish");
 
 var cart = require('./cart');
 
@@ -37,7 +39,7 @@ module.exports = {
                 next();
             }
         });          
-
+		brand.register(app)
         rooms.register(app);
         login.register(app,jwt);
         reg.reg(app);
@@ -49,6 +51,9 @@ module.exports = {
         payment.reg(app);
         userStatus.getUserStatus(app,jwt);
         cart.register(app);
+        checklist.register(app);
+        delfromwish.register(app);
+
         category.register(app)
         search.reg(app)
 
