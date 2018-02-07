@@ -1,0 +1,62 @@
+.paycash_ly{
+	display: flex;flex-direction:column;background:#efefef;height: 100%;
+	.payHeader{
+		font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
+		background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
+		.payBack{
+			flex:1;text-align: center;
+			i{font-size:0.4rem;}
+		}
+		.payHeaderTitle{
+			flex:9;text-align: left;padding-left: 0.4rem;
+		}
+	}
+	.cash_body{
+		flex:1;overflow-x: hidden;
+		.ordersList{
+			li{
+				background:#fff;margin:0.266667rem 0.133333rem 0;padding:0.133333rem;box-shadow:0 0.026667rem 0.04rem #aaa;
+				.orderTitle{font-size: 0.36rem;line-height: 0.64rem;}
+				.deliveryC{
+					font-size: 0.4rem;line-height: 0.88rem;border-bottom: 0.013333rem solid #ccc;
+					span{padding:0 0.2rem;}
+				}
+				.orderGoods{
+					display: flex;border-bottom: 0.013333rem solid #ccc;
+					&>div:first-child{
+						flex:3;
+						font-size: 0.426667rem;line-height: 2.0rem;
+					}
+					&>div:last-child{
+						flex:9;line-height: 2.0rem;
+						img{width: 1.0rem;margin-left:0.266667rem;}
+					}
+				}
+				.orderPrice{
+					font-size: 0.426667rem;line-height: 0.64rem;text-align: right;padding-right:0.333333rem;
+					color:red;font-weight: bold;
+				}
+				.delivery_addr{font-size:0.373333rem;}
+			}
+		}
+	}
+	.payFoot{
+		padding-bottom: 0.333333rem;background:rgba(255,255,255,.8); 
+		.cartTotalPrice{
+			display: flex;background:#fff;
+			.cartPrice1{flex:1;text-align: left;padding-left: 0.4rem;padding-top:0.133333rem;}
+			.cartPrice2{flex:1;text-align: right;padding-right: 0.4rem;padding-top:0.133333rem;}
+			p{
+				font-size: 0.32rem;margin-bottom:0.133333rem;line-height: 0.48rem;
+				span{padding:0 0.066667rem;font-weight: bold;}
+			}
+		}
+		.payBtn{
+			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
+			span{
+				padding:0 0.2rem;
+			}
+		}
+	}
+}

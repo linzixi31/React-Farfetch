@@ -7,6 +7,7 @@ import './pay.scss';
 
 class PayComponent extends Component{
 	state = {
+		userId:window.localStorage.userId,
 		totalPrice:0,
 		orders:[],
 		cartIds:'',
@@ -23,7 +24,8 @@ class PayComponent extends Component{
 			cartIds:orderIdsObj.cartIds
 		})
 
-		this.props.getAddresses(1).then(res=>{
+		//获取用户默认地址
+		this.props.getAddresses(window.localStorage.userId, 1).then(res=>{
 			console.log(res)
 			this.setState({
 				addr_id:res.results[0].addr_id
@@ -34,9 +36,9 @@ class PayComponent extends Component{
 	}
 	//选择地址
 	chooseAddr(e){
-		// console.log(e.target.parentNode.parentNode)
+		
 		if(e.target.parentNode.parentNode.tagName.toLowerCase() === 'section'){
-			let data = {userId:1};
+			let data = {userId:this.state.userId};
 			//跳转传参
 			var path = {
 			  	pathname:'/chooseaddress',
@@ -50,12 +52,20 @@ class PayComponent extends Component{
 		let orders = JSON.stringify(this.state.orders);
 		let cartIds = this.state.cartIds;
 		let addr_id = this.state.addr_id;
-		console.log(addr_id);
-		this.props.createOrder(orders,cartIds,addr_id).then(res =>{
+		console.log(orders,cartIds,addr_id);
+		this.props.createOrder(orders,cartIds,addr_id,window.localStorage.userId).then(res =>{
 			console.log(res);
 			//获取生产的订单ID
+			let orderIds = [];
+			res.results.forEach(function(item){
+				if(item.insertId != 0){
+					orderIds.push(item.insertId)
+				}
+			});
+			console.log(orderIds)
 			hashHistory.push({
-				pathname:'/cart'
+				pathname:'/cash',
+				query:{orderIds:orderIds.join(',')}
 			})
 		});
 	}

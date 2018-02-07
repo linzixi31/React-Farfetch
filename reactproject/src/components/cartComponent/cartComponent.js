@@ -15,9 +15,8 @@ class CartComponent extends Component{
 	componentWillMount(){
 		if(this.state.userId != ''){
 			//请求购物车数据
-			this.props.getCartProduct(this.state.userId).then(res =>{
-				// console.log(res)
-			});
+			this.props.getCartProduct(this.state.userId);
+
 		}
 		
 	}
@@ -84,7 +83,7 @@ class CartComponent extends Component{
 			});
 		}
 	}
-	//跳转去下单页面
+	//跳转页面
 	toOrder(){
 
 		if(!window.localStorage){

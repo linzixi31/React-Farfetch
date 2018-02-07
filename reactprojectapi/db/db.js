@@ -186,7 +186,7 @@ module.exports = {
     //2月5日 李阳 添加地址到数据库
     addaddress:function(_data,_cb){
         
-        //提前地址二和地址三（可能为空
+        //提取地址二和地址三（可能为空
         var addr2 = _data['addr[addr_second]'] || '';
         var addr3 = _data['addr[addr_third]'] || '';
 
@@ -213,11 +213,11 @@ module.exports = {
         // console.log(orders);
         //生成订单的sql(同时生产多个订单)
         var sql = orders.map(function(item){
-            return `insert into orders (userId,totalPrice,cartId,delivery_country,addr_id) values (${userId},${item.totalPrice},'${item.proids}','${item.country}',${addrId});`
+            return `insert into orders (userId,totalPrice,pro_Id,delivery_country,addr_id) values (${userId},${item.totalPrice},'${item.proids}','${item.country}',${addrId});`
         }).join('');
-
+        //改变购物车状态sql
         sql += "update buycart set status = 1 where cart_id in (" + cartIds + ");";
-        // console.log(sql);
+        
          db.query(sql, function(error, results){
             if(error){
                 _cb({status: false, error: error})
@@ -226,19 +226,34 @@ module.exports = {
             } 
         })
     },
-    //2月5日 李阳 获取当前用户订单信息
+    //2月7日 李阳 获取当前用户订单信息
     getorders:function(_data,_cb){
         var userId = _data.userId;
         var orderIds = _data.orderIds;
-        //查询订单和地址
-        var sql = `select * from orders where status = 0 and userId = ${userId} and order_id in (${orderIds});
-                select * from useraddress where defaultAddr = 1 and userId = ${userId};`;
-                
+
+        //查询订单,订单商品和地址
+        var sql = `select * from orders,useraddress where 
+            orders.status = 0 and orders.userId = ${userId} and orders.order_id in (${orderIds}) 
+            and orders.addr_id = useraddress.addr_id;`;
+        
         db.query(sql, function(error, results){
             if(error){
                 _cb({status: false, error: error})
             } else {
-                _cb({status: true, data: {results}});
+                let res1 = results;
+                var proIds = results.map(function(item){
+                    return item.pro_Id
+                }).join(',');
+                // console.log(proIds);
+                var sql1 = `select * from goods where id in (${proIds})`;
+                db.query(sql1, function(error1, results1){
+                    if(error1){
+                        _cb({status: false, error: error1})
+                    } else {
+                        // console.log(results1,res1);
+                        _cb({status: true, data: {results:{orders:res1,goods:results1}}});
+                    } 
+                })
             } 
         })
     },
@@ -271,5 +286,16 @@ module.exports = {
                 _cb({status: true, data: {results}});
             } 
         })      
+    },
+    //2月7日 李阳 订单付款
+    payorders:function(_data,_cb){
+        var sql = `update orders set status = 1 where order_id in (${_data.orderIds})`;
+        db.query(sql, function(error, results){
+            if(error){
+                _cb({status: false, error: error})
+            } else {
+                _cb({status: true, data: {results}});
+            } 
+        }) 
     }
 }

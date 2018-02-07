@@ -13,8 +13,8 @@ class ChooseAddrComponent extends Component{
 	componentWillMount(){
 		//获取路由参数
 		var data = this.props.location.query;
-		
-		this.props.getAddresses().then(res =>{
+		//获取用户所有地址
+		this.props.getAddresses(data.userId, 2).then(res =>{
 			res.results.forEach(function(item){
 				if(item.defaultAddr == 1){
 					document.getElementById(item.addr_id).checked = 'checked';
@@ -23,7 +23,6 @@ class ChooseAddrComponent extends Component{
 					})
 				}
 			}.bind(this))
-			console.log(this.state.currentAdrrId)
 		});
 	}
 	toAddAddress(){
@@ -45,7 +44,7 @@ class ChooseAddrComponent extends Component{
 	changeAddr(){
 		let currentId = this.state.currentAdrrId;
 		this.props.changeDefault(currentId).then(res =>{
-			console.log(res)
+			// console.log(res)
 			if(res.results.length == 2){
 				hashHistory.go(-1);
 			}
@@ -96,7 +95,7 @@ class ChooseAddrComponent extends Component{
 }
 //addresses:state.payReducer.result == undefined ? [] : state.payReducer.result.results
 const mapStateToProps = (state) =>{
-	console.log(state)
+	// console.log(state)
 	return {
 		addresses:function(){
 			if(state.payReducer.result && !state.payReducer.result.results.affectedRows){

@@ -44,8 +44,9 @@ class AddressComponent extends Component{
 			}
 		}
 		if(num == 8){
-			this.props.addAddress(this.state).then(res =>{
-				console.log(res)
+			let userId = window.localStorage.userId;
+			this.props.addAddress(userId,this.state).then(res =>{
+				
 				if(res.results.affectedRows){
 					hashHistory.go(-1);
 				}
