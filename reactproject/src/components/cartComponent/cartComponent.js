@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import {connect} from 'react-redux';
-
+import {hashHistory} from 'react-router';
 import * as actions from './cartActions';
 
 // import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
@@ -13,14 +13,18 @@ import './cart.scss';
 
 class CartComponent extends Component{
 	componentWillMount(){
-		//请求购物车数据
-		this.props.getCartProduct().then(res =>{
-			console.log(res)
-		});
+		if(this.state.userId != ''){
+			//请求购物车数据
+			this.props.getCartProduct(this.state.userId).then(res =>{
+				// console.log(res)
+			});
+		}
+		
 	}
 	//data：存储尺码数量数据；selectTitle：尺码选择弹出层的标题；switchType：要改变的字段名；changeCartId：要改变的购物车id
 	//switch：控制弹出层显示隐藏的开关
 	state = {
+		userId:window.localStorage.userId || '',
 		switch:0,
 		data:'',
 		selectTitle:'',
@@ -31,26 +35,25 @@ class CartComponent extends Component{
 		helpTitle:'14天无理由免费退货（退款含税）',
 		helpContent:'还在犹豫？别担心，我们提供14天无理由免费退货。来自中国内地的退货，你的退款将包含下单时所支付的关税。'
 	}
-	
+	//改变颜色尺码
 	getSizeQty(res){
 		//改变购物车中的加购商品信息
 		if(res != 'none'){
-			console.log(res,this.state.switchType,this.state.changeCartId);
-			this.props.changeCart(res,this.state.switchType,this.state.changeCartId);
+			// console.log(res,this.state.switchType,this.state.changeCartId);
+			this.props.changeCart(this.state.userId,res,this.state.switchType,this.state.changeCartId);
 		}
 		this.setState({switch:0});
 	}
-
+	//改变购物车状态
 	changeCartPro(event){
-		
 		if(event.target.className.toLowerCase() === 'cartdelete'){
 			//删除购物车商品信息
 			let delId = event.target.getAttribute('data-guid');
-			this.props.deleteCartPro(delId);
+			this.props.deleteCartPro(this.state.userId,delId);
 		}else if(event.target.className.toLowerCase() === 'towishbtn'){
 			//从购物车添加到心愿单
 			let wishId = event.target.getAttribute('data-guid');
-			this.props.addToWish(wishId);
+			this.props.addToWish(this.state.userId,wishId);
 		}else if(event.target.className.toLowerCase() === 'cartqtysel'){
 			//改变数量
 			let cartid = event.target.getAttribute('data-guid');
@@ -81,8 +84,48 @@ class CartComponent extends Component{
 			});
 		}
 	}
-	
-	
+	//跳转去下单页面
+	toOrder(){
+
+		if(!window.localStorage){
+			hashHistory.push({
+				pathname:'/login'
+			})
+			return;
+		}
+		if(window.localStorage && this.props.cartList.length == 0){
+			hashHistory.push({
+				pathname:'/index'
+			})
+			return;
+		}
+		if(window.localStorage){
+			//根据不同国家生成不同订单（数组，同一个国家多个商品生成一个订单）
+			let orders = JSON.stringify(this.props.ordersCates());
+
+			//购物车的id
+			let cartIds = this.props.cartIds();
+
+			//商品总价
+			let totalPrice = this.props.totalPrice();
+
+			//跳转传参
+			var path = {
+			  	pathname:'/pay',
+			  	query:{
+					orders:orders,
+					cartIds:cartIds,
+					totalPrice:totalPrice
+			  	},
+			}
+			hashHistory.push(path);
+		}
+
+	}
+	//返回
+	goBack(){
+		hashHistory.go(-1);
+	}
 	render(){
 		//购物车无商品信息时
 		let styleShow,styleHide;
@@ -112,7 +155,7 @@ class CartComponent extends Component{
 		return (
 			<div className="cart_ly">
 				<header className="cartHeader">
-					<div className="cartBack">&lt;</div>
+					<div className="cartBack" onClick={this.goBack}><i className="iconfont icon-fanhui"></i></div>
 					<div className="cartHeaderTitle">
 						{this.state.cartHead}
 						<span>{this.props.cartList.length}</span>
@@ -152,7 +195,7 @@ class CartComponent extends Component{
 										</div>
 										<div className="cartProFoot">
 											<div className="cartToWish">
-												<p className="toWishBtn" data-guid={item.id}>加入愿望单</p>
+												<p className="toWishBtn" data-guid={item.id}><i className="iconfont icon-shoucang2"></i>加入愿望单</p>
 											</div>
 											<div className="cartProPrice">
 												<p>￥<span>{item.currentPrice}</span></p>
@@ -174,23 +217,23 @@ class CartComponent extends Component{
 							<h5>请以如下方式联系我们的客服：</h5>
 						</div>
 						<div className="cartHelpMethod">
-							<span>电话</span>
-							<span>邮箱</span>
+							<span><i className="iconfont icon-web-icon-"></i></span>
+							<span><i className="iconfont icon-icon1"></i></span>
 						</div>
 					</div>
 				</main>
 				<footer className="cartFoot">
 					<div style={styleHide} className="cartTotalPrice">
 						<div className="cartPrice1">
-							<p>小计 ￥<span>234234</span></p>
-							<p>配送 ￥<span>234234</span></p>
+							<p>小计 ￥<span>{this.props.totalPrice()}</span></p>
+							<p>配送 ￥<span>{this.props.totalPrice()}</span></p>
 						</div>
 						<div className="cartPrice2">
-							<p>总计 CNY ￥<span>234234</span></p>
+							<p>总计 CNY ￥<span>{this.props.totalPrice()}</span></p>
 							<p>（已含关税）</p>
 						</div>
 					</div>
-					<div className="cartBtn">{cartBtn}</div>
+					<div className="cartBtn" onClick={this.toOrder.bind(this)}>{cartBtn}</div>
 				</footer>
 				{html}
 			</div>
@@ -199,11 +242,45 @@ class CartComponent extends Component{
 }
 
 const mapStateToProps = (state) => {
-	console.log(state)
+	// console.log(state)
 	return {
 		cartList:state.cartReducer.cartList.results || [],
 		operaResult:state.cartReducer.operaResult,
-		status:state.cartReducer.status
+		status:state.cartReducer.status,
+		totalPrice:function(){
+			let totalP = 0;
+			this.cartList.map(function(item){
+				totalP += item.currentPrice * item.qty;
+			})
+			return totalP;
+		},
+		cartIds:function(){
+			let cartIds = '';
+			this.cartList.map(function(item){
+				cartIds += item.cart_id + ',';
+			})
+			return cartIds.slice(0,-1);
+		},
+		ordersCates:function(){
+			let orders = [];
+			this.cartList.forEach(function(item){
+				let i = 0;
+				orders.forEach(function(or){
+					if(or.country != item.country_name){
+						i++;
+					}else{
+						return;
+					}
+				})
+				if(i == orders.length){
+					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice})
+				}else{
+					orders[i].proids += ',' + item.id;
+					orders[i].totalPrice += item.currentPrice;
+				}
+			})
+			return orders;
+		}
 	}
 };
 
