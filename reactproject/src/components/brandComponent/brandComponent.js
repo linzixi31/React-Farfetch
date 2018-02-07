@@ -35,7 +35,6 @@ class BrandComponent extends React.Component{
 		this.props.getBrandData({tab:event.sub});
 	}
 	render(){
-		console.log(this.props.result)
 		return(
 			<div id="brand">
 				<BackComponent/>
