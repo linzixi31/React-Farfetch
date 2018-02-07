@@ -37,6 +37,9 @@ import './list.scss'
                 this.setState({brand:newarr})
             })
         }
+        this.props.getstarData({
+                    userId:window.localStorage.userId
+        })
      }
      componentDidUpdate(){
         console.log(66)
@@ -44,13 +47,28 @@ import './list.scss'
      listaction(e,item){
         //console.log(e.target)
         let target = e.target
-        if(target.tagName.toLowerCase()==='i'){
+        
+        if(target.tagName.toLowerCase()==='i' && window.localStorage.username){
             if(target.className==='iconfont icon-shoucang'){
                 // console.log(localstorage)
-                target.classList.add("active_list_lzx");
-            }else if(target.className==='iconfont icon-shoucang active_list_lzx'){
-                target.classList.remove("active_list_lzx");
+                target.setAttribute('class',"iconfont icon-shoucang2");
+                
+            }else if(target.className==='iconfont icon-shoucang2'){
+                target.setAttribute('class',"iconfont icon-shoucang");
+
             }
+        }else{
+             layer.open({
+                content: '您请先登录吧？'
+                ,btn: ['登录', '取消']
+                ,yes: function(index){
+                  hashHistory.push({
+                    pathname:'/login'
+
+                  })
+                  layer.close(index);
+                }
+              });
         }
         if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
             hashHistory.push({
@@ -129,6 +147,7 @@ let mapStateToProps = (state) => {
   console.log(state)
     return {
         result:state.listReducer.result || [],
+        starresult:state.listReducer.starresult || [],
     }
 
 }
