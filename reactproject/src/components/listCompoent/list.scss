@@ -40,6 +40,10 @@ ul,li{
             line-height: 1.173333rem;
             text-align: center;
             background: #F5F5F5;
+            &>p{
+                font-size: 0.4rem;
+                color: #222;
+            }
         }
 
         .list_cont{
@@ -49,7 +53,8 @@ ul,li{
                 width:50%;
                 height:10.986667rem;
                 text-align: center;
-                border: 0.013333rem solid #ccc;
+                border-right: 0.013333rem solid #ccc;
+                border-top: 0.013333rem solid #ccc;
 
                 .start_list{
                     display:flex;
@@ -70,15 +75,23 @@ ul,li{
                 img{
 
                 }
+                .jian{
+                    height:1.266667rem; 
+                }
                 p{
+                    color:#222222;
                     &.title{
                         line-height: 0.6rem;
-                        font-size: 0.32rem;
-                        font-weight: bold;
+                        font-size: 0.4rem;
+                        font-weight: 400;
                     }
                     &.price{
                         line-height: 1.333333rem;
-                        font-size: 0.333333rem;
+                        font-size: 0.4rem;
+                    }
+                    &.newest{
+                        font-size: 0.346667rem;
+                        line-height: 1.266667rem;
                     }
                 }
             }

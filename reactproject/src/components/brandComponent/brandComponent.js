@@ -50,7 +50,7 @@ class BrandComponent extends React.Component{
                        			<ul>
                        				{
                        					this.props.result.map(function(item,idx){
-                       						return <li data-id={item.brandId} onClick={(e)=>{
+                       						return <li key={idx} data-id={item.brandId} onClick={(e)=>{
                        							hashHistory.push({
                        								pathname:'/list',
                        								query:{

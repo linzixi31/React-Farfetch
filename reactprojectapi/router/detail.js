@@ -27,7 +27,7 @@ module.exports = {
 			})
 		})
 		_app.get('/checkShouCang',function(req,res){
-			//检查收藏
+			//检查收藏 
 			db.selectShouCang(req.query,function(result){
 				console.log(result)
 				var type = 0 ;
@@ -40,7 +40,7 @@ module.exports = {
 			})
 		})
 		_app.get('/shouCang',function(req,res){
-			//先判断是否曾加入愿望清单
+			//先判断是否曾加入愿望清单 传userid 和 proid
 			db.selectShouCang(req.query,function(result){
 				if(result.data.results.length > 0){
 					console.log(result.data.results);
