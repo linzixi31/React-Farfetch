@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import "../css/mui.indexedlist.css";
 import * as action from "../../listAction.js";
 import {connect} from 'react-redux';
+import './listindexed.scss';
+import {hashHistory} from 'react-router'
  class ListIndexedComponent extends Component{
 componentDidMount(){
     mui.init();
@@ -101,7 +103,9 @@ render(){
     return(
         <div>
         <header className="mui-bar mui-bar-nav">
-            <a className="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <a className="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onClick={
+               ()=> hashHistory.goBack()
+            }></a>
             <h1 className="mui-title">选择品牌</h1>
             <a id='done' className="mui-btn mui-btn-link mui-pull-right mui-btn-blue mui-disabled">完成</a>
         </header>
@@ -133,7 +137,7 @@ render(){
                                     this.state.data[key].map(function(item,idx){
                                                      
                                         return(
-                                            <li data-value={item} data-tags={item} className="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                                            <li key={idx}  data-value={item} data-tags={item} className="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
                                                 <input type="checkbox" />{item}
                                             </li>
                                             )
@@ -151,7 +155,6 @@ render(){
 
         )
 }
-
 }
 let mapStateToProps = (state) => {
   console.log(state)

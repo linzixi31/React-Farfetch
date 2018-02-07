@@ -40,6 +40,9 @@ ul,li{
             line-height: 1.173333rem;
             text-align: center;
             background: #F5F5F5;
+            &>p{
+                font-size: 0.32rem;
+            }
         }
 
         .list_cont{

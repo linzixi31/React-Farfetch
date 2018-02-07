@@ -68,9 +68,9 @@ export function getstarData(params){
         method:'post'
     }
 }
-export function setstarData(){
+export function setstarData(params){
     return{
-        types:[listConstants.STAR_REQUESTING,listConstants.STAR_REQUESTED,listConstants.STAR_REQUESTERROR],
+        types:[listConstants.setSTAR_REQUESTING,listConstants.setSTAR_REQUESTED,listConstants.setSTAR_REQUESTERROR],
         url:"/setstar",
         data:params,
         method:'post'

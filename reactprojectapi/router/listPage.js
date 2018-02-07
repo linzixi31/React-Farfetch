@@ -41,5 +41,24 @@ module.exports = {
                     res.send(data)
                 });
             })
+            app.post('/getstar',function(req,res){
+                var sql = "select proId from `userwishes`,`goods`where userwishes.proId = goods.id and userId = "+ req.body.userId 
+                db.select(sql,function(data){
+                    console.log(data)
+                    res.send(data)
+                });
+            })
+            app.post('/setstar',function(req,res){
+                if(req.body.type==1){
+                    var sql = "INSERT INTO db_farfetch.userwishes (userId,proId,type) VALUES ("+req.body.userId+","+req.body.proId+","+req.body.type+") "
+                }else if(req.body.type==0){
+                    var sql = "DELETE FROM db_farfetch.userwishes WHERE proId ="+req.body.proId
+                }
+                
+                db.select(sql,function(data){
+                    console.log(data)
+                    res.send(data)
+                });
+            })
     }
 }
