@@ -9,12 +9,16 @@ export default class Back extends Component{
         return(
             <div className='back_lzx'>
                 <NavBar
+                  key={this.props.name}
                   mode="light"
                   icon={<Icon type='left'/>}
                   onLeftClick={() => hashHistory.goBack()}
                   rightContent={[
-                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                    <i className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}}></i>,
+                    <Icon key="0" type="search" style={{ marginRight: '16px' }} onClick={()=>{
+                      hashHistory.push({pathname:"/search"});
+                      }
+                    }/>,
+                    <i key="1" className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}}></i>
                   ]}
                 >{this.props.name}</NavBar>
 

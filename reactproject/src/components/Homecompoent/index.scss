@@ -3,6 +3,7 @@
     background: #F5F5F5;
     display: flex;
     flex-direction: column;
+    height:100%;
     .index_header{
         width: 100%;
         height: 2.88rem;
@@ -81,6 +82,7 @@
                 height: 1.12rem;
                 padding: 0 0.4rem;
                 border-bottom: 0.02rem solid #E5E5E5;
+                position: relative;
                 p{
                     width: 4.53rem;
                     height: 100%;
@@ -91,13 +93,24 @@
                 }
                 span{
                     display: block;
-                    width: 4.53rem;
+                    width: 4.2rem;
                     height: 100%;
                     line-height: 1.06rem;
-                    float: right;
+                    float: left;
                     font-size: 24px;
                     text-align: right;
                     font-weight: bold;
+                }
+                i{
+                    display: block;
+                    width: .36rem;
+                    height: .36rem;
+                    line-height: .36rem;
+                    font-size: 26px;
+                    float: left;
+                    position: absolute;
+                    top: .35rem;
+                    right: .31rem;
                 }
             }
             .recContent{
@@ -171,6 +184,7 @@
                     border-bottom: 0.02rem solid #E5E5E5;
                     padding: 0 0.58rem 0 0.41rem;
                     display: flex;
+                    position: relative;
                     p{
                         flex: 1;
                         font-size: 26px;
@@ -178,10 +192,21 @@
                         text-align: left;
                     }
                     span{
-                        flex: 1;
-                        text-align: right;
+                        width: 2rem;
+                        text-align: center;
                         font-size: 24px;
                         font-weight: bold;
+                    }
+                    i{
+                        display: block;
+                        width: .36rem;
+                        height: .36rem;
+                        line-height: .36rem;
+                        font-size: 26px;
+                        float: left;
+                        position: absolute;
+                        top: .4rem;
+                        right: .31rem;
                     }
                 }
                 .brandContent{

@@ -1,8 +1,5 @@
 *{margin:0;padding:0;}
 body,html{height:100%;}
-#app{height:100%;}
-#app>div{height:100%;}
-// #app>div>div{height:100%;}
 .my{height:100%;display:flex;flex-direction:column;}
 .my_header{width:100%;height:2rem;background:#fff;line-height:2rem;font-size:0.5rem;margin:0;font-weight:bold;display:flex;}
 .my_header>div:nth-child(1){padding-left:0.27rem;}
@@ -12,8 +9,8 @@ body,html{height:100%;}
 .my_main>.loginAndregister{display:flex;height:2rem;width:95%;margin:0 auto;background:#fff;padding-top:30px;padding-bottom:0.27rem;line-height:30px;font-size:0.5rem;}
 .my_main>.loginAndregister>div:nth-child(1){width:25%;}
 .my_main>.loginAndregister>div:nth-child(2){width:75%;}
-.my_main>.loginAndregister>div:nth-child(2)>h4{line-height:0.5rem;font-size:0.4rem;font-weight:bold;}
-.my_main>.loginAndregister>div:nth-child(2)>p{line-height:0.3rem;font-size:0.3rem;color:#666;}
+.my_main>.loginAndregister>div:nth-child(2)>h4{line-height:0.7rem;font-size:0.4rem;font-weight:bold;}
+.my_main>.loginAndregister>div:nth-child(2)>p{line-height:0.5rem;font-size:0.3rem;color:#666;}
 .my_main>.my_place{height:1.17rem;padding-top:0.5rem;padding-left:0.27rem;font-size:0.333rem;}
 .my_main>.my_chinaIn{height:1rem;background:#fff;line-height:1rem;padding-left:0.27rem;font-size:0.4rem;}
 .my_main>.pickgender{padding-left:0.27rem;}
@@ -23,20 +20,21 @@ body,html{height:100%;}
 .my_main>.my_gender{padding-left:0.27rem;padding-right:0.27rem;background:#fff;font-size:0.4rem;}
 .my_main>.my_gender>p{height:1.17rem;line-height:1.17rem;vertical-align:middle;}
 .my_main>.my_gender>p>input{display:inline-block;width:0.5rem;height:0.5rem;vertical-align:middle;}
+.my_main>.my_gender>p>label{font-size:0.4rem;color:#000;}
 .my_main>.my_gender>p:nth-child(1){border-bottom:1px solid #ccc;}
 .my_main>.my_inform{font-size:0.4rem;padding-left:0.27rem;padding-right:0.27rem;background:#fff;}
-.my_main>.my_inform>p{height:1.17rem;line-height:1.17rem;}
+.my_main>.my_inform>p{font-size:0.4rem;height:1.17rem;line-height:1.17rem;color:#000;}
 .my_main>.my_help{padding-left:0.5rem;line-height:1.17rem;}
 .my_main>.my_help>span{font-size:0.36rem;color:#888888;}
 
 
 .my_main>.my_about{font-size:0.4rem;padding-left:0.27rem;padding-right:0.27rem;background:#fff;}
-.my_main>.my_about>p{height:1.17rem;line-height:1.17rem;}
+.my_main>.my_about>p{height:1.17rem;line-height:1.17rem;color:#000;font-size:0.4rem;}
 .my_main>.my_about>p:nth-child(1){border-bottom:1px solid #ccc;}
 .my_main>.my_about>p:nth-child(3){border-bottom:1px solid #ccc;}
 .my_main>.connectUs{font-size:0.333rem;padding-left:0.27rem;padding-right:0.27rem;height:1.17rem;line-height:1.17rem;}
 .my_main>.telAndmsg{font-size:0.4rem;height:1.3rem;line-height:1.3rem;background:#fff;text-align:center;border:1px solid #E5E5E5;}
-.my_main>.telAndmsg>button{height:100%;width:50%;background:#fff;border:none;border-right:1px solid #E2E2E2;outline:none; 
+.my_main>.telAndmsg>button{height:100%;width:50%;background:#fff;border:none;border-right:1px solid #E2E2E2;outline:none; color:#000;
 }
 .my_main>.my_end{font-size:0.4rem;padding-left:0.27rem;height:1rem;line-height:1rem;color:#757575;}
 .my_footer{background:#fff;}

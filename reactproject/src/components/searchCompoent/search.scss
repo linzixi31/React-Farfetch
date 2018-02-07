@@ -1,0 +1,49 @@
+#search_lzx{
+    .am-search{
+        background:#222222;
+        height: 1.786667rem;
+        padding-left: 0.32rem;
+        .am-search-input .am-search-synthetic-ph{
+            height: 1.186667rem;
+           
+            .am-search-synthetic-ph-container{
+                 position:absolute;
+                 left:0;
+                i{
+                    width: 0.413333rem;
+                    height: 0.413333rem;
+                    background-size: 0.413333rem auto;
+                }
+                .am-search-synthetic-ph-placeholder{
+                font-size: 0.413333rem;
+                }
+                line-height: 1.186667rem;
+             }
+
+        }
+        .am-search-input {
+            height: 1.186667rem;
+            flex:1;            
+
+             input[type="search"]{
+                height: 1.186667rem;
+                font-size: 0.413333rem;
+
+
+             }   
+
+        }
+        .am-search-cancel{
+            font-size: 0.4rem;
+            width: 1.68rem;
+            height:1.186667rem;
+            line-height: 1.186667rem;
+            border: 1px solid #ccc;
+            border-radius:0.2rem;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            margin-left: 0.293333rem;
+            }
+    }
+}

@@ -55,7 +55,7 @@ class CategoryComponent extends Component{
                         <WhiteSpace />
                     </div>  
                 </div>
-                <Footnav/>
+                <Footnav selectedTab='category'/>
             </div>
 
             )

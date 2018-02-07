@@ -6,6 +6,8 @@ import * as action from "./homeAction.js";
 import Carousel from "./carousel.js";
 import Footernav from "../footnavcompoent/footnav.js";
 import homeScss from './home.scss';
+import "../wishListComponent/font/iconfont.css"
+import {hashHistory} from "react-router";
 
 export class HomeComponent extends Component {
 	componentWillMount(){
@@ -17,7 +19,7 @@ export class HomeComponent extends Component {
 	}
     render(){
         return(
-            <div>
+            <div style={{height:"100%"}}>
             	<div id="index">
 	            	<div className="index_header">
 	            		<h1>Farfetch</h1>
@@ -39,11 +41,12 @@ export class HomeComponent extends Component {
 	            			<div className="recTitle">
 	            				<p>为您特别推荐</p>
 	            				<span>选购全部</span>
+								<i className="iconfont icon-arrow-right-copy"></i>
 	            			</div>
 	            			<div className="recContent">
 	            				{
 	            					this.props.result.map((item) =>{
-	            						return (<div className="detail" key={item.id}>
+	            						return (<div className="detail" key={item.id}onClick={this.test.bind(this,item.id)}> 
 				            					<div className="detail_img">
 				            						<img src={item.mainImg} />
 				            					</div>
@@ -63,10 +66,11 @@ export class HomeComponent extends Component {
 	           					<div className="brandsTop">
 	           						<p>OFF-WHITE</p>
 	           						<span>选购全部</span>
+									<i className="iconfont icon-arrow-right-copy"></i>
 	           					</div>
 	           					{
 									this.props.offresult.map((item) =>{
-										return (<div className="brandContent" key={item.id}>
+										return (<div className="brandContent" key={item.id} onClick={this.test.bind(this, item.id)} >
 					           						<div className="brandImg">
 					           							<img src={item.mainImg} />
 					           						</div>
@@ -82,10 +86,11 @@ export class HomeComponent extends Component {
 	           					<div className="brandsTop">
 	           						<p>SAINT LAURENT</p>
 	           						<span>选购全部</span>
+									<i className="iconfont icon-arrow-right-copy"></i>
 	           					</div>
 								{
 									this.props.yslresult.map((item) =>{
-										return(<div className="brandContent" key={item.id}>
+										return (<div className="brandContent" key={item.id} onClick={this.test.bind(this, item.id)}>
 					           						<div className="brandImg">
 					           							<img src={item.mainImg} />
 					           						</div>
@@ -100,10 +105,11 @@ export class HomeComponent extends Component {
 	           					<div className="brandsTop">
 	           						<p>GUCCI</p>
 	           						<span>选购全部</span>
+									<i className="iconfont icon-arrow-right-copy"></i>
 	           					</div>
 	           					{
 	           						this.props.gucciresult.map((item) =>{
-	           							return(<div className="brandContent" key={item.id}>
+										return (<div className="brandContent" key={item.id} onClick={this.test.bind(this, item.id)}>
 					           						<div className="brandImg">
 					           							<img src={item.mainImg} />
 					           						</div>
@@ -122,7 +128,7 @@ export class HomeComponent extends Component {
 							<div className="otherContent">
 								{
 									this.props.otherresult.map((item) =>{
-										return (<div className="otherDetail" key={item.id}>
+										return (<div className="otherDetail" key={item.id} onClick={this.test.bind(this, item.id)}>
 											<div className="otherImg">
 												<img src={item.mainImg} />
 											</div>
@@ -139,14 +145,22 @@ export class HomeComponent extends Component {
 							</div>
 		            	</div>
 	            	</div>
-	            	
-	                <div>{this.props.children}</div>
-					<Footernav selectTab="index" />
+	            	<div style={{height:'1.3333rem'}}>
+					<Footernav selectedTab='index' />
+					</div>
 	            </div>
 				
             </div>
             )
-    }
+	}
+	test(_id){
+		hashHistory.push({
+			pathname:"/detail",
+			query:{
+				proId:_id
+			}
+		})
+	}
 } 
 
 let mapToState =  (state) =>{
