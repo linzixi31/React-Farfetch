@@ -53,6 +53,7 @@ class MyComponent extends Component{
     }
     my_quit(){
         window.localStorage.username='';
+        window.localStorage.userId = '';
         alert('退出成功')
         this.setState({_username:"我的账户"})
         this.componentDidMount();

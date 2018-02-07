@@ -31,7 +31,7 @@ export class HomeComponent extends Component {
 	            		</div>
 	            		<div className="carousel">
 	            			<div className="carouselTitle">
-	            				<h2>选购首饰</h2>
+	            				<h2>选购商品</h2>
 	            			</div>
 	            			<div className="banner">
 	            				<Carousel />
@@ -40,7 +40,7 @@ export class HomeComponent extends Component {
 	            		<div className="specialRecommand">
 	            			<div className="recTitle">
 	            				<p>为您特别推荐</p>
-	            				<span>选购全部</span>
+	            				<span onClick={this.toList.bind(this)}>选购全部</span>
 								<i className="iconfont icon-arrow-right-copy"></i>
 	            			</div>
 	            			<div className="recContent">
@@ -63,9 +63,10 @@ export class HomeComponent extends Component {
 	            		<div className="maybe">
 	           				<h3>您可能会喜欢… …</h3>
 	           				<div className="brands">
-	           					<div className="brandsTop">
+	           					<div className="brandsTop" 
+								   onClick={this.toBrand.bind(this)}>
 	           						<p>OFF-WHITE</p>
-	           						<span>选购全部</span>
+									<span >选购全部</span>
 									<i className="iconfont icon-arrow-right-copy"></i>
 	           					</div>
 	           					{
@@ -83,9 +84,10 @@ export class HomeComponent extends Component {
 	
 	           				</div>
 	           				<div className="brands">
-	           					<div className="brandsTop">
+								<div className="brandsTop"
+								 onClick={this.toBrand.bind(this)}>
 	           						<p>SAINT LAURENT</p>
-	           						<span>选购全部</span>
+									<span>选购全部</span>
 									<i className="iconfont icon-arrow-right-copy"></i>
 	           					</div>
 								{
@@ -102,9 +104,10 @@ export class HomeComponent extends Component {
 								}
 	           				</div>
 	           				<div className="brands">
-	           					<div className="brandsTop">
+	           					<div className="brandsTop" 
+									onClick={this.toBrand.bind(this)}>
 	           						<p>GUCCI</p>
-	           						<span>选购全部</span>
+									<span>选购全部</span>
 									<i className="iconfont icon-arrow-right-copy"></i>
 	           					</div>
 	           					{
@@ -141,7 +144,7 @@ export class HomeComponent extends Component {
 								}
 							</div>
 							<div className="allItem">
-								<input type="button" value='选购全部' />
+								<input type="button" value='选购全部' onClick={this.toList.bind(this)} />
 							</div>
 		            	</div>
 	            	</div>
@@ -158,6 +161,20 @@ export class HomeComponent extends Component {
 			pathname:"/detail",
 			query:{
 				proId:_id
+			}
+		})
+	}
+	toList(){
+		this.props.router.push("/list");
+	}
+	toBrand(event){
+		var brandName = event.target.parentNode.children[0].innerText;
+		brandName = brandName.replace(" ","");
+		// console.log(brandName)
+		hashHistory.push({
+			pathname:"/brand",
+			query:{
+				brand:brandName
 			}
 		})
 	}
