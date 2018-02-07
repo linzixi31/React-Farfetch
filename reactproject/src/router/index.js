@@ -20,6 +20,8 @@ import AddressComponent from "../components/myComponent/addressComponent.js"
 import ParentCompoent from "../components/Homecompoent/parent.js"
 import ListIndexedComponent from "../components/listCompoent/choseComponent/listindexedComponent/listindexed.js"
 import OrderComponent from "../components/orderConponent/orderComponent.js"
+
+import BrandComponenet from '../components/brandComponent/brandComponent.js'
 import BrandListComponent from "../components/listCompoent/brandList.js"
 
 
@@ -43,9 +45,11 @@ const  route = (
         <Route path="/personal" component={PersonalComponent}></Route>
         <Route path="/address" component={AddressComponent}></Route>
         <Route path="/listindexed" component={ListIndexedComponent}></Route>
+        <Route path="/brand" component = {BrandComponenet}></Route>
         <Route path="/brandlist" component={BrandListComponent}></Route>
    </Router>
 
         )
 export default route
+
 
