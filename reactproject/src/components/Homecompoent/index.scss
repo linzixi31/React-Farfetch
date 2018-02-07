@@ -90,6 +90,7 @@
                     font-size: 28px;
                     font-weight: bold;
                     float: left;
+                    color: #000000;
                 }
                 span{
                     display: block;
@@ -144,7 +145,7 @@
                             font-size: 26px;
                             font-family: "微软雅黑","华文细黑";
                             font-weight: bold;
-                            
+                            color: #000000;
                         }
                         span{
                             display:block;
@@ -152,6 +153,7 @@
                             font-size: 22px;
                             font-family: "微软雅黑","华文细黑";
                             text-align: center;
+                            color: #000000;
                         }
                     }
                 }
@@ -183,19 +185,24 @@
                     line-height: 1.12rem;
                     border-bottom: 0.02rem solid #E5E5E5;
                     padding: 0 0.58rem 0 0.41rem;
-                    display: flex;
+                    // display: flex;
                     position: relative;
                     p{
-                        flex: 1;
+                        width:100%;
                         font-size: 26px;
                         font-weight: bold;
                         text-align: left;
+                        color: #000000;
                     }
                     span{
                         width: 2rem;
                         text-align: center;
                         font-size: 24px;
                         font-weight: bold;
+                        position: absolute;
+                        right: 1.07rem;
+                        top: 0;
+                        // z-index: -111;
                     }
                     i{
                         display: block;
@@ -230,6 +237,7 @@
                         p{
                             width: 100%;
                             text-align: center;
+                            color: #000000;
                             font-size: 22px;
                         }
                     }
@@ -286,6 +294,7 @@
                         p{
                             font-weight: bold;
                             text-align: center;
+                            color: #000000;
                             &:nth-child(1){
                                 height: .77rem;
                                 line-height: .45rem;

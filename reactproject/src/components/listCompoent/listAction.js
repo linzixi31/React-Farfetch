@@ -15,6 +15,12 @@ export function getDataBrand(params){
         data:params
     }
 }
+export function getBrand(){
+    return{
+        types:[listConstants.List_REQUESTING,listConstants.List_REQUESTED,listConstants.List_REQUESTERROR],
+        url:"/Brand",
+    }
+}
 export function getchoseData(params,value){
     //console.log(value)
     switch(Number(value)){

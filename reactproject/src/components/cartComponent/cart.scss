@@ -113,7 +113,7 @@ ul,li{list-style: none;}
 						}
 					}
 					.cartBtn{
-						line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+						line-height: 1.2rem;text-align: center;color:#fff;background:#222222;
 						font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
 					}
 				}
@@ -126,8 +126,8 @@ ul,li{list-style: none;}
 //提示框样式
 .am-toast{
 	padding:0.266667rem 0;
- 	.am-toast-text-info{font-size:0.32rem;}
- 	.am-icon-lg{width:0.64rem;height:0.64rem;}
+ 	.am-toast-text-info{font-size:0.42rem;}
+ 	.am-icon-lg{width:0.8rem;height:0.8rem;}
 }
 
 //颜色尺码选择弹窗样式

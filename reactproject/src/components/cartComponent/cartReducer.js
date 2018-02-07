@@ -3,7 +3,6 @@ import * as cartConstants from './cartConstants';
 export default function cart(state = {cartList:[]}, action){
 	let newState = JSON.parse(JSON.stringify(state));
 	if(!action.operation){
-		// console.log(action)
 		switch(action.type){
 			case cartConstants.CART_REQUESTING :
 			newState.status = 0;

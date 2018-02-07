@@ -4,7 +4,7 @@ import React from "react";
 
 export default class App extends React.Component {
 	state = {
-		data: ['1', '2', '3'],
+		data: ['c0','c1', 'c2', 'c3','c4'],
 		imgHeight: 176,
 		slideIndex: 0,
 	}
@@ -12,7 +12,7 @@ export default class App extends React.Component {
 		// simulate img loading
 		setTimeout(() => {
 			this.setState({
-				data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
+				data: ['c0', 'c1', 'c2','c3','c4'],
 			});
 		}, 100);
 	}
@@ -31,7 +31,7 @@ export default class App extends React.Component {
               style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
             >
               <img
-                src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                src={`./src/assets/img/${val}.png`}
                 alt=""
                 style={{ width: '100%', verticalAlign: 'top' }}
                 onLoad={() => {

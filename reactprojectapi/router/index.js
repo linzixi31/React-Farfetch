@@ -16,7 +16,9 @@ var order = require('./order')
 var detail = require('./detail');
 var hotGoods = require("./hotGoods");
 var payment = require('./payment')
-var userStatus=require('./userStatus')
+var userStatus=require('./userStatus');
+var checklist = require("./checklist");
+var delfromwish = require("./deleteFromWish");
 
 var cart = require('./cart');
 
@@ -49,6 +51,9 @@ module.exports = {
         payment.reg(app);
         userStatus.getUserStatus(app,jwt);
         cart.register(app);
+        checklist.register(app);
+        delfromwish.register(app);
+
         category.register(app)
         search.reg(app)
 
