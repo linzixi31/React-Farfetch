@@ -15,9 +15,8 @@ class CartComponent extends Component{
 	componentWillMount(){
 		if(this.state.userId != ''){
 			//请求购物车数据
-			this.props.getCartProduct(this.state.userId).then(res =>{
-				// console.log(res)
-			});
+			this.props.getCartProduct(this.state.userId);
+
 		}
 		
 	}
@@ -35,7 +34,7 @@ class CartComponent extends Component{
 		helpTitle:'14天无理由免费退货（退款含税）',
 		helpContent:'还在犹豫？别担心，我们提供14天无理由免费退货。来自中国内地的退货，你的退款将包含下单时所支付的关税。'
 	}
-	//改变颜色尺码
+	//改变数量尺码
 	getSizeQty(res){
 		//改变购物车中的加购商品信息
 		if(res != 'none'){
@@ -84,9 +83,8 @@ class CartComponent extends Component{
 			});
 		}
 	}
-	//跳转去下单页面
+	//跳转页面
 	toOrder(){
-
 		if(!window.localStorage){
 			hashHistory.push({
 				pathname:'/login'
@@ -100,27 +98,34 @@ class CartComponent extends Component{
 			return;
 		}
 		if(window.localStorage){
-			//根据不同国家生成不同订单（数组，同一个国家多个商品生成一个订单）
-			let orders = JSON.stringify(this.props.ordersCates());
-
-			//购物车的id
-			let cartIds = this.props.cartIds();
-
-			//商品总价
-			let totalPrice = this.props.totalPrice();
-
-			//跳转传参
-			var path = {
+			//跳转
+			hashHistory.push({
 			  	pathname:'/pay',
-			  	query:{
-					orders:orders,
-					cartIds:cartIds,
-					totalPrice:totalPrice
-			  	},
-			}
-			hashHistory.push(path);
+			});
 		}
 
+	}
+	showPhone(){
+		layer.open({
+			title: [
+			    '联系电话',
+			    'background-color: #FF4351; color:#fff;'
+		    ],
+		    content: '电话：13666666666',
+		    btn:'OK',
+		   	className:'layerAlert'
+		});
+	}
+	showEmail(){
+		layer.open({
+			title: [
+			    '电邮地址',
+			    'background-color: #FF4351; color:#fff;'
+		    ],
+		    content: 'Email：290035807@qq.com',
+		    btn:'OK',
+		   	className:'layerAlert'
+		});
 	}
 	//返回
 	goBack(){
@@ -217,8 +222,8 @@ class CartComponent extends Component{
 							<h5>请以如下方式联系我们的客服：</h5>
 						</div>
 						<div className="cartHelpMethod">
-							<span><i className="iconfont icon-web-icon-"></i></span>
-							<span><i className="iconfont icon-icon1"></i></span>
+							<span onClick={this.showPhone}><i className="iconfont icon-web-icon-"></i></span>
+							<span onClick={this.showEmail}><i className="iconfont icon-icon1"></i></span>
 						</div>
 					</div>
 				</main>
@@ -247,39 +252,13 @@ const mapStateToProps = (state) => {
 		cartList:state.cartReducer.cartList.results || [],
 		operaResult:state.cartReducer.operaResult,
 		status:state.cartReducer.status,
+		//总价
 		totalPrice:function(){
 			let totalP = 0;
 			this.cartList.map(function(item){
 				totalP += item.currentPrice * item.qty;
 			})
 			return totalP;
-		},
-		cartIds:function(){
-			let cartIds = '';
-			this.cartList.map(function(item){
-				cartIds += item.cart_id + ',';
-			})
-			return cartIds.slice(0,-1);
-		},
-		ordersCates:function(){
-			let orders = [];
-			this.cartList.forEach(function(item){
-				let i = 0;
-				orders.forEach(function(or){
-					if(or.country != item.country_name){
-						i++;
-					}else{
-						return;
-					}
-				})
-				if(i == orders.length){
-					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice})
-				}else{
-					orders[i].proids += ',' + item.id;
-					orders[i].totalPrice += item.currentPrice;
-				}
-			})
-			return orders;
 		}
 	}
 };
