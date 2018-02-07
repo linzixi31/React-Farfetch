@@ -234,7 +234,7 @@ export default class Detail extends React.Component{
 	}
 	routeToList(){
 		hashHistory.push({
-			pathname:'/list'
+			pathname:'/category'
 		})
 	}
 	
