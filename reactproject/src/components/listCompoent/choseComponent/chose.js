@@ -80,7 +80,7 @@ import './chose.scss'
               </List>
               <Button onClick={()=>{
                 self.submit()
-              }}>显示{this.props.total}笔结果</Button>
+              }}>显示<span>{this.props.total}</span>笔结果</Button>
             </div>
 
             )

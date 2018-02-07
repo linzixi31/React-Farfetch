@@ -9,7 +9,10 @@ import payReducer from '../components/payComponent/payReducer.js'
 import orderReducer from '../components/orderConponent/orderReducer.js'
 import CashReducer from './../components/payComponent/cashComponent/cashReducer.js'
 
+
+import brandReducer from '../components/brandComponent/redux/brandReducer.js'
+import searchReducer from '../components/searchCompoent/searchReducer.js'
 export default combineReducers({
-   login,cateReducer,listReducer,cartReducer,my,orderReducer,getHot,payReducer,CashReducer
+   login,cateReducer,listReducer,cartReducer,my,orderReducer,getHot,searchReducer,payReducer,brandReducer,CashReducer
 
 })
