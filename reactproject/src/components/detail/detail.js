@@ -6,8 +6,6 @@ import { NavBar, Icon,Accordion,Button,WhiteSpace,WingBlank,List} from 'antd-mob
 import {Router, hashHistory} from "react-router";
 import DetailAccordion from './detailAccordion.js';
 import DetailSize from './detailSize.js';
-import DetailModal from './detailModal.js';
-import DetailEmailModal from './detailEmailModal.js'
 export default class Detail extends React.Component{
 	//进入页面前
 	componentWillMount(){

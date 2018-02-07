@@ -8,7 +8,7 @@ app.use(bp.json())
 var rooms = require('./rooms')
 var login = require('./login')
 var reg = require('./register')
-
+var brand = require('./brand')
 var jwt = require('jsonwebtoken');
 var listPage = require('./listPage')
 var homepage = require("./homepage")
@@ -36,7 +36,7 @@ module.exports = {
                 next();
             }
         });          
-
+		brand.register(app)
         rooms.register(app);
         login.register(app,jwt);
         reg.reg(app);

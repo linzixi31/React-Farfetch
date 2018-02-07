@@ -38,6 +38,18 @@ module.exports = {
                 }
         })
     },
+    getBrand:function(_data,_cb){
+    	//查询类型品牌的商品
+    	let brandType = _data.tab;
+    	let sql = `SELECT * FROM brand WHERE brandType = ${brandType}`;
+    	db.query(sql,function(err,results,fields){
+    		if(err){
+    			_cb({status:false,error:err});
+    		}else{
+    			_cb({status:true,data:{results}});
+    		}
+    	})
+    },
     selectShouCang:function(_data,_cb){
     	//查询是否有收藏过
     	let userId = _data.userId;
