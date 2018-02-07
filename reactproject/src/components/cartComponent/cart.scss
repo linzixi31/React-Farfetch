@@ -4,16 +4,17 @@ ul,li{list-style: none;}
 
 #app{
 	height: 100%;
-	&>div{
-		height: 100%;
 		&>div{
-			// height: 100%;
+			height: 100%;
 			.cart_ly{
-				height: 100%;display: flex;flex-direction:column;
+				height: 100%;display: flex;flex-direction:column;background:#EFEFEF;
 				.cartHeader{
 					font-size:0.43rem;line-height: 1.066667rem;font-weight: bold;z-index:100;
 					background:#fff;box-shadow: 0 0 5px #ccc;display: flex;
-					.cartBack{flex:1;text-align: center;}
+					.cartBack{
+						flex:1;text-align: center;
+						i{font-size:0.4rem;}
+					}
 					.cartHeaderTitle{
 						flex:9;text-align: left;padding-left: 0.4rem;
 						span{padding:0 0.133333rem;color:#B7A785;}
@@ -32,7 +33,7 @@ ul,li{list-style: none;}
 								&>div:first-child{flex:1;}
 								&>div:last-child{flex:10;}
 								p{
-									font-size: 0.31rem;color:#888;
+									font-size: 0.31rem;color:#888;margin-bottom: 0;line-height: 0.5rem;
 									.freight{float: right;}
 									span{color:#000;padding:0 0.04rem;}
 								}
@@ -48,11 +49,11 @@ ul,li{list-style: none;}
 									flex:2;
 									.cartInfor_t{
 										position:relative;
-										h3{font-size: 0.4rem;font-weight: bold;}
-										h4{font-size: 0.26rem;font-weight:normal;}
+										h3{font-size: 0.4rem;font-weight: bold;margin:0;line-height: 0.64rem;}
+										h4{font-size: 0.26rem;font-weight:normal;margin:0;line-height: 0.48rem;}
 										.cartDelete{
 											position:absolute;width:0.533333rem;height:0.533333rem;border-radius: 50%;text-align: center;
-											right:0.133333rem;top:0;font-size: 0.4rem;background:#E4E4E4;
+											right:0.133333rem;top:0;font-size: 0.4rem;background:#E4E4E4;line-height:0.533333rem;
 										}
 									}
 									.cartInfor_m{
@@ -69,12 +70,15 @@ ul,li{list-style: none;}
 								display: flex;
 								.cartToWish{
 									flex:1;
-									p{font-size: 0.3rem;padding-top:0.266667rem;}
+									p{
+										font-size: 0.3rem;padding-top:0.266667rem;margin-bottom: 0;color:#000;
+										i{font-size: 0.3rem;padding:0 0.066667rem;}
+									}
 								}
 								.cartProPrice{
 									flex:1;text-align: right;
-									p:first-child{font-size:0.4rem;}
-									p:last-child{font-size: 0.28rem;}
+									p:first-child{font-size:0.4rem;margin-bottom: 0;line-height: 0.64rem;color:#000;}
+									p:last-child{font-size: 0.28rem;margin-bottom: 0;line-height: 0.48rem;}
 								}
 								
 							}
@@ -84,14 +88,15 @@ ul,li{list-style: none;}
 						background:#fff;
 						.cartHelp_t,.cartNeedHelp{
 							padding:0.266667rem 0;margin:0 0.266667rem;border-bottom: 0.013333rem solid #E3E3E3;
-							p{font-size: 0.38rem;}
-							h5{font-size: 0.32rem;line-height: 0.45rem;}
+							p{font-size: 0.38rem;margin:0;line-height: 0.64rem;}
+							h5{font-size: 0.32rem;line-height: 0.45rem;margin:0;line-height: 0.48rem;}
 						}
 						.cartHelpMethod{
 							display: flex;border-top:0.013333rem solid #ccc;border-bottom:0.013333rem solid #ccc;
 							span{
 								flex:1;text-align: center;line-height:1.066667rem;font-size: 0.32rem;
 								&:first-child{border-right:0.013333rem solid #ccc;}
+								i{font-size: 0.613333rem;}
 							}
 						}
 					}
@@ -103,7 +108,7 @@ ul,li{list-style: none;}
 						.cartPrice1{flex:1;text-align: left;padding-left: 0.4rem;padding-top:0.133333rem;}
 						.cartPrice2{flex:1;text-align: right;padding-right: 0.4rem;padding-top:0.133333rem;}
 						p{
-							font-size: 0.32rem;margin-bottom:0.133333rem;
+							font-size: 0.32rem;margin-bottom:0.133333rem;line-height: 0.48rem;
 							span{padding:0 0.066667rem;font-weight: bold;}
 						}
 					}
@@ -115,7 +120,6 @@ ul,li{list-style: none;}
 			}
 			
 		}
-	}
 }
 
 
