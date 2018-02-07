@@ -20,7 +20,7 @@ import AddressComponent from "../components/myComponent/addressComponent.js"
 import ParentCompoent from "../components/Homecompoent/parent.js"
 import ListIndexedComponent from "../components/listCompoent/choseComponent/listindexedComponent/listindexed.js"
 import OrderComponent from "../components/orderConponent/orderComponent.js"
-import CashComponent from './../components/payComponent/cashComponent.js'
+import CashComponent from './../components/payComponent/cashComponent/cashComponent.js'
 
 
 

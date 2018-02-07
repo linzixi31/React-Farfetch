@@ -28,12 +28,14 @@
 					word-wrap:break-word;word-break:break-all;
 				}
 				.infor_mid_context{
-					color: #888;
-					span{padding:0 0.106667rem;}
+					width:6.0rem;word-break:break-all;
+					color: #888;overflow: hidden;text-overflow:ellipsis;
 				}
 			}
 			.pay_icon_right{
 				flex:1;
+				.icon-zhengquequeding{font-size:0.56rem;color:#1CD467;}
+				.icon-shibai{font-size:0.36rem;color:#000;}
 			}
 		}
 	}
@@ -49,7 +51,7 @@
 			}
 		}
 		.payBtn{
-			line-height: 1.2rem;text-align: center;color:#fff;background:#00B0FE;
+			line-height: 1.2rem;text-align: center;color:#fff;background:#222222;
 			font-size: 0.4rem;font-weight: bold;border-radius: 0.133333rem;margin: 0 0.4rem;
 		}
 	}

@@ -4,6 +4,7 @@ import * as actions from './payActions';
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
 import './address.scss';
+import {Toast} from 'antd-mobile';
 
 class AddressComponent extends Component{
 	state = {
@@ -23,13 +24,14 @@ class AddressComponent extends Component{
 	}
 	//保存用户的输入信息到state
 	getInfor(e){
-		if(e.target.tagName.toLowerCase() == 'input'){
-			let currentType = e.target.getAttribute('id');
+		let currentType = e.target.getAttribute('id');
+
+		if(e.target.tagName.toLowerCase() == 'input' && currentType != 'addr_second' && currentType != 'addr_third'){
 			let currentText = e.target.value;
 			if(currentText != ''){
-				document.getElementById(currentType).nextSibling.innerText = 'x';
+				document.getElementById(currentType).nextSibling.className = 'iconfont icon-zhengquequeding';
 			}else if(currentText == ''){
-				document.getElementById(currentType).nextSibling.innerText = '*';
+				document.getElementById(currentType).nextSibling.className = 'iconfont icon-shibai';
 			}
 			this.setState({[currentType]:currentText});
 		}
@@ -45,21 +47,25 @@ class AddressComponent extends Component{
 		}
 		if(num == 8){
 			let userId = window.localStorage.userId;
-			this.props.addAddress(userId,this.state).then(res =>{
-				
-				if(res.results.affectedRows){
+			console.log(userId,this.state)
+			this.props.addAddress(userId,JSON.stringify(this.state)).then(res =>{
+				console.log(res)
+				if(res.results[1].affectedRows){
 					hashHistory.go(-1);
 				}
 			});
+			
 		}
-		/*else if(num < 8){
-			for(var attr in this.state){
+		else if(num < 8){
+			 Toast.fail('信息不完整', 1);
+
+			/*for(var attr in this.state){
 				if(this.state[attr] == '' && attr != 'addr_second' && attr != 'addr_third'){
 					console.log(attr)
 					document.getElementById(attr).className = 'error';
 				}
-			}
-		}*/
+			}*/
+		}
 	}
 	//返回
 	goBack(){
@@ -77,27 +83,27 @@ class AddressComponent extends Component{
 					<ul className="addr_infor" onChange={this.getInfor.bind(this)} onClick={this.boldLine.bind(this)}>
 						<li>
 							<input type="text" placeholder="名字" id="lastname"/>
-							<i>*</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="姓氏"  id="firstname"/>
-							<i>*</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="国家/地区" id="country"/>
-							<i>&gt;</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="省/直辖市"  id="province"/>
-							<i>&gt;</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="城市" id="city"/>
-							<i>*</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="地址(第一行)"  id="addr_one"/>
-							<i>*</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="地址(第二行)" id="addr_second"/>
@@ -109,11 +115,11 @@ class AddressComponent extends Component{
 						</li>
 						<li>
 							<input type="text" placeholder="邮编" id="zipCode"/>
-							<i>*</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 						<li>
 							<input type="text" placeholder="电话"  id="tele"/>
-							<i>*</i>
+							<i className="iconfont icon-shibai"></i>
 						</li>
 					</ul>
 				</main>
