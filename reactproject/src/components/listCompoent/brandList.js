@@ -57,7 +57,7 @@ class BrandListComponent extends Component{
                         target.setAttribute('class',"iconfont icon-shoucang2");
                     }
                     
-                })
+                })  
                 
                 
             }else if(target.className==='iconfont icon-shoucang2'){
@@ -72,14 +72,14 @@ class BrandListComponent extends Component{
                 })
 
             }
-        }else if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
+        }else if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img' || e.target.tagName.toLowerCase()===''){
             hashHistory.push({
                 pathname:'/detail',
                 query: {
                     proId:item.id
                 }
             })
-        }else{
+        }else {
              layer.open({
                 content: '您请先登录吧？'
                 ,btn: ['登录', '取消']

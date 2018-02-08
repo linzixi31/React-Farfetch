@@ -18,7 +18,10 @@ export default class Back extends Component{
                       hashHistory.push({pathname:"/search"});
                       }
                     }/>,
-                    <i key="1" className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}}></i>
+                    <i key="1" className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}} 
+                    onClick={()=>{
+                      hashHistory.push({pathname:"/cart"});
+                      }}></i>
                   ]}
                 >{this.props.name}</NavBar>
 

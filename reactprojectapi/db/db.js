@@ -198,8 +198,9 @@ module.exports = {
     //删除愿望单中的商品
     delFromWish:function (_data,_cb) {
         // console.log(_data)
-        var sql = 'delete from userwishes where proId = '+ _data.proId  + ' and userId = ' + _data.userId + 'and type = 1 ';
+        var sql = 'delete from userwishes where proId = '+ _data.proId  + ' and userId = ' + _data.userId + ' and type = 1 ';
         db.query(sql,function(err,result){
+
             if(err){
                 _cb({status:false,err:err})
             }else {

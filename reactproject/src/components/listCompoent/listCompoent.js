@@ -96,7 +96,7 @@ import './list.scss'
                 })
 
             }
-        }else if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'){
+        }else if(e.target.tagName.toLowerCase()==='li' || e.target.tagName.toLowerCase()==='img'|| e.target.tagName.toLowerCase()==='p'){
             hashHistory.push({
                 pathname:'/detail',
                 query: {

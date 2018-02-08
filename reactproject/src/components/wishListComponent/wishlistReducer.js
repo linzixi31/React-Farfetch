@@ -24,5 +24,6 @@ export default function checkList(state = {},action){
             newState.status = -1;
             break;
     }
+    console.log(newState)
     return newState;
 }

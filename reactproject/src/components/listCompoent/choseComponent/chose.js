@@ -77,9 +77,7 @@ import './chose.scss'
                   })
                 }}>品牌</Item>
                 
-                <Item  arrow="horizontal" onClick={(e) => {
-
-                }}>价格范围</Item>
+                
               </List>
               <Button onClick={()=>{
                 self.submit()

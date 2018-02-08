@@ -14,9 +14,7 @@ export class WishListComponent extends React.Component{
             this.props.checkList({userId:userID});
         }
     }
-    componentDidMount(){
-    }
-
+ 
     render(){
         const userID = localStorage.userId;
         if(userID){
@@ -62,9 +60,13 @@ export class WishListComponent extends React.Component{
     deletePro(_id){
         const userID = localStorage.userId;
         if(userID){
-            this.props.delfromwish({userId:userID,proId:_id});
-            var currentPro = document.getElementById(_id);
-            currentPro.style.display = "none";
+            var self = this
+            const userID = localStorage.userId;
+            this.props.delfromwish({userId:userID,proId:_id}).then(res=>{
+                self.props.checkList({userId:userID})
+            });
+            // var currentPro = document.getElementById(_id);
+            // currentPro.style.display = "none";
         }
     }
     toLogin(){

@@ -44,13 +44,13 @@ componentDidMount(){
         return newdata
     }
     let self = this
-    if(this.props.result.length>=0 && this.props.result.length<10){
+    if(this.props.location.query.hh=='hh'){
             console.log(66)
             this.props.getBrand().then(res=>{
                 let newarr = getnewobj(self)
                 this.setState({data:newarr})
             })
-    }else{
+    }else {
         let newarr = getnewobj(self)
         this.setState({data:newarr})
         console.log(newarr)

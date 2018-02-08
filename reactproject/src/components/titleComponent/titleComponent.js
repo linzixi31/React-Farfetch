@@ -8,8 +8,14 @@ export default class Back extends Component{
                 <NavBar
                   mode="light"
                   rightContent={[
-                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                    <i key="2" className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}}></i>,
+                    <Icon key="0" type="search" style={{ marginRight: '16px' }} onClick={()=>{
+                      hashHistory.push({pathname:"/search"});
+                      }}/>,
+                    <i key="2" className='iconfont icon-baobao'style={{fontSize:'0.506667rem'}}
+                    onClick={()=>{
+                      hashHistory.push({pathname:"/cart"});
+                    }}
+                    ></i>,
                   ]}
                 >{this.props.name}</NavBar>
             </div>

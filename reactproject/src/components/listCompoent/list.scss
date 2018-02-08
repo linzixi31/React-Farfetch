@@ -51,7 +51,7 @@ ul,li{
             flex-wrap: wrap;
             li{
                 width:50%;
-                height:10.986667rem;
+                height:10rem;
                 text-align: center;
                 border-right: 0.013333rem solid #ccc;
                 border-top: 0.013333rem solid #ccc;
@@ -76,7 +76,7 @@ ul,li{
 
                 }
                 .jian{
-                    height:1.266667rem; 
+                   height: 0.5555rem;
                 }
                 p{
                     color:#222222;
@@ -100,7 +100,16 @@ ul,li{
     }
     
 }
-
+.layui-m-layerbtn{
+    height:0.8rem;
+    line-height: 0.8rem;
+}
+.layui-m-layercont{
+    font-size: 0.43rem;
+}
+.layui-m-layerbtn span{
+    font-size:0.4rem;
+}
 .LazyLoad {
   opacity: 0;
   transition: all 2s ease-in-out;
