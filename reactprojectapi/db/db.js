@@ -16,8 +16,7 @@ module.exports = {
                 _callback({status: false, error: error})
             } else {
                 _callback({status: true, data: {results, fields}});
-            }
-            
+            }	
         })
     },
     delete: function(){},

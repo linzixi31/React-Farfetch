@@ -23,8 +23,8 @@ export class WishListComponent extends React.Component{
                     <TitleComponent name="愿望单" />
                     <div className="wishlistMain">
                         {
-                            this.props.result.map((item) => {
-                                return (<div className="wishProduct" key={item.id}
+                            this.props.result.map((item,idx) => {
+                                return (<div className="wishProduct" key={idx}
                                     id={item.id}>
                                     <i className="icon iconfont icon-2guanbi" onClick={this.deletePro.bind(this, item.id)}></i>
                                     <div className="wishImg">
