@@ -90,3 +90,11 @@ export function getbrandListData(params){
         method:'post'
     }
 }
+export function getsomebrandListData(params){
+    return{
+        types:[listConstants.List_REQUESTING,listConstants.List_REQUESTED,listConstants.List_REQUESTERROR],
+        url:"/getsomeBrandlist",
+        data:params,
+        method:'post'
+    }
+}

@@ -10,8 +10,10 @@
         }
         .mui-title{
             line-height: 1.3rem;
-            font-size: 0.373333rem;
-            color: #000;
+            font-size: 0.4rem;
+            font-weight: 100;
+            font-family: 'Helvetica Neue',Helvetica,sans-serif; 
+    
         }
         .mui-icon{
             height:1.173333rem;
@@ -40,6 +42,7 @@
 }
 input[type=search]{
      height:1.426667rem;
+     font-size: 0.4rem;
 }
 .mui-table-view{
     .mui-indexed-list-group{

@@ -4,8 +4,12 @@ import * as action from "../../listAction.js";
 import {connect} from 'react-redux';
 import './listindexed.scss';
 import {hashHistory} from 'react-router'
+import { NavBar, Icon } from 'antd-mobile';
+var valuedata = [];
+
  class ListIndexedComponent extends Component{
 componentDidMount(){
+    let selfs = this
     mui.init();
     mui.ready(function() {
         var header = document.querySelector('header.mui-bar');
@@ -16,34 +20,8 @@ componentDidMount(){
         //create
         window.indexedList = new mui.IndexedList(list);
         //done event
-        done.addEventListener('tap', function() {
-            var checkboxArray = [].slice.call(list.querySelectorAll('input[type="checkbox"]'));
-            var checkedValues = [];
-            checkboxArray.forEach(function(box) {
-                if (box.checked) {
-                    checkedValues.push(box.parentNode.innerText);
-                }
-            });
-            if (checkedValues.length > 0) {
-                mui.alert('你选择了: ' + checkedValues);
-            } else {
-                mui.alert('你没选择任何机场');
-            }
-        }, false);
-        mui('.mui-indexed-list-inner').on('change', 'input', function() {
-            var count = list.querySelectorAll('input[type="checkbox"]:checked').length;
-            var value = count ? "完成(" + count + ")" : "完成";
-            done.innerHTML = value;
-            if (count) {
-                if (done.classList.contains("mui-disabled")) {
-                    done.classList.remove("mui-disabled");
-                }
-            } else {
-                if (!done.classList.contains("mui-disabled")) {
-                    done.classList.add("mui-disabled");
-                }
-            }
-        });
+        
+
 
     });
     function getnewobj(self){
@@ -81,7 +59,19 @@ componentDidMount(){
 
           
 }
+
+checkbox(item){
+    // var list = document.getElementById('#list')
+   console.log(666)
+   valuedata.push(item)
+   var value = valuedata.length ? "搜索(" + valuedata.length + ")" : "搜索";
+   this.setState({value:value})
+   this.setState({valuedata:valuedata})
+   console.log(this.state.valuedata)
+}
 state={
+    value:'搜索',
+    valuedata:[],
     data:{
         A:[],
         B:[],
@@ -112,22 +102,34 @@ state={
     }
 }
 render(){
+    let self = this
     if(this.state.data.length==0){
         return false
     }
     return(
         <div>
         <header className="mui-bar mui-bar-nav">
-            <a className="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onClick={
-               ()=> hashHistory.goBack()
-            }></a>
-            <h1 className="mui-title">选择品牌</h1>
-            <a id='done' className="mui-btn mui-btn-link mui-pull-right mui-btn-blue mui-disabled">完成</a>
+            <NavBar
+                  key={this.state.value}
+                  mode="light"
+                  icon={<Icon type='left'/>}
+                  onLeftClick={() => hashHistory.goBack()}
+                  rightContent={[
+                    <span key="1" style={{ fontSize:'0.4rem' }} onClick={()=>{
+                        hashHistory.push({
+                            pathname:'/brandlist',
+                            query:{
+                                brand:this.state.valuedata
+                            }
+                        })
+                    }} >完成</span>,
+                  ]}
+                >{this.state.value}</NavBar>
         </header>
         <div className="mui-content">
             <div id='list' className="mui-indexed-list" style={{height:"auto"}}>
                 <div className="mui-indexed-list-search mui-input-row mui-search">
-                    <input type="search" className="mui-input-clear mui-indexed-list-search-input" placeholder="搜索品牌"/>
+                  
                 </div>
                 <div className="mui-indexed-list-bar">
                 {
@@ -152,8 +154,10 @@ render(){
                                     this.state.data[key].map(function(item,idx){
                                                      
                                         return(
-                                            <li key={idx}  data-value={item} data-tags={item} className="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
-                                                <input type="checkbox" />{item}
+                                            <li key={idx}  data-value={item} data-tags={item} className="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left" onClick={()=>{
+                                                self.checkbox(item)
+                                            }}>
+                                                <input type="checkbox"/>{item}
                                             </li>
                                             )
 
@@ -173,9 +177,22 @@ render(){
 }
 let mapStateToProps = (state) => {
   console.log(state)
-    return {
-        result:state.listReducer.result || [],
-    }
+        var arr = state.listReducer.result;
+        var hh  = function multiarr(arr){
+        for (i=0,len=arr.length;i<len;i++)
+        if(arr[i] instanceof Array)return true;
+            return false;
+        }
+        if(!hh){
+            return {
+                result:state.listReducer.result || [],
+            }
+        }else{
+            return{
+                result:[].concat.apply([],arr)
+                //把二维数组转化成一维
+            }
+        }
 
 }
 

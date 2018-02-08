@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
 import './font/iconfont.css'
 import './list.scss'
+import LazyLoad from 'react-lazy-load';
 
 
 class BrandListComponent extends Component{
@@ -13,10 +14,16 @@ class BrandListComponent extends Component{
         starpro:[]
      }
      componentWillMount(){
-        if(this.props.location.query.brand){
-            this.props.getbrandListData({
-                brand:this.props.location.query.brand
-            })
+        var brand = this.props.location.query.brand
+        console.log(brand)
+        if(brand && typeof(brand)==String){
+                this.props.getbrandListData({
+                    brand:brand
+                })   
+        }else if(brand && Array.isArray(brand)){
+                this.props.getsomebrandListData({
+                    brand:brand
+                })
         }else{
             this.props.getbrandListData({
                 brand:'Fendi'
@@ -115,7 +122,8 @@ class BrandListComponent extends Component{
         let self = this
         return(
             <div  className="wrap_lzx">
-                <Backcomponent name={this.props.location.query.brand} />
+                <Backcomponent 
+                name={this.props.location.query.brand instanceof Array ? "多品牌页面" :this.props.location.query.brand} />
                 <div style={{flex:1,overflowX:"hidden"}}>
                      <div className='list_main_lzx'>
                             <div className="text_lzx">
@@ -130,7 +138,9 @@ class BrandListComponent extends Component{
                                                     <div className='start_list' >
                                                         {self.renderstar(item)}
                                                     </div> 
+                                                    <LazyLoad height={340} offsetVertical={150}>
                                                     <img  src={item.mainImg}/>
+                                                    </LazyLoad>
                                                     {self.renderNewshop(item)}
                                                     <p className='title'>{item.title}</p>
                                                     <p className='price'>￥{item.currentPrice}</p>
@@ -150,9 +160,24 @@ class BrandListComponent extends Component{
 
 let mapStateToProps = (state) => {
   console.log(state)
+  //判断是否为二维数组
+  var arr = state.listReducer.result;
+  var hh  = function multiarr(arr){
+    for (i=0,len=arr.length;i<len;i++)
+    if(arr[i] instanceof Array)return true;
+    return false;
+  }
+  if(!hh){
     return {
         brandlistresult:state.listReducer.result || [],
     }
+  }else{
+    return{
+        brandlistresult:[].concat.apply([],arr)
+        //把二维数组转化成一维
+    }
+  }
+  
 
 }
 
