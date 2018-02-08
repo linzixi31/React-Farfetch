@@ -27,15 +27,15 @@ class OrderComponent extends Component{
     componentDidMount(){
    
         if(window.localStorage.userId){
-           this.props.getOrderInformation({userId:window.localStorage.userId}).then(res =>{
-                // console.log(res.results)
+           this.props.getOrderInformation({userId:window.localStorage.userId,select:'all'}).then(res =>{
+                
            })
           
         }else{
             
         }
     }
-   
+    
    
    
     render(){
@@ -49,48 +49,40 @@ class OrderComponent extends Component{
         return (
             <div className="order">
                <Back name={'订单与退货'} />
-                
                 <ul className="order_main">
                     
                 {
-                   
-                   this.props.datas.map(function(item){
-                        var sg='';
+                   this.props.orderLists().map(function(item){
+                        var goodsIds = item.pro_Id.split(',');
+                        var orderType;
                         if(item.status==0){
-                            sg='买家未付款'
+                            orderType = <span className="unpaid">买家未付款</span>;
                         }else if(item.status==1){
-                            sg='交易完成'
+                            orderType = <span className="waitDelivery">等待卖家发货</span>;
                         }else{
                             sg='订单已取消'
                         }
                         return(
                             <li key={item.order_id}>
                                 <h4>
-                                    <span><img src={item.country_img}/>{item.country_name}</span>
-                                    <span>{sg}</span>
+                                    <span>从<span>{item.delivery_country}</span>发出</span>
+                                    {orderType}
                                 </h4>
-                                <div>
-                                    <div><img src={item.mainImg}/></div>
-                                    <div>
-                                        <p>{item.title}</p>
-                                        <p>{item.descriptions}</p>
-                                        <p>{item.size}</p>
-
-                                    </div>
-                                    <div> 
-                                        <span>￥{item.currentPrice}</span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <p>
-                                    <p>
-                                        <h4>运费险</h4>
-                                        <span>确认收货前退货可理赔</span>
-                                    </p>
-                                    <p>
-                                        运费险已失效
-                                    </p>
-                                </p>
+                                {
+                                    this.props.orderGoods().map(function(gds){
+                                        if(goodsIds.indexOf(String(gds.id)) >= 0){
+                                            return (
+                                                <div className="proDetails" key={gds.id}>
+                                                    <img key={gds.id} src={gds.mainImg} />
+                                                    <p className="proName">{gds.title}</p>
+                                                    <p className="proPrice">{gds.currentPrice}</p>
+                                                </div> 
+                                            )
+                                        }
+                                        
+                                    })
+                                }
+                                 <h4 className="orderTime">订单时间：{new Date(item.create_time).toLocaleString()}</h4>
                             </li>
 
                             )
@@ -109,10 +101,25 @@ class OrderComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
     return {
-       datas:state.orderReducer.result==undefined ? [] : state.orderReducer.result.results,
-       status:state.orderReducer.status
+       results:function(){
+            return state.orderReducer.result == undefined ? {} : state.orderReducer.result.results
+        },
+        orderLists:function(){
+            if(this.results().orders){
+                return this.results().orders;
+            }else{
+                return []
+            }
+        },
+        orderGoods:function(){
+            if(this.results().goods){
+                return this.results().goods;
+            }else{
+                return []
+            }
+        }
     }
 
 }

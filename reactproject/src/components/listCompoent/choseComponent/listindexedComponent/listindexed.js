@@ -44,7 +44,7 @@ componentDidMount(){
         return newdata
     }
     let self = this
-    if(this.props.result.length===0){
+    if(this.props.result.length>=0 && this.props.result.length<10){
             console.log(66)
             this.props.getBrand().then(res=>{
                 let newarr = getnewobj(self)

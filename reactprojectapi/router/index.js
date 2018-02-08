@@ -12,7 +12,6 @@ var brand = require('./brand')
 var jwt = require('jsonwebtoken');
 var listPage = require('./listPage')
 var homepage = require("./homepage")
-var order = require('./order')
 var detail = require('./detail');
 var hotGoods = require("./hotGoods");
 var payment = require('./payment')
@@ -45,7 +44,6 @@ module.exports = {
         reg.reg(app);
         listPage.select(app); 
         homepage.register(app);
-        order.register(app);
         detail.register(app);
         hotGoods.register(app);
         payment.reg(app);

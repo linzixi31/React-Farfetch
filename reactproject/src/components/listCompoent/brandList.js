@@ -138,7 +138,7 @@ class BrandListComponent extends Component{
                                                     <div className='start_list' >
                                                         {self.renderstar(item)}
                                                     </div> 
-                                                    <LazyLoad height={340} offsetVertical={150}>
+                                                    <LazyLoad height={340} offsetVertical={200}>
                                                     <img  src={item.mainImg}/>
                                                     </LazyLoad>
                                                     {self.renderNewshop(item)}

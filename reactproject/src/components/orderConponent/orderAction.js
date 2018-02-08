@@ -1,7 +1,8 @@
 export function getOrderInformation(params){
     return{
-        url:'/orderDetails',
+        url:'/getorders',
         method:'post',
-        data:params
+        data:params,
+        
     }
 }
