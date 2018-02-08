@@ -168,7 +168,7 @@ export class HomeComponent extends Component {
 		})
 	}
 	toList(){
-		this.props.router.push("/list");
+		this.props.router.push("/category");
 	}
 	toBrand(event){
 		var brandName = event.target.parentNode.children[0].innerText;

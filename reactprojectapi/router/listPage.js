@@ -73,5 +73,16 @@ module.exports = {
                     res.send(data)
                 });
             })
+            app.post('/getsomeBrandlist',function(req,res){
+                var sql = ""
+                for(var i=0;i<req.body.brand.length;i++){
+                    sql+="select * from `goods` where  brand  = '"+ req.body.brand[i] +"';"
+                }
+                
+                db.select(sql,function(data){
+                    console.log(data)
+                    res.send(data)
+                });
+            })
     }
 }

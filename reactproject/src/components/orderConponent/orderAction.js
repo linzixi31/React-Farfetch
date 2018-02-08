@@ -1,7 +1,15 @@
 export function getOrderInformation(params){
     return{
-        url:'/orderDetails',
+        url:'/getorders',
         method:'post',
-        data:params
+        data:params,
     }
+}
+
+export function changeOrderType(params){
+	return {
+		url:'/payorders',
+        method:'post',
+        data:params,
+	}
 }

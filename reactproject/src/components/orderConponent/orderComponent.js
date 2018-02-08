@@ -11,94 +11,102 @@ import { Icon, Grid } from 'antd-mobile';
 import { PickerView } from 'antd-mobile';
 
 
-
-
-
-
-const leavenFun=function(){
-    return true;
-}
-
 class OrderComponent extends Component{
     state={
-        _username:''
+        switch:''
     }
  
     componentDidMount(){
    
         if(window.localStorage.userId){
-           this.props.getOrderInformation({userId:window.localStorage.userId}).then(res =>{
-                // console.log(res.results)
-           })
-          
+           this.props.getOrderInformation({userId:window.localStorage.userId,select:'all'}).then(res=>{
+            if(res == undefined){
+                this.setState({
+                    switch:1
+                })
+            }
+           });  
         }else{
             
         }
     }
-   
-   
+    //跳转至订单详情
+    showOrderDetail(e){
+        let currentOrderId = e.target.parentNode.parentNode.id;
+        hashHistory.push({
+            pathname:'/orderdetail',
+            query:{orderId:currentOrderId}
+        })
+    }
+    goToBuy(){
+        hashHistory.push({
+            pathname:'/index',
+        })
+    }
    
     render(){
         let html='';
+        let style,show;
+
         if(this.props.status===0){
             html=<Spinner/>;
         }else if(this.props.status===1){
             html='';
         }
-
+        if(this.state.switch == 1){
+            style = {display:'none'}
+            show = {display:'block'}
+        }else{
+            style = {display:'block'}
+            show = {display:'none'}
+        }
         return (
             <div className="order">
                <Back name={'订单与退货'} />
-                
-                <ul className="order_main">
-                    
-                {
-                   
-                   this.props.datas.map(function(item){
-                        var sg='';
-                        if(item.status==0){
-                            sg='买家未付款'
-                        }else if(item.status==1){
-                            sg='交易完成'
-                        }else{
-                            sg='订单已取消'
-                        }
-                        return(
-                            <li key={item.order_id}>
-                                <h4>
-                                    <span><img src={item.country_img}/>{item.country_name}</span>
-                                    <span>{sg}</span>
-                                </h4>
-                                <div>
-                                    <div><img src={item.mainImg}/></div>
-                                    <div>
-                                        <p>{item.title}</p>
-                                        <p>{item.descriptions}</p>
-                                        <p>{item.size}</p>
+               <div className="order_main">
+                    <div style={show} className="GOtObUY" onClick={this.goToBuy}>订单空空如也,去逛逛</div>
+                    <ul style={style} onClick={this.showOrderDetail.bind(this)}> 
+                        {
+                           this.props.orderLists().map(function(item){
+                                var goodsIds = item.pro_Id.split(',');
+                                var orderType;
+                                if(item.order_status==0){
+                                    orderType = <span className="unpaid">买家未付款</span>;
+                                }else if(item.order_status==1){
+                                    orderType = <span className="waitDelivery">等待卖家发货</span>;
+                                }else if(item.order_status == 2){
+                                    orderType = <span>订单已完成</span>;
+                                }
+                                return(
+                                    <li key={item.order_id} id={item.order_id}>
+                                        <h4>
+                                            <span>从<span>{item.delivery_country}</span>发出</span>
+                                            {orderType}
+                                        </h4>
+                                        {
+                                            this.props.orderGoods().map(function(gds){
+                                                if(goodsIds.indexOf(String(gds.id)) >= 0){
+                                                    return (
+                                                        <div className="proDetails" key={gds.id}>
+                                                            <img key={gds.id} src={gds.mainImg} />
+                                                            <p className="proName">{gds.title}</p>
+                                                            <p className="proPrice">￥{gds.currentPrice}</p>
+                                                        </div> 
+                                                    )
+                                                }
+                                                
+                                            })
+                                        }
+                                         <h4 className="orderTime">
+                                            <span> 订单时间：{new Date(item.create_time).toLocaleString()}</span>
+                                         </h4>
+                                    </li>
 
-                                    </div>
-                                    <div> 
-                                        <span>￥{item.currentPrice}</span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <p>
-                                    <p>
-                                        <h4>运费险</h4>
-                                        <span>确认收货前退货可理赔</span>
-                                    </p>
-                                    <p>
-                                        运费险已失效
-                                    </p>
-                                </p>
-                            </li>
-
-                            )
-                   }.bind(this))
-                }
-                           
-                             
-                </ul>
+                                    )
+                           }.bind(this))
+                        }           
+                    </ul>
+               </div>  
                 <div className="order_footer">
                     {<Foot/>}
                 </div>
@@ -109,10 +117,25 @@ class OrderComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
     return {
-       datas:state.orderReducer.result==undefined ? [] : state.orderReducer.result.results,
-       status:state.orderReducer.status
+       results:function(){
+            return state.orderReducer.result == undefined ? {} : state.orderReducer.result.results
+        },
+        orderLists:function(){
+            if(this.results().orders){
+                return this.results().orders;
+            }else{
+                return []
+            }
+        },
+        orderGoods:function(){
+            if(this.results().goods){
+                return this.results().goods;
+            }else{
+                return []
+            }
+        }
     }
 
 }

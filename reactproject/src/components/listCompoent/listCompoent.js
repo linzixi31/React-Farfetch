@@ -4,6 +4,8 @@ import Footnav from '../footnavcompoent/footnav.js';
 import * as action from './listAction.js'
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
+import Spinner from '../spinner/spinner.js'
+import LazyLoad from 'react-lazy-load';
 import './font/iconfont.css'
 import './list.scss'
 
@@ -22,6 +24,8 @@ import './list.scss'
                         }
                 })
                 this.setState({brand:newarr})
+                this.setState({Spinner:false})
+
             })
         }else if(this.props.location.query.value){
             this.props.getchoseData({
@@ -35,6 +39,8 @@ import './list.scss'
                         }
                 })
                 this.setState({brand:newarr})
+                this.setState({Spinner:false})
+
             })
         }
         this.props.getstarData({
@@ -43,14 +49,21 @@ import './list.scss'
             var newarr = []
             res.results.forEach(function(item,idx){
                 newarr.push(item.proId)
+
             })
             //console.log(newarr)
             this.setState({starpro:newarr})
             //console.log(this.state.starpro)
         })
      }
-     componentDidUpdate(){
-        //console.log(66)
+     componentDidMount(){
+        var Lazy = document.getElementsByClassName('LazyLoad')
+        console.log(Lazy.length)
+        var is = 'is-visible'
+        for(var i = 0;i <3;i++){
+            console.log(888+i)
+        　　
+        }
      }
      listaction(e,item){
         //console.log(e.target)
@@ -107,8 +120,10 @@ import './list.scss'
      state={
         pagename :'上衣',
         brand:[],
-        starpro:[]
+        starpro:[],
+        Spinner:true
      }
+
      renderstar(item){
             if(this.state.starpro.includes(item.id))
             {
@@ -134,13 +149,17 @@ import './list.scss'
                     )
             }
      }
+
      render(){
         let self = this;
-      
+        let height = 200;
         return(
          <div className="wrap_lzx">
             <Backcomponent name={this.state.pagename} />
+
             <div style={{flex:1,overflowX:'hidden'}}>
+             {this.state.Spinner? <Spinner/>:""}
+
                 <div className="chose_lzx">
                     <ul className="choseBtn">
                         <li onClick={()=>{
@@ -152,6 +171,7 @@ import './list.scss'
                                 }
                             })
                         }}><span>筛选</span></li>
+
                          {
                             this.state.brand.map(function(item,idx){
                                 return  <li key={idx} onClick={()=>{
@@ -178,10 +198,13 @@ import './list.scss'
                                             <div className='start_list' >
                                                 {self.renderstar(item)}
                                             </div> 
-                                            <img  src={item.mainImg}/>
+                                            <LazyLoad height={340} offsetVertical={150}>
+                                                <img  src={item.mainImg}/>
+                                            </LazyLoad>
                                             {self.renderNewshop(item)}
                                             <p className='title'>{item.title}</p>
                                             <p className='price'>￥{item.currentPrice}</p>
+
                                       </li>
                             })                        
                         }

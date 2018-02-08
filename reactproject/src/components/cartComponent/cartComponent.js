@@ -38,7 +38,7 @@ class CartComponent extends Component{
 	getSizeQty(res){
 		//改变购物车中的加购商品信息
 		if(res != 'none'){
-			// console.log(res,this.state.switchType,this.state.changeCartId);
+			
 			this.props.changeCart(this.state.userId,res,this.state.switchType,this.state.changeCartId);
 		}
 		this.setState({switch:0});
@@ -85,19 +85,19 @@ class CartComponent extends Component{
 	}
 	//跳转页面
 	toOrder(){
-		if(!window.localStorage){
+		if(!window.localStorage.userId){
 			hashHistory.push({
 				pathname:'/login'
 			})
 			return;
 		}
-		if(window.localStorage && this.props.cartList.length == 0){
+		if(window.localStorage.userId && this.props.cartList.length == 0){
 			hashHistory.push({
 				pathname:'/index'
 			})
 			return;
 		}
-		if(window.localStorage){
+		if(window.localStorage.userId){
 			//跳转
 			hashHistory.push({
 			  	pathname:'/pay',

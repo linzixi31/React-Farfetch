@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {hashHistory} from 'react-router';
 import {connect} from 'react-redux';
 import * as actions from './payActions';
-import {Toast} from 'antd-mobile';
 
+import { ActionSheet, WingBlank, WhiteSpace, Button, Toast } from 'antd-mobile';
 import './pay.scss';
 
 class PayComponent extends Component{
@@ -13,7 +13,7 @@ class PayComponent extends Component{
 		orders:[],
 		cartIds:'',
 		addr_id:'',
-		payMethod:'alipay'
+		payMethod:''
 	}
 	componentDidMount(){
 
@@ -36,23 +36,45 @@ class PayComponent extends Component{
 	}
 	//选择地址
 	chooseAddr(e){
-		
-		if(e.target.parentNode.parentNode.tagName.toLowerCase() === 'section'){
-			let data = {userId:this.state.userId};
-			//跳转传参
-			var path = {
-			  	pathname:'/chooseaddress',
-			  	query:data,
-			}
-			hashHistory.push(path);
+
+		let data = {userId:this.state.userId};
+		//跳转传参
+		var path = {
+		  	pathname:'/chooseaddress',
+		  	query:data,
 		}
+		hashHistory.push(path);
+
+	}
+	//选择支付方式
+	choosePayMethod(e){
+
+		var dataList = [
+			{ url: 'OpHiXAcYzmPQHcdlLFrc', title: '支付宝'},
+		    { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信' },
+		    { url: 'SxpunpETIwdxNjcJamwB', title: '腾讯' },
+		  ].map(obj => ({
+		    icon: <img src={"https://gw.alipayobjects.com/zos/rmsportal/" + obj.url + ".png"} alt={obj.title}/>,
+		    title: obj.title,
+		  }));
+
+		const data = [[dataList[0],dataList[1],dataList[2]]];
+
+		ActionSheet.showShareActionSheetWithOptions({
+		  options: data,
+		  message: '请选择支付方式',
+		},
+		(buttonIndex, rowIndex) => {
+		  this.setState({ payMethod: buttonIndex > -1 ? data[rowIndex][buttonIndex].title : '' });
+		});
+
 	}
 	//生成订单
 	createOrder(){
 		let orders = JSON.stringify(this.state.orders);
 		let cartIds = this.state.cartIds;
 		let addr_id = this.state.addr_id;
-		// console.log(orders,cartIds,addr_id);
+		console.log(orders,cartIds,addr_id);
 		if(this.state.addr_id == ''){
 			Toast.fail('请添加收货地址', 2);
 			return;
@@ -85,6 +107,7 @@ class PayComponent extends Component{
 	render(){
 		let addrIcon;
 		let payIcon;
+		let pay;
 		if(this.state.addr_id != ''){
 			addrIcon = <i className="iconfont icon-zhengquequeding"></i>;
 		}else{
@@ -92,9 +115,12 @@ class PayComponent extends Component{
 		}
 		if(this.state.payMethod != ''){
 			payIcon = <i className="iconfont icon-zhengquequeding"></i>;
+			pay = <p className="infor_mid_context">{this.state.payMethod}</p>;
 		}else{
 			payIcon = <i className="iconfont icon-shibai"></i>;
+			pay = <p className="infor_mid_context">请选择支付方式</p>
 		}
+
 		return (
 			<div className="pay_ly">
 				<header className="payHeader">
@@ -103,7 +129,7 @@ class PayComponent extends Component{
 				</header>
 				<div className="payBody">
 					<section className="pay_shippingAaddress" onClick={this.chooseAddr.bind(this)}>
-						<div className="pay_infor_left">配送</div>
+						<div className="pay_infor_left">配送地址</div>
 						<div className="pay_infor_middle">
 							<p className="infor_mid_title">收货地址</p>
 							<p className="infor_mid_context">
@@ -123,7 +149,7 @@ class PayComponent extends Component{
 						</div>
 					</section>
 					<section className="pay_distributionBy">
-						<div className="pay_infor_left">配送方式</div>
+						<div className="pay_infor_left">配送国家</div>
 						<div className="pay_infor_middle">
 							<p className="infor_mid_title">{this.state.orders.length}笔订单</p>
 							<p className="infor_mid_context">从
@@ -140,11 +166,11 @@ class PayComponent extends Component{
 							<i className="iconfont icon-zhengquequeding"></i>
 						</div>
 					</section>
-					<section className="pay_method">
-						<div className="pay_infor_left">支付</div>
+					<section className="pay_method" onClick={this.choosePayMethod.bind(this)}>
+						<div className="pay_infor_left">支付方式</div>
 						<div className="pay_infor_middle">
 							<p className="infor_mid_title">支付方式</p>
-							<p className="infor_mid_context">请选择支付方式</p>
+							{pay}
 						</div>
 						<div className="pay_icon_right">
 							{payIcon}
@@ -170,7 +196,7 @@ class PayComponent extends Component{
 }
 
 const mapStateToProps = (state) =>{
-	// console.log(state)
+	console.log(state)
 	return {
 		addresses:function(){
 			if(state.payReducer.result == undefined){
@@ -210,7 +236,7 @@ const mapStateToProps = (state) =>{
 					}
 				})
 				if(i == orders.length){
-					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice})
+					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice,cartId:item.cart_id})
 				}else{
 					orders[i].proids += ',' + item.id;
 					orders[i].totalPrice += item.currentPrice;

@@ -235,7 +235,11 @@ export default class Detail extends React.Component{
 			pathname:'/category'
 		})
 	}
-	
+	straightRouteToSearch(){
+		hashHistory.push({
+			pathname:'/search'
+		})
+	}
 	
 	
 	
@@ -262,8 +266,8 @@ export default class Detail extends React.Component{
 		                  icon={<Icon type="left" size="40"/>}
 		                  onLeftClick={() => hashHistory.goBack()}
 		                  rightContent={[
-		                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-		                    <span key="1" className="qty">{this.state.cartQty}</span>,
+		                    <Icon key="0" type="search" style={{ marginRight: '16px' }} onClick={this.straightRouteToSearch.bind(this)}/>,
+		                    <span key="1" className="qty" >{this.state.cartQty}</span>,
 		                    <span key="2" className="iconfont icon-baobao cartBao" onClick={this.straightRouteToCar.bind(this)}></span>,
 		                  ]}
 		                ></NavBar>
