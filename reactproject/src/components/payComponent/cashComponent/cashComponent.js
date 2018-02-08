@@ -66,7 +66,6 @@ class CashComponent extends Component{
 								var goodsIds = item.pro_Id.split(',');
 								return (
 									<li key={item.order_id}>
-										<p className="orderTitle">订单时间：<span>{item.create_time}</span></p>
 										<div className="deliveryC">发货地：<span>{item.delivery_country}</span><span className="orderPrice">总计:<span>{item.totalPrice}</span></span></div>
 										<div className="orderGoods">
 											<div>订单商品</div>
