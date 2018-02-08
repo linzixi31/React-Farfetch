@@ -36,44 +36,45 @@ class PayComponent extends Component{
 	}
 	//选择地址
 	chooseAddr(e){
-		
-		if(e.target.parentNode.parentNode.tagName.toLowerCase() === 'section'){
-			let data = {userId:this.state.userId};
-			//跳转传参
-			var path = {
-			  	pathname:'/chooseaddress',
-			  	query:data,
-			}
-			hashHistory.push(path);
+
+		let data = {userId:this.state.userId};
+		//跳转传参
+		var path = {
+		  	pathname:'/chooseaddress',
+		  	query:data,
 		}
+		hashHistory.push(path);
+
 	}
 	//选择支付方式
 	choosePayMethod(e){
-		if(e.target.parentNode.parentNode.tagName.toLowerCase() === 'section'){
-			var dataList = [
-				{ url: 'OpHiXAcYzmPQHcdlLFrc', title: '支付宝'},
-			    { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信' },
-			    { url: 'SxpunpETIwdxNjcJamwB', title: '腾讯' },
-			  ].map(obj => ({
-			    icon: <img src={"https://gw.alipayobjects.com/zos/rmsportal/" + obj.url + ".png"} alt={obj.title}/>,
-			    title: obj.title,
-			  }));
-			const data = [[dataList[0],dataList[1],dataList[2]]];
-		    ActionSheet.showShareActionSheetWithOptions({
-		      options: data,
-		      message: '请选择支付方式',
-		    },
-		    (buttonIndex, rowIndex) => {
-		      this.setState({ payMethod: buttonIndex > -1 ? data[rowIndex][buttonIndex].title : '' });
-		    });
-		}
+
+		var dataList = [
+			{ url: 'OpHiXAcYzmPQHcdlLFrc', title: '支付宝'},
+		    { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信' },
+		    { url: 'SxpunpETIwdxNjcJamwB', title: '腾讯' },
+		  ].map(obj => ({
+		    icon: <img src={"https://gw.alipayobjects.com/zos/rmsportal/" + obj.url + ".png"} alt={obj.title}/>,
+		    title: obj.title,
+		  }));
+
+		const data = [[dataList[0],dataList[1],dataList[2]]];
+
+		ActionSheet.showShareActionSheetWithOptions({
+		  options: data,
+		  message: '请选择支付方式',
+		},
+		(buttonIndex, rowIndex) => {
+		  this.setState({ payMethod: buttonIndex > -1 ? data[rowIndex][buttonIndex].title : '' });
+		});
+
 	}
 	//生成订单
 	createOrder(){
 		let orders = JSON.stringify(this.state.orders);
 		let cartIds = this.state.cartIds;
 		let addr_id = this.state.addr_id;
-		// console.log(orders,cartIds,addr_id);
+		console.log(orders,cartIds,addr_id);
 		if(this.state.addr_id == ''){
 			Toast.fail('请添加收货地址', 2);
 			return;
@@ -195,7 +196,7 @@ class PayComponent extends Component{
 }
 
 const mapStateToProps = (state) =>{
-	// console.log(state)
+	console.log(state)
 	return {
 		addresses:function(){
 			if(state.payReducer.result == undefined){
@@ -235,7 +236,7 @@ const mapStateToProps = (state) =>{
 					}
 				})
 				if(i == orders.length){
-					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice})
+					orders.push({country:item.country_name,proids:item.id,totalPrice:item.currentPrice,cartId:item.cart_id})
 				}else{
 					orders[i].proids += ',' + item.id;
 					orders[i].totalPrice += item.currentPrice;

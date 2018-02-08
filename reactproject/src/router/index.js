@@ -19,7 +19,7 @@ import PersonalComponent from "../components/myComponent/personalInformation.js"
 import AddressComponent from "../components/myComponent/addressComponent.js"
 import ParentCompoent from "../components/Homecompoent/parent.js"
 import ListIndexedComponent from "../components/listCompoent/choseComponent/listindexedComponent/listindexed.js"
-
+import orderDetailComponent from './../components/orderConponent/orderDetailComponent.js'
 import OrderComponent from "../components/orderConponent/orderComponent.js"
 import CashComponent from './../components/payComponent/cashComponent/cashComponent.js'
 
@@ -51,6 +51,7 @@ const  route = (
         <Route path="/cash" component={CashComponent}></Route>
         <Route path="/brand" component = {BrandComponenet}></Route>
         <Route path="/brandlist" component={BrandListComponent}></Route>
+        <Route path="/orderdetail" component={orderDetailComponent}></Route>
    </Router>
 
         )
