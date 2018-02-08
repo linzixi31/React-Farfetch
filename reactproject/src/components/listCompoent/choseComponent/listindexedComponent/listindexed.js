@@ -44,27 +44,42 @@ componentDidMount(){
                 }
             }
         });
+
     });
-    console.log(this.props)
-        let self = this
-        //这地方要注意
-        let newarr = {}
-        console.log(this.state.data)
-         newarr = Object.assign({},self.state.data)
-        Object.keys(this.state.data).map(function(key){
+    function getnewobj(self){
+        let newobj = {}
+        let newdata = {} 
+        newobj = Object.assign({},self.state.data)
+        Object.keys(self.state.data).map(function(key){
             self.props.result.map(function(item,idx){
 
                 if(key==item.brand.substr(0, 1)){
+                    newobj[key].push(item.brand)
+                    newdata[key] = Array.from(new Set(newobj[key]))
 
-                    console.log(key)
-                    newarr[key].push(item.brand)
                 }
             
             })
 
         })   
+        //console.log(newdata)
+        return newdata
+    }
+    let self = this
+    if(this.props.result.length===0){
+            console.log(66)
+            this.props.getBrand().then(res=>{
+                let newarr = getnewobj(self)
+                this.setState({data:newarr})
+            })
+    }else{
+        let newarr = getnewobj(self)
         this.setState({data:newarr})
-        console.log(newarr)  
+        console.log(newarr)
+    }
+   
+
+          
 }
 state={
     data:{

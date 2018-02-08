@@ -101,7 +101,7 @@ class OrderComponent extends Component{
 }
 
 let mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
     return {
        results:function(){
             return state.orderReducer.result == undefined ? {} : state.orderReducer.result.results

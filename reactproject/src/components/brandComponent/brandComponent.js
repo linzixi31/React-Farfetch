@@ -28,7 +28,7 @@ class BrandComponent extends React.Component{
 	}
 	routeToSearch(){
 		hashHistory.push({
-			pathname:'/search',
+			pathname:'/listindexed',
 		})
 	}
 	getBrandData(event){
@@ -38,7 +38,7 @@ class BrandComponent extends React.Component{
 		console.log(this.props.result)
 		return(
 			<div id="brand">
-				<BackComponent/>
+				<BackComponent name="品牌页"/>
 				<div id="brandMain">
                     <Tabs tabs={tabs} initialPage={0} onChange={this.getBrandData.bind(this)}>
                        <div>
@@ -57,7 +57,7 @@ class BrandComponent extends React.Component{
                        					this.props.result.map(function(item,idx){
                        						return <li key={idx} data-id={item.brandId} onClick={(e)=>{
                        							hashHistory.push({
-                       								pathname:'/list',
+                       								pathname:'/brandlist',
                        								query:{
                        									brand:item.brand
                        								},
@@ -77,7 +77,7 @@ class BrandComponent extends React.Component{
                     </Tabs>
                     <WhiteSpace />
                 </div> 
-				<FootNav/>
+				<FootNav selectedTab ='brand'/>
 			</div>
 		)
 	}

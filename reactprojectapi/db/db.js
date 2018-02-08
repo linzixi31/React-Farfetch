@@ -195,6 +195,18 @@ module.exports = {
             }
         }.bind(this))
     },
+    //删除愿望单中的商品
+    delFromWish:function (_data,_cb) {
+        // console.log(_data)
+        var sql = 'delete from userwishes where proId = '+ _data.proId  + ' and userId = ' + _data.userId + 'and type = 1 ';
+        db.query(sql,function(err,result){
+            if(err){
+                _cb({status:false,err:err})
+            }else {
+                _cb({status:true,result:result})
+            }
+        })
+    },
     //2月5日 李阳 添加地址到数据库
     addaddress:function(_data,_cb){
         console.log(_data)
