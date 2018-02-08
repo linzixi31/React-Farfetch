@@ -3,20 +3,21 @@ body,html{height:100%;}
 ul,li{list-style:none;}
 #app{height:100%;}
 #app>div{height:100%;}
+
+//订单列表页面
 .order{height:100%;display:flex;flex-direction:column;}
-
-
 .order_main{
     flex:1;background:#E2E2E2;overflow-x:hidden;
     li{
         margin:0.333333rem 0.133333rem;background:#fff;padding:0.133333rem;
         h4{
+            display: flex;
             span{
-                line-height:0.8rem;font-size:0.4rem;
+                line-height:0.8rem;font-size:0.4rem;flex:1;
                 span{padding: 0 0.133333rem;}
             }
             &>span:nth-child(2){
-                float:right;font-size:0.38rem;
+                text-align:right;font-size:0.38rem;
                 padding: 0 0.2rem;
             }
             .unpaid{color:red;}
@@ -32,13 +33,50 @@ ul,li{list-style:none;}
             .proPrice{flex:1;text-align: right;}
             p{font-size: 0.373333rem;line-height:1.666667rem;}
         }
-        .orderTime{text-align: right;font-size: 0.32rem;line-height: 1rem;}
-
+        .orderTime{
+            text-align: right;
+            span{font-size: 0.32rem;line-height: 1rem;}
+        }
     }
-
-
-
 }
-
 .order_footer{background:#fff;}
 
+
+//订单详情页面
+.orderDetail{
+    height: 100%;display: flex;flex-direction:column;background:#E2E2E2;
+    .orderDetail_main{
+        flex:1;overflow-x: hidden;
+        .order_address{
+            margin:0.266667rem 0;background:#fff;padding:0.333333rem 0;
+            span{font-size: 0.373333rem;padding:0 0.133333rem;line-height: 0.65rem;}
+            .order_tele{float: right;}
+        }
+    }
+    .order_pro_detail{
+        background:#fff;border-bottom:0.013333rem solid #ccc;
+        h5{font-size: 0.4rem;padding-left: 0.266667rem;line-height: 1rem;font-weight: bold;border-bottom:0.013333rem solid #ccc;}
+        .proDetail{
+            display: flex;padding:0 0.133333rem;border-bottom:0.001333rem solid #ccc;
+            img{
+                flex:1;height:1.666667rem;margin:0.066667rem 0;
+            }
+            .proName{
+                flex:4;padding-left: 0.266667rem;
+            }
+            .proPrice{flex:2;text-align: right;}
+            p{font-size: 0.373333rem;line-height:0.8rem;}
+        }
+    }
+    .orderDetail_footer{
+        .orderTypes{
+            display: flex;font-size: 0.48rem;background:#fff;
+            div{
+                margin:0 0.133333rem;line-height: 1.24rem;text-align: center;
+                border-radius: 0.133333rem;color: #fff;
+            }
+            &>div:first-child{background:rgba(0,0,0,.4);flex:1;}
+            &>div:last-child{background:#1CD467;flex:3;}
+        }
+    }
+}
