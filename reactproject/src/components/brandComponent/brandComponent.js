@@ -29,6 +29,9 @@ class BrandComponent extends React.Component{
 	routeToSearch(){
 		hashHistory.push({
 			pathname:'/listindexed',
+      query:{
+        hh:"hh"
+      }
 		})
 	}
 	getBrandData(event){

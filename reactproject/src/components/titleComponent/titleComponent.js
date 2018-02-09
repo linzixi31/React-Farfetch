@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { NavBar, Icon } from 'antd-mobile';
+import {hashHistory} from "react-router"  
 export default class Back extends Component{
 
     render(){
